@@ -1,6 +1,5 @@
 package user;
-//testing for code update
-//testing Willem
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -15,7 +14,6 @@ public class Client
 		this.ip = ip;
 		this.inPort = inPort;
 		this.outPort = outPort;		
-		
 	}
 	
 	public String getIp()
@@ -47,7 +45,6 @@ public class Client
 	{
 		this.outPort = outPort;
 	}
-
 	
 	public static void main(String[] args) throws IOException
 	{
@@ -60,8 +57,7 @@ public class Client
 		{
 			System.out.println("Trying to connect to client2");
 			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();
-		}
-		
+		}		
 	}		
 }
 
