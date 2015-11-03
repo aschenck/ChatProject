@@ -52,14 +52,14 @@ public class Client
 	public static void main(String[] args) throws IOException
 	{
 		Scanner kb = new Scanner(System.in);
-		Client cl = new Client("localhost", 5001, 5000);	
+		Client cl = new Client("192.168.1.2", 5001, 5000);	
 		new Thread(new ClientListenerThread(cl.getInPort())).start();		
 		String input = "";
 		input = kb.nextLine();
 		if (input.matches("connect"))		
 		{
 			System.out.println("Trying to connect to client2");
-			new Thread(new ClientSendThread(cl.getOutPort())).start();
+			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();
 		}
 		
 	}		
