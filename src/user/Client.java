@@ -1,8 +1,6 @@
 package user;
-
-import java.io.BufferedReader;
+//testing for code update
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Client
