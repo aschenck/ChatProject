@@ -37,7 +37,7 @@ public class ClientListenerThread implements Runnable
 			{
 				Socket connectionSocket = sock.accept();
 				System.out.println("Someone wants to chat");
-				System.out.println("Type connect to chat");
+				System.out.println("Type 'connect' to chat");
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
 	            setRxText(inFromClient.readLine());
 	            System.out.println("Received: " + getRxText());     
