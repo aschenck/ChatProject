@@ -1,0 +1,71 @@
+!SESSION 2015-11-10 10:44:36.377 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_BE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.yattasolutions.umllab.ui 4 0 2015-11-10 10:45:23.197
+!MESSAGE No valid license is available.
+!STACK 0
+com.yattasolutions.obf.kk.g: No license found for UML Lab.
+	at EK4A5SNXYP5GZYVB3RF7X4ASGAK7ZEN3G7HLAXNIR5IWFZGU3Q267K57QACGLJGPPFYANKDABR3IVESNSZNJ7IR4C2BJH7FWIE6XTZKSJDZ44IVCI4VW4VPDX5XOPOEKCOU2PSBVA5LBLCMJ5ZXDVIUGQK7OBSMCSFFSHFVPI3KSTGEHPDXNVT7GUCCRCROF2MMLX3M6DLEUFRW5Z3IFMT45LUVNJP26LQQ56DRW6ASGWAFTGDDV57Y2AFGXOSAHPIOM45EKJB7LLWGOKUUHVGXIR4TCZZLZFKQS5CKJCE7WV4IDRBEVWJFLKA7SMPXGZAMHTAQQCP4OJRFD34CCD4MWHXFELP76PEZYRMGYOGBT27ZY4IOODHJOHBZ3PZTWICV5KQS6II2MXFUEHWE5IL4RQC2QZNMY7NKCND5EL5FOUAZ5DJH72SOFXCDL5XT7IZHPXNUXWIEGXFDV3QBYV65PEKV7QIMOC7LTMBKZOIWWMFFYZGD7MZZR443TOMPHNQXP2YIUAOCIVC5SQHPPNRAJVJ3AL2DUSMUVTURCOGZRY6MDYM6WNWABHINYZEVWWU6KV3EX3LXNMACTSHPK3EPHEPTDKKBODSA2TKL2HMR3X65RS52XPMMFADERDGKAFS3KKTVDFW3HDPA4X6R5IQ7EFZMBU3EV2FT3UUZOYDAQ4LSAC6WOYS6MAA24WEHZJXP73RPLRNG2MUN4W65QSKKIPDFPXPZSUTXCIKPHSSQXLSZ2YQPD7HRZIT2523IDWKRNR7CMHTLB7EYN7GVV7ZWZWANEHHB3CKP6TQHAAIURZTU5XJKE3Q4YOSCTMWB5TVT3M7VOR6YKBEQU23V6OMKFA4MNMTJSLS4WBF2ZWVDA57PZ35VAGSDYQWMAKFJRHF7KGWAD6CUBPNVMF2764ARJGQEPVOSHIT3X54KO3GRLY2JNBMTJMXTLPR3LEIYEO3DCQFZRJVOU7CEOR5TO4GPPSEWWKFM5TORK4OUZAFEDS35DZ7657ATSQMWPV3TMJW3OKSIKP6KTLL3WC2HLI6PNAYXYF4IKHEDM4NE5DZD5JSJZDZ6NXUKGXDUAUSWR4KBLYXPKKJ45ORBPEXDVXZ6NEZQJHZK7ERO2FAE7FLRWNW6SLJ6KHHLQ4W4Y3ALA2QRUULOT4HFBECUQH7V3ZXFUQUF5K3MU3JZQCXPWY4WCDTNPSMRX7A655NBXRYCWAZTHQZXJZLUHABZYPN7BGP2PA2ZV644SHPA63XPK7VX6HEMFDOUPEUR2NCMDVEJRKITGZ4XG7POUPXRSND2OYJV76DC5FXX2O4R4YNQZCYZRGZ5VS65JQHTRD3NK5NJLOSUF37ZHTNBU5HP7K2OPXRYIPG4MTIERBCNC7IC4HV4FWDWOWXJUDBB2LCPZXAMZ7TSJBADEGL535WOAYWJAIEGVKLVOR275GXXN4RD2AY2XGZOSSWEVTZQI4RRWFCAAKJQT6QHEKLIY4LBRF5V4U5MYVZCC2DOATBSNE3VHYCB7LUTF74W6T3NZ3HES2447KZZH2OML667RZOORMPGNUNB3KUIS7XRBAIBSGGAYWPHYHOTPWFBBWKKCMY3DSTAICXN3CPXE3YINRXBRKMWYVLAFPRLF2NPURK7QSDSTT7ABYAYVYH4OW2RR7WPBVYF3UVWAHWSUOQQGG7M3VGO3IXJNOFCXUJ36JPD4BHOZQFJGZEFGOR7NGUXVLTKH2KB2NBF6K7TSBDRCUKVTFVM3RBBJUJFSN7QAMVA4RCZ4DQUKJLM4WT7AZULJTBH25724YJB3ATFA4HY5MMSBJ2UO2GBQ4K2X4M2KAG4LOYEWP3ENILVAIKAPMPXSLNVXEWI6Z7KKRKXFS7P3CFY6L3JPSXY57FLDMPJDGBVFTBLUUBMQXYB65RLIG7GL7HEYSCUVRFCY7XDF4CNXOA3MOKZT3LXBNGA6QTI2OA6KUXCHQZ3UXHWMUDR5KUNU3TGOB4WSX6QAKM3WMQT5G52ZZH34VSGSCFVNZ2W6ARWTISVT4SBMCWYWLON73HRWC2WYQDGY6SIXAZ24NZQAWQLAH73L3W255RSUZHH6LE6J26K37XWIEPF7CPXRYKTL6K77KCWMRQ3UXFCPSGAHEOXTH4N5BQHWAFW25LFKM7KEKYPLV53L5NGD2JWNRMIFBOKVUIGIPLPWDAZLSJOLGYHKCJSFPPEIVBXI6B4S753UFWUOUH4BZ66CFRIC7TY4YEP5JGHCY7WSMMXNZWAGPPAYBYGKDYW4JQGDBZ3ZOGMHBSBECEP6QEXS762IVSGKVMYKNKCR7OSJURXXBRQ2UW7FDXKMFNQB2TXOTCNBQ7SPRWTJDOAKYUUK37BB2RPVK4OFSUGR2RIL3ORHDYBNZMH3CTJJX5DOQIS5UK3VQEUZ4PG5BGDNLZC7NQNNCB5OYCHP73MBNXEAEVH65HTYG67ZPMJJI2ZMRVJIEXVJ7F5FI4D3QI2PF22N46MWNPI4DOKTR7A4WUARM6ANTXKRKPPIHTRQXAJKXXF6Y5INIJTQHCNBLERGW3LS6Z6ATCP2HVMTO2QQB4Z4IFCOIBD653U3H7GC3HFZGK6UX44B6ANWHM4RCFBLNA5FV2CYH3GFOJJBCLMERA3V2IAGBLLAHTCLLU5U7JXMYXEMSMCXL3O3DCL274VBIHRGH5JOQ4PYTQYGYK5HL53VVRW26PFYUH2BKTRC7AGY7LZGANO7K36OLHLEJ6BFDO5TLIBPUOOY56SSYAOENKHV2YTJHQIPCY5W5EITWL6BFUVDJR4GYQ43YUGYT6JZ6XLKMGFS5AJTNO4QETG3TT74M2DNNJSAE5FPSA2A4DYTUNEKELYKGGHUNF577AMVKMZQ3NZQVLGPNBK5VYUVFWLQWAPSMROOBP4ZGUOQ67UFS4LD6MSPKMAGK6KLRHZBVGX5K6UU3UOBSTH73DASOU4HUZHLTQJROJAPUHQLU3YE24OKKCKKZHO6V5H3OVWB5UMHFKRA/37PL3IGME5XCEKXYI4TDNQ6G2H.<unknown>(Unknown Source)
+
+!ENTRY com.yattasolutions.umllab 2 0 2015-11-10 10:45:27.533
+!MESSAGE Unable to configure UML constraint validation
+!STACK 0
+java.lang.ClassNotFoundException: Unable to load synthetic subclass of com.yattasolutions.umllab.validation.f
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:123)
+	at com.yattasolutions.umllab.validation.f.<clinit>(SourceFile:40)
+	at com.yattasolutions.obf.os.a.earlyStartup(SourceFile:17)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:90)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$56.run(Workbench.java:2812)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.lang.UnsupportedClassVersionError: com/yattasolutions/umllab/validation/f__Gen_Configurable has been compiled by a more recent version of the Java Runtime (class file version 0.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at java.lang.ClassLoader.defineClass(Unknown Source)
+	at com.yattasolutions.umllab.validation.a$1.ado(SourceFile:109)
+	at com.yattasolutions.umllab.validation.a$1.findClass(SourceFile:91)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at com.yattasolutions.umllab.validation.a.R(SourceFile:119)
+	... 7 more
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-11-10 10:45:59.179
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Jef'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 4 0 2015-11-10 10:46:38.561
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:168)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:52)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:268)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:252)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:175)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:97)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2225)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:130)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:60)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:253)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:235)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:205)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Contains: OK
+Contains: C:\Users\Jef\Documents\GitHub\ChatProject overlaps the workspace location: C:\Users\Jef\Documents\GitHub\ChatProject
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2015-11-10 10:46:38.562
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2015-11-10 10:46:38.562
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2015-11-10 10:46:38.562
+!MESSAGE C:\Users\Jef\Documents\GitHub\ChatProject overlaps the workspace location: C:\Users\Jef\Documents\GitHub\ChatProject
