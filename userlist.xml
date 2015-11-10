@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userlist>
+    <users>
+        <user>
+            <ip>143.169.201.36</ip>
+            <login>jef</login>
+            <online>true</online>
+            <pw>gys</pw>
+            <fName>firstname1</fName>
+            <lName>lastname1</lName>
+        </user>
+        <user>
+            <ip>143.169.201.36</ip>
+            <login>login2</login>
+            <online>true</online>
+            <pw>passwordhash2</pw>
+            <fName>firstname2</fName>
+            <lName>lastname2</lName>
+        </user>
+        <user>
+            <ip>143.169.201.36</ip>
+            <login>Anthony</login>
+            <online>true</online>
+            <pw>Schenck</pw>
+            <fName></fName>
+            <lName></lName>
+        </user>
+    </users>
+</userlist>

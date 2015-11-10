@@ -1,10 +1,15 @@
 package user;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.rmi.Naming;
 import java.util.Scanner;
+
+import TestUser.ServerInterface;
 
 public class Client2
 {	
+	private static String server;
 	private String ip;
 	private int inPort;
 	private int outPort;
@@ -15,7 +20,8 @@ public class Client2
 		this.ip = ip;
 		this.inPort = inPort;
 		this.outPort = outPort;		
-		Client2.connected = false;		
+		Client2.connected = false;	
+		this.setServer("localhost");
 	}
 	
 	public static boolean isConnected()
@@ -58,8 +64,87 @@ public class Client2
 		this.outPort = outPort;
 	}
 	
+	public static String getServer()
+	{
+		return server;
+	}
+
+	public void setServer(String server)
+	{
+		Client2.server = server;
+	}	
+	
+	public static void newUser()
+	{
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Username:");
+		String user = "";
+		user = kb.nextLine();
+		System.out.println("Password:");
+		String pass = "";
+		pass = kb.nextLine();
+		System.out.println("First name:");
+		String fName = "";
+		fName = kb.nextLine();
+		System.out.println("Last name:");
+		String lName = "";
+		lName = kb.nextLine();
+		try 
+		{
+			InetAddress addr = InetAddress.getLocalHost();
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			
+			if(ChatServer.newUser(user, fName, lName, pass, addr))
+			{
+				System.out.println("User logged in!");
+			}
+			else
+			{
+				System.out.println("User not logged in");
+			}	
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void connectToServer()
+	{
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Username:");
+		String user = "";
+		user = kb.nextLine();
+		System.out.println("Password:");
+		String pass = "";
+		pass = kb.nextLine();
+		try 
+		{
+			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
+			InetAddress addr = InetAddress.getLocalHost();
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			
+			if(ChatServer.loginUser(user, pass))
+			{
+				System.out.println("User logged in!");
+			}
+			else
+			{
+				System.out.println("User not logged in");
+			}	
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+
+		kb.close();
+	}
+	
 	public static void main(String[] args) throws IOException
 	{
+		newUser();
+		connectToServer();
 		Scanner kb = new Scanner(System.in);
 		Client2 cl = new Client2("192.168.1.1", 5000, 5001);	
 		new Thread(new ClientListenerThread(cl.getInPort())).start();		
@@ -70,6 +155,6 @@ public class Client2
 			System.out.println("Trying to connect to client2");
 			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();
 		}
-	}		
+	}	
 }
 

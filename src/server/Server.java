@@ -35,7 +35,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		
 		for(User u : temp)
 		{			
-	        if(u.getLogin() == username && u.getPw() == password)
+	        if(u.getLogin().equals(username) && u.getPw().equals(password))
 	        {
 	        	found = true;
 	        }
