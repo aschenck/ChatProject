@@ -1,10 +1,13 @@
 package user;
 
+import java.awt.SecondaryLoop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import GUI.GUI;
 
 public class ClientListenerThread implements Runnable
 {	
@@ -38,7 +41,9 @@ public class ClientListenerThread implements Runnable
 				Socket connectionSocket = sock.accept();
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
 	            setRxText(inFromClient.readLine());
-	            System.out.println("Received: " + getRxText());     
+	            
+	            System.out.println("Received: " + getRxText());
+	            
   			}
 		} catch (IOException e)
 		{

@@ -15,7 +15,9 @@ import user.ClientListenerThread;
 import user.ClientSendThread;
 
 public class GUI extends JFrame {
+	
 	public static void main(String args[]) {
+		
 		JFrame frame = new GUI();
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -26,6 +28,9 @@ public class GUI extends JFrame {
 	}
 }
 
+public setTEXT(String a){
+	
+}
 class BorderLayoutPanel extends JPanel {
 	private JPanel optionPanel, chatPanel;
 	
@@ -45,9 +50,10 @@ class BorderLayoutPanel extends JPanel {
 	
 	//CHATPANEL
 	private JTextField txtTextToSend;
-	private JTextArea txtConversation;
+	public JTextArea txtConversation;
+
 	private JButton btnSendMessage, btnLeaveConversation;
-	
+	Client cl = new Client("IP", 0, 0);
 	
 	public BorderLayoutPanel() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -183,14 +189,16 @@ class BorderLayoutPanel extends JPanel {
 		btnLeaveConversation.addActionListener(handler);
 		btnSendMessage.addActionListener(handler);
 		
+
+		
 	}
+	
 	
 	class KnopHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnLoginMenu)
             {
-            	//OPENEN SOCKET
-        		new Thread(new ClientListenerThread(5000)).start();		
+            		
             	
             	lblUsername.setVisible(true);
         		txtUsername.setVisible(true);
@@ -225,7 +233,17 @@ class BorderLayoutPanel extends JPanel {
             }
             if (e.getSource() == btnLogin)
             {
+            	Client cl = new Client("IP", 5000, 5001);	
             	if (true) {
+            		
+            		
+            		//OPENEN SOCKET
+            		//RMI JUIST SOCKETS VRAGE
+                	cl.setInPort(5000);
+                	cl.setOutPort(5001);
+            		new Thread(new ClientListenerThread(cl.getInPort())).start();	
+            		
+            		
             		lblUsername.setVisible(false);
             		txtUsername.setVisible(false);
             		lblPassword.setVisible(false);
@@ -433,16 +451,14 @@ class BorderLayoutPanel extends JPanel {
             	
             	if(username != ""){	
             		
-            		//GET IP WITH RMI
-            		
+            		//GET IP WITH RMI            		
             		String ip = "localhost";
             		
-            		Client cl = new Client(ip, 5000, 5001);	
+            		cl.setIp(ip);
 
-            			System.out.println("Trying to connect to client2");
-            			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();	
-
-            	
+            		System.out.println("Trying to connect to " + ip);
+            		new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();	
+            		
             		optionPanel.setVisible(false);
             		chatPanel.setVisible(true);
             	}
