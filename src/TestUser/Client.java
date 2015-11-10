@@ -13,7 +13,8 @@ public class Client
 		try 
 		{
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
-			ServerInterface ChatServer = (ServerInterface)Naming.lookup("rmi://" + HOST + "/ChatServer");
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + HOST + "/ChatServer");
+			
 			
 			if(ChatServer.loginUser("jef", "gys"))
 			{
