@@ -2,6 +2,7 @@ package server;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,11 +19,9 @@ public class User
 	@XmlElement
 	private String ip;
 	private boolean online;
+	private int inPort;
+	private int outPort;
 
-	public User() 
-	{
-		super();
-	}
 
 	public User(String login, String fName, String lName, String pw,  InetAddress ip)
 	{		
@@ -32,8 +31,53 @@ public class User
 		this.pw = pw;
 		this.ip = ip.getHostAddress();
 		this.online = true;
+		this.outPort = MakeOutPort();
+		this.inPort = MakeInPort();		
 	}
 	
+	public int MakeInPort()
+	{
+		int port;
+		port = getOutPort();
+		if(port == 65535 )
+			port -= 1;
+		else
+			port += 1;		
+		return port;
+	}
+	
+	public int MakeOutPort()
+	{
+		Random rng = new Random();
+		int port;
+		port = rng.nextInt(16383) + 49152;
+		return port;
+	}
+	
+	public int getInPort()
+	{
+		return inPort;
+	}
+
+	public void setInPort(int inPort)
+	{
+		this.inPort = inPort;
+	}
+
+	public int getOutPort()
+	{
+		return outPort;
+	}
+
+	public void setOutPort(int outPort)
+	{
+		this.outPort = outPort;
+	}
+
+	public User() 
+	{
+		super();
+	}
 	public String getLogin()
 	{
 		return login;

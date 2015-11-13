@@ -56,7 +56,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		
 		// CREATE NEW USER
 		User temp = new User(login, firstname, lastname, password, ip);
-		// ADD TEMP USER TO USERS COLEECTION
+		// ADD TEMP USER TO USERS COLLECTION
 		System.out.println(temp.toString());
 		
 		userlist.getUsers().add(temp);
@@ -89,10 +89,22 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public int startChat(String username, String password, String fullname) throws RemoteException 
+	public User startChat(String username) throws RemoteException 
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		List<User> temp = userlist.getUsers();			
+		User p = new User();
+		for(User u : temp)
+		{			
+	        if(u.getLogin().equals(username) && u.getOnline())
+	        {	
+	        	p = u;
+	        }
+	        else
+	        {
+	        	p.setOutPort(0);
+	        }
+	    }		
+		return p;
 	}
 
 	@Override
@@ -134,10 +146,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			System.out.println("Problem reading from xml");
 			System.out.println("File does not exsit");
 			//e.printStackTrace();
-		}
-		
-		
+		}		
 	}
+	
+
 	
 	private void writeUsersXML()
 	{

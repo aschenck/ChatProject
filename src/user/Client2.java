@@ -5,7 +5,9 @@ import java.net.InetAddress;
 import java.rmi.Naming;
 import java.util.Scanner;
 
-import TestUser.ServerInterface;
+import server.User;
+
+//import TestUser.ServerInterface;
 
 public class Client2
 {	
@@ -107,6 +109,7 @@ public class Client2
 		{
 			e.printStackTrace();
 		}
+		kb.close();
 	}
 	
 	public static void connectToServer()
@@ -141,20 +144,44 @@ public class Client2
 		kb.close();
 	}
 	
+	public void startChat(String userName)
+	{
+		try 
+		{
+			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
+			InetAddress addr = InetAddress.getLocalHost();
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			User u = new User();
+			u = ChatServer.startChat(userName);
+			if(u.getOutPort() == 0)
+			{
+	        	System.out.println("De gebruiker " +u.getLogin()+ " is momenteel offline of bestaat niet");
+			}
+			else
+			{
+				this.setInPort(u.getOutPort());
+				this.setOutPort(u.getInPort());
+				this.setIp(u.getIp());
+				ThreadCreater();
+			}	
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void ThreadCreater() throws IOException
+	{
+		Client2 cl = new Client2(ip, inPort, outPort);
+		new Thread(new ClientListenerThread(cl.getInPort())).start();
+		new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();		
+	}	
+	
 	public static void main(String[] args) throws IOException
 	{
 		newUser();
 		connectToServer();
-		Scanner kb = new Scanner(System.in);
-		Client2 cl = new Client2("192.168.1.1", 5000, 5001);	
-		new Thread(new ClientListenerThread(cl.getInPort())).start();		
-		String input = "";
-		input = kb.nextLine();
-		if (input.matches("connect"))		
-		{
-			System.out.println("Trying to connect to client2");
-			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();
-		}
 	}	
 }
 
