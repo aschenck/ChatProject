@@ -2,6 +2,8 @@ package server;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,6 +24,7 @@ public class User
 	private int inPort;
 	private int outPort;
 
+	private List<String> friendList;
 
 	public User(String login, String fName, String lName, String pw,  InetAddress ip)
 	{		
@@ -32,7 +35,8 @@ public class User
 		this.ip = ip.getHostAddress();
 		this.online = true;
 		this.outPort = MakeOutPort();
-		this.inPort = MakeInPort();		
+		this.inPort = MakeInPort();
+		this.friendList = Collections.<String>emptyList();
 	}
 	
 	public int MakeInPort()
@@ -74,10 +78,6 @@ public class User
 		this.outPort = outPort;
 	}
 
-	public User() 
-	{
-		super();
-	}
 	public String getLogin()
 	{
 		return login;
@@ -135,6 +135,28 @@ public class User
 	public void setOnline(boolean online)
 	{
 		this.online = online;
+	}
+	
+	public List<String> getFriendList()
+	{
+		return friendList;
+	}
+	
+	public void addFriend(String friendUserName)
+	{
+		friendList.add(friendUserName);
+	}
+	
+	public void deleteFriend(String friendUserName)
+	{
+		for (int i = 0; i < friendList.size(); i++)
+		{
+			if (friendList.get(i).equals(friendUserName))
+			{
+				friendList.remove(i);
+			}
+		}
+		
 	}
 	
 	@Override
