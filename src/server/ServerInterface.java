@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public interface ServerInterface extends Remote
 {
 	//FUNCTIONS (named to what it returns)
-	public boolean loginUser(String username, String password)throws RemoteException;	//returns Session id
+	public boolean loginUser(String username, String password, InetAddress ip)throws RemoteException;	//returns Session id
 	public boolean newUser(String login, String firstname, String lastname, String password, InetAddress ip )throws RemoteException;
 	public boolean logoutUser(String username, String password)throws RemoteException;
 	public boolean addFriend(String username, String password, String fullname)throws RemoteException;

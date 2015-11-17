@@ -27,41 +27,35 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean loginUser(String username, String password) throws RemoteException 
+	public boolean loginUser(String username, String password, InetAddress ip) throws RemoteException 
 	{
-		boolean found = false;
-		
-		List<User> temp = userlist.getUsers();
-		
+		boolean found = false;		
+		List<User> temp = userlist.getUsers();		
 		for(User u : temp)
 		{			
 	        if(u.getLogin().equals(username) && u.getPw().equals(password))
 	        {
 	        	found = true;
+	        	u.setIp(ip);
 	        }
 	        else
 	        {
 	        	System.out.println(u.getLogin());
 	        	System.out.println(u.getPw());
 	        }
-	    }
-		
+	    }		
 		return found;
 	}
 
 	@Override
 	public boolean newUser(String login, String firstname, String lastname, String password, InetAddress ip )throws RemoteException
 	{
-		// CHECK IF USERNAME ALLREADY EXSIST
-		
+		// CHECK IF USERNAME ALLREADY EXSIST		
 		// CREATE NEW USER
 		User temp = new User(login, firstname, lastname, password, ip);
 		// ADD TEMP USER TO USERS COLLECTION
-		System.out.println(temp.toString());
-		
-		userlist.getUsers().add(temp);
-		
-		
+		System.out.println(temp.toString());		
+		userlist.getUsers().add(temp);		
 		// WRITE USERS TO XML
 		writeUsersXML();
 		return false;
@@ -122,8 +116,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}*/
 	
 	private boolean authorizeUser(String username, String password)
-	{
-		
+	{		
 		return true;
 	}
 	
@@ -148,8 +141,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			//e.printStackTrace();
 		}		
 	}
-	
-
 	
 	private void writeUsersXML()
 	{

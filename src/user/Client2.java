@@ -2,6 +2,7 @@ package user;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.util.Scanner;
 
@@ -112,7 +113,7 @@ public class Client2
 		kb.close();
 	}
 	
-	public static void connectToServer()
+	public static void connectToServer() throws UnknownHostException
 	{
 		Scanner kb = new Scanner(System.in);
 		System.out.println("Username:");
@@ -121,13 +122,14 @@ public class Client2
 		System.out.println("Password:");
 		String pass = "";
 		pass = kb.nextLine();
+		InetAddress ip = InetAddress.getLocalHost();
 		try 
 		{
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
 			InetAddress addr = InetAddress.getLocalHost();
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
-			if(ChatServer.loginUser(user, pass))
+			if(ChatServer.loginUser(user, pass, ip))
 			{
 				System.out.println("User logged in!");
 			}
@@ -159,8 +161,8 @@ public class Client2
 			}
 			else
 			{
-				this.setInPort(u.getOutPort());
-				this.setOutPort(u.getInPort());
+				this.setInPort(u.getInPort());
+				this.setOutPort(u.getOutPort());
 				this.setIp(u.getIp());
 				ThreadCreater();
 			}	

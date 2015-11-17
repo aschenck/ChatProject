@@ -40,8 +40,7 @@ public class ClientListenerThread implements Runnable
 			{
 				Socket connectionSocket = sock.accept();
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
-	            setRxText(inFromClient.readLine());
-	            
+	            setRxText(inFromClient.readLine());	            
 	            System.out.println("Received: " + getRxText());
 	            
   			}
@@ -49,9 +48,6 @@ public class ClientListenerThread implements Runnable
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}			
-
-
+		}		
 	}
-
 }
