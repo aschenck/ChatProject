@@ -53,11 +53,13 @@ public class Client
 		new Thread(new ClientListenerThread(cl.getInPort())).start();		
 		String input = "";
 		input = kb.nextLine();
+		/*
 		if (input.matches("connect"))		
 		{
 			System.out.println("Trying to connect to client2");
 			new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();
-		}		
+		}
+		*/		
 	}		
 }
 

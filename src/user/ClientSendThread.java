@@ -9,12 +9,13 @@ import java.net.Socket;
 public class ClientSendThread implements Runnable
 {
 	private int outPort;
-	private String ip;
+	private String ip, message;
 	
-	public ClientSendThread(int outPort, String ip)
+	public ClientSendThread(int outPort, String ip, String message)
 	{
 		this.outPort = outPort;
 		this.ip = ip;
+		this.message = message;
 	}
 	
 	public void run()
@@ -22,15 +23,10 @@ public class ClientSendThread implements Runnable
 		System.out.println("Send thread started!");
 		try
 		{	
-			while(true)
-			{
 				String sentence;
-				BufferedReader inFromUser = new BufferedReader( new InputStreamReader(System.in));
 				Socket clientSocket = new Socket(ip, this.outPort);
 				DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-				sentence = inFromUser.readLine();
-				outToServer.writeBytes(sentence + '\n');
-			}
+				outToServer.writeBytes(message + '\n');
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

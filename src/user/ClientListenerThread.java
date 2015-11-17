@@ -42,6 +42,7 @@ public class ClientListenerThread implements Runnable
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
 	            setRxText(inFromClient.readLine());	            
 	            System.out.println("Received: " + getRxText());
+	            GUI.b.setTextArea(getRxText() + '\n');
 	            
   			}
 		} catch (IOException e)
