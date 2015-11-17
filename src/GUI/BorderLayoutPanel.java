@@ -15,13 +15,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import GUI.BorderLayoutPanel.KnopHandler;
 import user.Client;
 import user.ClientListenerThread;
 import user.ClientSendThread;
 
 
 	public class BorderLayoutPanel extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public ActionListener handler = new KnopHandler();
 		public void setTextArea(String myString){
 			 	txtConversation.append(myString);
@@ -40,7 +44,9 @@ import user.ClientSendThread;
 		private JButton btnLoginMenu, btnSignUpMenu, btnExit, btnLogin, btnSignUp, btnBack;
 		private JButton btnStartChat, btnAddFriend, btnDeleteFriend, btnCheckInvites, btnLogout;
 
+		@SuppressWarnings("rawtypes")
 		private JList lFriendList = new JList();
+		@SuppressWarnings("rawtypes")
 		private DefaultListModel lmFriendList = new DefaultListModel();
 		
 		private JButton btnDelete, btnChat, btnAdd, btnBackMenu;
@@ -55,6 +61,7 @@ import user.ClientSendThread;
 		private JButton btnSendMessage, btnLeaveConversation;
 		Client cl = new Client("IP", 0, 0);
 		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public BorderLayoutPanel() {
 			setLayout(new FlowLayout(FlowLayout.CENTER));
 			
@@ -195,10 +202,12 @@ import user.ClientSendThread;
 		
 		class KnopHandler implements ActionListener {
 			
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
 	            
 
 	        	
+				//Naar het login menu gaan
 	        	if (e.getSource() == btnLoginMenu)
 	            {
 	            		
@@ -217,6 +226,8 @@ import user.ClientSendThread;
 	        		
 	        		
 	            }
+	        	
+	        	//Naar het sign in menu gaan
 	            if (e.getSource() == btnSignUpMenu)
 	            {
 	            	lblUsername.setVisible(true);
@@ -230,10 +241,20 @@ import user.ClientSendThread;
 	        		btnSignUp.setVisible(true);
 	        		btnBack.setVisible(true);
 	            }
+	            
+	            //Programma sluiten
 	            if (e.getSource() == btnExit)
 	            {
 	            	System.exit(0);
 	            }
+	            
+	            /*
+	             * 
+	             * Hier gaan we proberen inteloggen, dus aan de RMI
+	             * 
+	             * 
+	             * 
+	             */
 	            if (e.getSource() == btnLogin)
 	            {
 	            	if (true) {
@@ -262,9 +283,7 @@ import user.ClientSendThread;
 	            		btnCheckInvites.setVisible(true);
 	            		btnLogout.setVisible(true);
 	            	}
-	            	else {
-	            		
-	            	}
+	            	
 	            }
 	            if (e.getSource() == btnSignUp)
 	            {
@@ -280,9 +299,7 @@ import user.ClientSendThread;
 	            		btnSignUp.setVisible(false);
 	            		btnBack.setVisible(true);
 	            	}
-	            	else {
-	            		
-	            	}
+
 	            }
 	            if (e.getSource() == btnBack)
 	            {
@@ -461,8 +478,8 @@ import user.ClientSendThread;
 
 	            		optionPanel.setVisible(false);
 	            		chatPanel.setVisible(true);
-	            		txtConversation.setText("Connectie aanvraag gestuurd naar " + friendname + '\n');
-	            		txtConversation.setText("Wachten op antwoord....");
+	            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
+	            		txtConversation.append("Wachten op antwoord...." + '\n');
 	            	}
 	            	
 	            	

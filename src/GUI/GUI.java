@@ -1,21 +1,12 @@
 package GUI;
 
-
-import java.awt.*;
-import java.awt.event.*;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.Scanner;
-
 import javax.swing.*;
-import javax.swing.event.*;
-
-import user.Client;
-import user.ClientListenerThread;
-import user.ClientSendThread;
 
 public class GUI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static BorderLayoutPanel b = new BorderLayoutPanel();
 	
 	public static void main(String args[]) {

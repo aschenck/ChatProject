@@ -176,7 +176,7 @@ public class Client2
 	public void ThreadCreater() throws IOException
 	{
 		Client2 cl = new Client2(ip, inPort, outPort);
-		new Thread(new ClientListenerThread(cl.getInPort())).start();
+		new Thread(new ClcientListenerThread(cl.getInPort())).start();
 		new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();		
 	}	
 	
