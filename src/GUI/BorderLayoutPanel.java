@@ -272,18 +272,22 @@ import user.ClientSendThread;
 	            
 	            /*
 	             * 
-	             * Hier gaan we proberen inteloggen, dus aan de RMI
-	             * 
+	             * Hier gaan we proberen inteloggen, dus aan de RMI 
+	             * een true boolean aanvragen
 	             * 
 	             * 
 	             */
 	            if (e.getSource() == btnLogin)
 	            {
+	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
 	            	if (true) {
 	            		
 	            		
 	            		//OPENEN SOCKET
 	            		//RMI JUIST SOCKETS VRAGE
+	            		//cl.setInPort(getsetInPort(txt.userName.trim()));
+	            		//cl.setOutPort(getsetOutPort(txt.userName.trim()));
+	     
 	                	cl.setInPort(5000);
 	                	cl.setOutPort(5001);
 	            		new Thread(new ClientListenerThread(cl.getInPort())).start();	
