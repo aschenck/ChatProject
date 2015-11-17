@@ -39,6 +39,11 @@ public class User
 		this.friendList = Collections.<String>emptyList();
 	}
 	
+	public User()
+	{
+		super();
+	}
+	
 	public int MakeInPort()
 	{
 		int port;
@@ -155,8 +160,7 @@ public class User
 			{
 				friendList.remove(i);
 			}
-		}
-		
+		}		
 	}
 	
 	@Override
