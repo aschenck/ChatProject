@@ -3,27 +3,73 @@
     <users>
         <user>
             <ip>143.169.201.36</ip>
+            <inPort>0</inPort>
             <login>jef</login>
             <online>true</online>
+            <outPort>0</outPort>
             <pw>gys</pw>
             <fName>firstname1</fName>
             <lName>lastname1</lName>
         </user>
         <user>
             <ip>143.169.201.36</ip>
+            <inPort>0</inPort>
             <login>login2</login>
             <online>true</online>
+            <outPort>0</outPort>
             <pw>passwordhash2</pw>
             <fName>firstname2</fName>
             <lName>lastname2</lName>
         </user>
         <user>
             <ip>143.169.201.36</ip>
+            <inPort>0</inPort>
             <login>Anthony</login>
             <online>true</online>
+            <outPort>0</outPort>
             <pw>Schenck</pw>
             <fName></fName>
             <lName></lName>
+        </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>61325</inPort>
+            <login>anthony</login>
+            <online>true</online>
+            <outPort>61324</outPort>
+            <pw>[C@5bfe3b67</pw>
+            <fName>anthony</fName>
+            <lName>schenck</lName>
+        </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>57655</inPort>
+            <login>anthony</login>
+            <online>true</online>
+            <outPort>57654</outPort>
+            <pw>[C@14a7fc31</pw>
+            <fName>anthony</fName>
+            <lName>schenck</lName>
+        </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>64365</inPort>
+            <login>anthony</login>
+            <online>true</online>
+            <outPort>64364</outPort>
+            <pw>[C@73c64611</pw>
+            <fName>anthony</fName>
+            <lName>schenck</lName>
+        </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>56425</inPort>
+            <login>anthony</login>
+            <online>true</online>
+            <outPort>56424</outPort>
+            <pw>[C@27ee0737</pw>
+            <fName>anthony</fName>
+            <lName>schenck</lName>
         </user>
     </users>
 </userlist>

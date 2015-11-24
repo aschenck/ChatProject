@@ -11,24 +11,24 @@ public class ClientSendThread implements Runnable
 	private int outPort;
 	private String ip, message;
 	
-	public ClientSendThread(int outPort, String ip, String message)
+	public ClientSendThread(int outPort, String ip)
 	{
 		this.outPort = outPort;
 		this.ip = ip;
-		this.message = message;
 	}
 	
 	public void run()
 	{	
 		System.out.println("Send thread started!");
 		try
-		{	
-		
-			String sentence;
+		{			
+			String sentence = GUI.GUI.b.txtConversation.getText();;
+			
 			Socket clientSocket = new Socket(ip, this.outPort);
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-			outToServer.writeBytes(message + '\n');
-		} catch (IOException e)
+			outToServer.writeBytes(sentence + '\n');
+		}
+		catch (IOException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();

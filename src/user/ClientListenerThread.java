@@ -1,6 +1,5 @@
 package user;
 
-import java.awt.SecondaryLoop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,8 +41,7 @@ public class ClientListenerThread implements Runnable
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
 	            setRxText(inFromClient.readLine());	            
 	            System.out.println("Received: " + getRxText());
-	            GUI.b.setTextArea(getRxText() + '\n');
-	            
+	            GUI.b.setTextArea(getRxText() + '\n');	            
   			}
 		} catch (IOException e)
 		{

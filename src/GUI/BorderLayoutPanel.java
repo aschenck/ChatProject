@@ -26,6 +26,8 @@ import user.ClientSendThread;
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
+		
+	
 
 		public ActionListener handler = new KnopHandler();
 		public void setTextArea(String myString){
@@ -516,8 +518,6 @@ import user.ClientSendThread;
 	            		String ip = "localhost";
 	            		
 	            		cl.setIp(ip);
-
-
 	            		optionPanel.setVisible(false);
 	            		chatPanel.setVisible(true);
 	            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
@@ -534,7 +534,7 @@ import user.ClientSendThread;
 	            if (e.getSource() == btnSendMessage) {
 	            	if(txtTextToSend.getText().length()>0){
 		            	String message = "<" + txtUsername.getText() + ">" + txtTextToSend.getText();
-		            	new ClientSendThread(cl.getOutPort(), cl.getIp(), message).run();
+		            	new ClientSendThread(cl.getOutPort(), cl.getIp()).run();
 		            	txtConversation.append(message + '\n');
 		            	txtTextToSend.setText("");
 	            	}
