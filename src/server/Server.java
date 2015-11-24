@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -32,15 +33,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		readUsersXML();
 		boolean found = false;		
 		List<User> temp = userlist.getUsers();		
-		int i = 0;
 		for(User u : temp)
 		{						
-			System.out.println("Huidige user: "+ u.getLogin());
-			System.out.println("Aantal users overlopen: "+ i++);
-	        if(u.getLogin().equals(username) && u.getPw().equals(password))
+	        if(u.getLogin().equals(username) )
 	        {
-	        	found = true;
-	        	u.setIp(ip);
+	        	System.out.println("Huidige user: "+ u.getLogin());
+	        	if( Arrays.equals(u.getPw(), password))
+	        	{	        		
+	        		found = true;
+	        		u.setIp(ip);	        		
+	        	}
 	        }
 	        else
 	        {
