@@ -27,12 +27,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean loginUser(String username, String password, InetAddress ip) throws RemoteException 
+	public boolean loginUser(String username, char[] password, InetAddress ip) throws RemoteException 
 	{
+		readUsersXML();
 		boolean found = false;		
 		List<User> temp = userlist.getUsers();		
+		int i = 0;
 		for(User u : temp)
-		{			
+		{						
+			System.out.println("Huidige user: "+ u.getLogin());
+			System.out.println("Aantal users overlopen: "+ i++);
 	        if(u.getLogin().equals(username) && u.getPw().equals(password))
 	        {
 	        	found = true;
@@ -48,35 +52,49 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean newUser(String login, String firstname, String lastname, String password, InetAddress ip )throws RemoteException
+	public boolean newUser(String login, String firstname, String lastname, char[] password, InetAddress ip )throws RemoteException
 	{
-		// CHECK IF USERNAME ALLREADY EXSIST		
-		// CREATE NEW USER
-		User temp = new User(login, firstname, lastname, password, ip);
-		// ADD TEMP USER TO USERS COLLECTION
-		System.out.println(temp.toString());		
-		userlist.getUsers().add(temp);		
-		// WRITE USERS TO XML
-		writeUsersXML();
-		return false;
+		boolean ok = false;
+		List<User> temp = userlist.getUsers();	
+		User n = new User(login, firstname, lastname, password, ip);
+		// CHECK IF USERNAME ALLREADY EXSIST	
+		for(User u : temp)
+		{			
+	        if(n.getLogin().equals(u.getLogin()) )
+	        {	
+	        	ok = false;
+	        	System.out.println("username already exists!");
+	        }
+	        else
+	        {
+	        	ok = true;
+	        	System.out.println("User created: " + n.toString());	        	
+	        }
+	        if(ok)
+	        {
+	        	userlist.getUsers().add(n);		
+	        	writeUsersXML();
+	        }
+	    }		
+		return ok;
 	}
 
 	@Override
-	public boolean logoutUser(String username, String password) throws RemoteException 
+	public boolean logoutUser(String username, char[] password) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addFriend(String username, String password, String fullname) throws RemoteException 
+	public boolean addFriend(String username, char[] password, String fullname) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deleteFriend(String username, String password, String fullname) throws RemoteException 
+	public boolean deleteFriend(String username, char[] password, String fullname) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
@@ -102,7 +120,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean sendMessage(String username, String password, int chat, String Message) throws RemoteException 
+	public boolean sendMessage(String username, char[] password, int chat, String Message) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
@@ -115,7 +133,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return null;
 	}*/
 	
-	private boolean authorizeUser(String username, String password)
+	private boolean authorizeUser(String username, char[] password)
 	{		
 		return true;
 	}

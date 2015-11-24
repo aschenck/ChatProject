@@ -20,6 +20,3 @@ public class GUI extends JFrame {
 		frame.setVisible(true);
 	}
 }
-
-
-

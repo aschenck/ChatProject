@@ -89,7 +89,7 @@ public class Client
 		new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();		
 	}
 	
-	public boolean connectToServer(String user, String pass) throws UnknownHostException
+	public boolean connectToServer(String user, char[] pass) throws UnknownHostException
 	{		
 		boolean connected = false;
 		try 
@@ -115,7 +115,7 @@ public class Client
 		return connected;
 	}
 	
-	public boolean newUser(String user, String fName, String lName, String pass)
+	public boolean newUser(String user, String fName, String lName, char[] pass)
 	{
 		boolean connected = false;
 		try 

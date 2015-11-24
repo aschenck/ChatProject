@@ -16,7 +16,7 @@ public class User
 	private String login;
 	private String fName;
 	private String lName;
-	private String pw;
+	private char[] pw;
 	@XmlElement
 	private String ip;
 	private boolean online;
@@ -25,7 +25,7 @@ public class User
 
 	private List<String> friendList;
 
-	public User(String login, String fName, String lName, String pw,  InetAddress ip)
+	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
 	{		
 		this.login = login;
 		this.fName = fName;
@@ -110,11 +110,11 @@ public class User
 		this.lName = lName;
 	}
 
-	public String getPw()
+	public char[] getPw()
 	{
 		return pw;
 	}
-	public void setPw(String pw)
+	public void setPw(char[] pw)
 	{
 		this.pw = pw;
 	}

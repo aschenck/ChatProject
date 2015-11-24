@@ -71,5 +71,25 @@
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>59836</inPort>
+            <login>anthony</login>
+            <online>true</online>
+            <outPort>59835</outPort>
+            <pw>[C@a92669ca</pw>
+            <fName>anthony</fName>
+            <lName>schenck</lName>
+        </user>
+        <user>
+            <ip>143.169.216.138</ip>
+            <inPort>63727</inPort>
+            <login>dattester</login>
+            <online>true</online>
+            <outPort>63726</outPort>
+            <pw>[C@356da5f4</pw>
+            <fName>dat</fName>
+            <lName>tester</lName>
+        </user>
     </users>
 </userlist>
