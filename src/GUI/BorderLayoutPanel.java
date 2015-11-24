@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -77,9 +78,7 @@ import user.ClientSendThread;
 			add(optionPanel);
 			add(chatPanel);
 
-			chatPanel.setVisible(false);
-
-			
+			chatPanel.setVisible(false);			
 
 			//OPTIONPANEL
 			optionPanel.add(lblUsername = new JLabel("Username"));
@@ -279,41 +278,50 @@ import user.ClientSendThread;
 	             */
 	            if (e.getSource() == btnLogin)
 	            {
+	            	String user = txtUsername.getText();
+	            	String pass = txtPassword.getPassword().toString();
 	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
-	            	if (true) {
-	            		
-	            		
-	            		//OPENEN SOCKET
-	            		//RMI JUIST SOCKETS VRAGE
-	            		//cl.setInPort(getsetInPort(txt.userName.trim()));
-	            		//cl.setOutPort(getsetOutPort(txt.userName.trim()));
-	     
-	                	cl.setInPort(5000);
-	                	cl.setOutPort(5001);
-	            		new Thread(new ClientListenerThread(cl.getInPort())).start();	
-	            		
-	            		
-	            		lblUsername.setVisible(false);
-	            		txtUsername.setVisible(false);
-	            		lblPassword.setVisible(false);
-	            		txtPassword.setVisible(false);
-	                	btnLoginMenu.setVisible(false);
-	                	btnSignUpMenu.setVisible(false);
-	                	btnExit.setVisible(false);
-	                	btnLogin.setVisible(false);
-	            		btnSignUp.setVisible(false);
-	            		btnBack.setVisible(false);
-	            		btnStartChat.setVisible(true);
-	            		btnAddFriend.setVisible(true);
-	            		btnDeleteFriend.setVisible(true);
-	            		btnCheckInvites.setVisible(true);
-	            		btnLogout.setVisible(true);
-	            	}
-	            	
+	            	try
+					{
+						if (cl.connectToServer(user, pass)) {						
+							
+							//OPENEN SOCKET
+							//RMI JUIST SOCKETS VRAGE
+							//cl.setInPort(getsetInPort(txt.userName.trim()));
+							//cl.setOutPort(getsetOutPort(txt.userName.trim()));    
+							cl.setInPort(5000);
+							cl.setOutPort(5001);
+							new Thread(new ClientListenerThread(cl.getInPort())).start();							
+							lblUsername.setVisible(false);
+							txtUsername.setVisible(false);
+							lblPassword.setVisible(false);
+							txtPassword.setVisible(false);
+							btnLoginMenu.setVisible(false);
+							btnSignUpMenu.setVisible(false);
+							btnExit.setVisible(false);
+							btnLogin.setVisible(false);
+							btnSignUp.setVisible(false);
+							btnBack.setVisible(false);
+							btnStartChat.setVisible(true);
+							btnAddFriend.setVisible(true);
+							btnDeleteFriend.setVisible(true);
+							btnCheckInvites.setVisible(true);
+							btnLogout.setVisible(true);
+						}
+					} catch (UnknownHostException e1)
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	            	
 	            }
 	            if (e.getSource() == btnSignUp)
 	            {
-	            	if (true) {
+	            	String user = txtUsername.getText();
+	            	String pass = txtPassword.getPassword().toString();
+	            	String fName = txtFirstName.getText();
+	            	String lName = txtLastName.getText();
+	            	
+	            	if (cl.newUser(user, fName, lName, pass)) {
 	            		lblUsername.setVisible(true);
 	            		txtUsername.setVisible(true);
 	            		lblPassword.setVisible(true);
