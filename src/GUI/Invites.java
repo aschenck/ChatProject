@@ -1,21 +1,34 @@
 package GUI;
 
+import java.io.*;
+import java.net.*;
 import java.util.Collections;
 import java.util.List;
 
 public class Invites extends Thread {
-	private List<String> inviteList;
+	private List<Invite> inviteList;
+	private String[] receivedInvite;
+	//private String receivedInvite;
+	ServerSocket listenForInvitessocket;
 	
-	public Invites() {
-		this.inviteList = Collections.<String>emptyList();
+	public Invites() throws IOException {
+		this.inviteList = Collections.<Invite>emptyList();
+		listenForInvitessocket = new ServerSocket(6789);
+	}
+	
+	public List<> ShowAllInvites() {
+		return inviteList;
 	}
 	
 	public void run() {
 		while(true) {
+			Socket connectionSocket;
 			try {
-				
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
+				connectionSocket = listenForInvitessocket.accept();
+				BufferedReader readIncommingInvite = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+				receivedInvite = readIncommingInvite.readLine().split(";");
+				inviteList.add(new Invite(receivedInvite[0], receivedInvite[1], receivedInvite[2], receivedInvite[3]));
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

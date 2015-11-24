@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.UnknownHostException;
 
 import javax.swing.DefaultListModel;
@@ -281,7 +283,7 @@ import user.ClientSendThread;
 	            if (e.getSource() == btnLogin)
 	            {
 	            	String user = txtUsername.getText();
-	            	String pass = txtPassword.getPassword().toString();
+	            	char[] pass = txtPassword.getPassword();
 	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
 	            	try
 					{
@@ -309,17 +311,18 @@ import user.ClientSendThread;
 							btnDeleteFriend.setVisible(true);
 							btnCheckInvites.setVisible(true);
 							btnLogout.setVisible(true);
+							
 						}
 					} catch (UnknownHostException e1)
 					{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}	            	
+					}       	
 	            }
 	            if (e.getSource() == btnSignUp)
 	            {
 	            	String user = txtUsername.getText();
-	            	String pass = txtPassword.getPassword().toString();
+	            	char[] pass = txtPassword.getPassword();
 	            	String fName = txtFirstName.getText();
 	            	String lName = txtLastName.getText();
 	            	
