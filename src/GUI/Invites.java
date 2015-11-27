@@ -16,7 +16,7 @@ public class Invites extends Thread {
 		listenForInvitessocket = new ServerSocket(6789);
 	}
 	
-	public List<> ShowAllInvites() {
+	public List<Invite> ShowAllInvites() {
 		return inviteList;
 	}
 	

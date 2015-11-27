@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -61,6 +62,9 @@ import user.ClientSendThread;
 		//CHATPANEL
 		private JTextField txtTextToSend;
 		public JTextArea txtConversation;
+		
+		//INVITES
+		private List<Invite> inviteList;
 		
 
 		private JButton btnSendMessage, btnLeaveConversation;
@@ -453,6 +457,8 @@ import user.ClientSendThread;
 	        		btnDeleteFriend.setVisible(false);
 	        		btnCheckInvites.setVisible(false);
 	        		btnLogout.setVisible(false);
+	        		
+	        		//inviteList = Invites.ShowAllInvites();
 
 	        		lFriendList.setVisible(true);
 	        		lmFriendList.clear();
