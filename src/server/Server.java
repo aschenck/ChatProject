@@ -37,19 +37,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		{						
 	        if(u.getLogin().equals(username) )
 	        {
-	        	System.out.println("Huidige user: "+ u.getLogin());
+	        	//System.out.println("Huidige user: "+ u.getLogin());
 	        	if( Arrays.equals(u.getPw(), password))
 	        	{	        		
 	        		found = true;
-	        		u.setIp(ip);	        		
-	        	}
+	        		u.setIp(ip);		        	
+	        	}	        
 	        }
-	        else
-	        {
-	        	System.out.println(u.getLogin());
-	        	System.out.println(u.getPw());
-	        }
-	    }		
+	    }	
+		if(!found)
+			System.out.println("Ongeldige username en wachtwoord");
+		else 
+			System.out.println("Aangemeld");
 		return found;
 	}
 

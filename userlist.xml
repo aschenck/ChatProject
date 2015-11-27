@@ -7,7 +7,6 @@
             <login>jef</login>
             <online>true</online>
             <outPort>0</outPort>
-            <pw>gys</pw>
             <fName>firstname1</fName>
             <lName>lastname1</lName>
         </user>
@@ -17,7 +16,6 @@
             <login>login2</login>
             <online>true</online>
             <outPort>0</outPort>
-            <pw>passwordhash2</pw>
             <fName>firstname2</fName>
             <lName>lastname2</lName>
         </user>
@@ -27,7 +25,6 @@
             <login>Anthony</login>
             <online>true</online>
             <outPort>0</outPort>
-            <pw>Schenck</pw>
             <fName></fName>
             <lName></lName>
         </user>
@@ -37,7 +34,6 @@
             <login>anthony</login>
             <online>true</online>
             <outPort>61324</outPort>
-            <pw>[C@5bfe3b67</pw>
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
@@ -47,7 +43,6 @@
             <login>anthony</login>
             <online>true</online>
             <outPort>57654</outPort>
-            <pw>[C@14a7fc31</pw>
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
@@ -57,7 +52,6 @@
             <login>anthony</login>
             <online>true</online>
             <outPort>64364</outPort>
-            <pw>[C@73c64611</pw>
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
@@ -67,7 +61,6 @@
             <login>anthony</login>
             <online>true</online>
             <outPort>56424</outPort>
-            <pw>[C@27ee0737</pw>
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
@@ -77,7 +70,6 @@
             <login>anthony</login>
             <online>true</online>
             <outPort>59835</outPort>
-            <pw>[C@a92669ca</pw>
             <fName>anthony</fName>
             <lName>schenck</lName>
         </user>
@@ -87,9 +79,21 @@
             <login>dattester</login>
             <online>true</online>
             <outPort>63726</outPort>
-            <pw>[C@356da5f4</pw>
             <fName>dat</fName>
             <lName>tester</lName>
+        </user>
+        <user>
+            <ip>143.169.218.111</ip>
+            <inPort>49535</inPort>
+            <login>testuser</login>
+            <online>true</online>
+            <outPort>49534</outPort>
+            <pw>116</pw>
+            <pw>101</pw>
+            <pw>115</pw>
+            <pw>116</pw>
+            <fName>a</fName>
+            <lName>b</lName>
         </user>
     </users>
 </userlist>
