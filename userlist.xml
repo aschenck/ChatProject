@@ -95,5 +95,18 @@
             <fName>a</fName>
             <lName>b</lName>
         </user>
+        <user>
+            <ip>143.169.218.111</ip>
+            <inPort>60349</inPort>
+            <login>test2</login>
+            <online>true</online>
+            <outPort>60348</outPort>
+            <pw>116</pw>
+            <pw>101</pw>
+            <pw>115</pw>
+            <pw>116</pw>
+            <fName>t</fName>
+            <lName>q</lName>
+        </user>
     </users>
 </userlist>
