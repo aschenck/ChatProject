@@ -316,6 +316,14 @@ import user.ClientSendThread;
 							btnCheckInvites.setVisible(true);
 							btnLogout.setVisible(true);
 							
+							
+							try {
+								Invites invites = new Invites();
+								invites.start();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 					} catch (UnknownHostException e1)
 					{
