@@ -458,12 +458,13 @@ import user.ClientSendThread;
 	        		btnCheckInvites.setVisible(false);
 	        		btnLogout.setVisible(false);
 	        		
-	        		//inviteList = Invites.ShowAllInvites();
+	        		inviteList = Invites.ShowAllInvites();
 
 	        		lFriendList.setVisible(true);
 	        		lmFriendList.clear();
-	        		lmFriendList.addElement("teste");
-	        		lmFriendList.addElement("teste2");
+	        		for (int i = 0; i < inviteList.size(); i++) {
+	        			lmFriendList.addElement(inviteList.get(i));
+	        		}
 	        		
 	        		btnChat.setVisible(true);
 	        		btnBackMenu.setVisible(true);

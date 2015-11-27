@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Invites extends Thread {
-	private List<Invite> inviteList;
+	private static List<Invite> inviteList;
 	private String[] receivedInvite;
 	//private String receivedInvite;
 	ServerSocket listenForInvitessocket;
@@ -16,7 +16,7 @@ public class Invites extends Thread {
 		listenForInvitessocket = new ServerSocket(6789);
 	}
 	
-	public List<Invite> ShowAllInvites() {
+	public static List<Invite> ShowAllInvites() {
 		return inviteList;
 	}
 	
