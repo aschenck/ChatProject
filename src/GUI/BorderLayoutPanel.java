@@ -522,8 +522,8 @@ import user.ClientSendThread;
 	            	String friendname;
 	            	
 	            	try{
-	            	System.out.println(lFriendList.getSelectedValue().toString());
-	            	friendname = lFriendList.getSelectedValue().toString();
+	            		System.out.println(lFriendList.getSelectedValue().toString());
+	            		friendname = lFriendList.getSelectedValue().toString();
 	            	} 
 	            	catch(Exception error){
 	            		friendname = "";
@@ -531,15 +531,15 @@ import user.ClientSendThread;
 	            		}
 	            	
 	            	if(friendname != ""){	
-	            		
+	            		cl.startChat(friendname);
 	            		//GET IP WITH RMI            		
-	            		String ip = "localhost";
+	            /*		String ip = "localhost";
 	            		
 	            		cl.setIp(ip);
 	            		optionPanel.setVisible(false);
 	            		chatPanel.setVisible(true);
 	            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
-	            		txtConversation.append("Wachten op antwoord...." + '\n');
+	            		txtConversation.append("Wachten op antwoord...." + '\n');*/
 	            	}
 	            	
 	            	

@@ -52,8 +52,7 @@ public class Client
 	}
 	
 	public static void main(String[] args) throws IOException
-	{	
-	}		
+	{}		
 	
 	public void startChat(String userName)
 	{

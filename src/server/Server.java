@@ -7,10 +7,8 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -106,15 +104,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	{
 		List<User> temp = userlist.getUsers();			
 		User p = new User();
+		p.setOutPort(0);
 		for(User u : temp)
 		{			
 	        if(u.getLogin().equals(username) && u.getOnline())
 	        {	
 	        	p = u;
-	        }
-	        else
-	        {
-	        	p.setOutPort(0);
 	        }
 	    }		
 		return p;
