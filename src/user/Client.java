@@ -96,10 +96,11 @@ public class Client
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
 			InetAddress addr = InetAddress.getLocalHost();
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");			
+			
 			if(ChatServer.loginUser(user, pass, addr))
 			{
 				System.out.println("User logged in!");
-				connected = true;
+				connected = true;				
 			}
 			else
 			{
@@ -111,6 +112,7 @@ public class Client
 		{
 			e.printStackTrace();
 		}		
+		
 		return connected;
 	}
 	

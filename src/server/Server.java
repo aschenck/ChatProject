@@ -28,7 +28,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 
 	@Override
 	public boolean loginUser(String username, char[] password, InetAddress ip) throws RemoteException 
-	{
+	{			
 		readUsersXML();
 		boolean found = false;		
 		List<User> temp = userlist.getUsers();		
@@ -40,7 +40,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        	if( Arrays.equals(u.getPw(), password))
 	        	{	        		
 	        		found = true;
-	        		u.setIp(ip);		        	
+	        		u.setIp(ip);	        		
 	        	}	        
 	        }
 	    }	

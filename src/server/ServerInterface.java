@@ -14,8 +14,9 @@ public interface ServerInterface extends Remote
 	public boolean logoutUser(String username)throws RemoteException;
 	public boolean addFriend(String username)throws RemoteException;
 	public boolean deleteFriend(String username)throws RemoteException;
-	public User startChat(String username)throws RemoteException; //returns chatid
+	public User startChat(String username)throws RemoteException; 
 	public boolean sendMessage(String username, int chat, String Message)throws RemoteException;
+	
 	//public List<Friend> getFriends(String username)throws RemoteException;
 
 	//PROCEDURES (named to what it does)
