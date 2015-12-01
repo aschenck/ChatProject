@@ -12,7 +12,6 @@ public class ClientListenerThread implements Runnable
 {	
 	private int inPort;
 	private String rxText;
-	
 	public String getRxText()
 	{
 		return rxText;
@@ -38,10 +37,16 @@ public class ClientListenerThread implements Runnable
 			while(true)
 			{
 				Socket connectionSocket = sock.accept();
-	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));  
-	            setRxText(inFromClient.readLine());	            
+	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); 
+	            String message = inFromClient.readLine();
+	            setRxText(message);	            
 	            System.out.println("Received: " + getRxText());
-	            GUI.b.setTextArea(getRxText() + '\n');	            
+	            String name = message.substring(1, message.indexOf('>'));
+	            for(int i=0; i<GUI.b.chats.size();i++){
+            		if(GUI.b.chats.get(i).getUsername().equals(name)){
+            			GUI.b.chats.get(i).setText(getRxText() + '\n');
+            		}
+            	}           
   			}
 		} catch (IOException e)
 		{

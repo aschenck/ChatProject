@@ -64,7 +64,7 @@ import user.ClientSendThread;
 		private JTextField txtTextToSend;
 		public JTextArea txtConversation;
 
-		private ArrayList<OpenChat> chats = new ArrayList();
+		public ArrayList<OpenChat> chats = new ArrayList();
 		
 		//INVITES
 		private List<Invite> inviteList;
