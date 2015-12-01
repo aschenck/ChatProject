@@ -79,21 +79,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean logoutUser(String username, char[] password) throws RemoteException 
+	public boolean logoutUser(String username) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addFriend(String username, char[] password, String fullname) throws RemoteException 
+	public boolean addFriend(String username) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deleteFriend(String username, char[] password, String fullname) throws RemoteException 
+	public boolean deleteFriend(String username) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
@@ -116,7 +116,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean sendMessage(String username, char[] password, int chat, String Message) throws RemoteException 
+	public boolean sendMessage(String username, int chat, String Message) throws RemoteException 
 	{
 		// TODO Auto-generated method stub
 		return false;
@@ -129,10 +129,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return null;
 	}*/
 	
-	private boolean authorizeUser(String username, char[] password)
+/*	private boolean authorizeUser(String username, char[] password)
 	{		
 		return true;
-	}
+	}*/
 	
 	private void readUsersXML()
 	{
