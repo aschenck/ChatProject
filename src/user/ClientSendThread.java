@@ -22,7 +22,7 @@ public class ClientSendThread implements Runnable
 		System.out.println("Send thread started!");
 		try
 		{			
-			String sentence = GUI.GUI.b.txtConversation.getText();;
+			String sentence = "test";
 			
 			Socket clientSocket = new Socket(ip, this.outPort);
 			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());

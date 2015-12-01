@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -58,10 +59,12 @@ import user.ClientSendThread;
 		private JButton btnDelete, btnChat, btnAdd, btnBackMenu;
 		
 		private JTextField txtAddFriend;
-		
+		private String user;
 		//CHATPANEL
 		private JTextField txtTextToSend;
 		public JTextArea txtConversation;
+
+		private ArrayList<OpenChat> chats = new ArrayList();
 		
 		//INVITES
 		private List<Invite> inviteList;
@@ -286,7 +289,7 @@ import user.ClientSendThread;
 	             */
 	            if (e.getSource() == btnLogin)
 	            {
-	            	String user = txtUsername.getText();
+	            	user = txtUsername.getText();
 	            	char[] pass = txtPassword.getPassword();
 	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
 	            	try
@@ -526,12 +529,17 @@ import user.ClientSendThread;
 	            		friendname = lFriendList.getSelectedValue().toString();
 	            	} 
 	            	catch(Exception error){
+	            		
 	            		friendname = "";
 	            		System.out.println(error);
 	            		}
 	            	
 	            	if(friendname != ""){	
-	            		cl.startChat(friendname);
+	            		//TODO
+	            		
+	            		OpenChat chat = new OpenChat(user,friendname);
+		        		
+		        		chats.add(chat);
 	            		//GET IP WITH RMI            		
 	            /*		String ip = "localhost";
 	            		
@@ -552,7 +560,6 @@ import user.ClientSendThread;
 	            if (e.getSource() == btnSendMessage) {
 	            	if(txtTextToSend.getText().length()>0){
 		            	String message = "<" + txtUsername.getText() + ">" + txtTextToSend.getText();
-		            	new ClientSendThread(cl.getOutPort(), cl.getIp()).run();
 		            	txtConversation.append(message + '\n');
 		            	txtTextToSend.setText("");
 	            	}

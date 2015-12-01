@@ -28,8 +28,26 @@ import user.ClientSendThread;
 		 */
 		private static final long serialVersionUID = 1L;
 		private JPanel chatPanel;
+		private String friendname;
+		public String getFriendname() {
+			return friendname;
+		}
+
+		public void setFriendname(String friendname) {
+			this.friendname = friendname;
+		}
+
+		private String username;
 		
-		//CHATPANEL
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+				//CHATPANEL
 				private JTextField txtTextToSend;
 				public JTextArea txtConversation;
 				
@@ -43,6 +61,7 @@ import user.ClientSendThread;
 		
 		public MessageBox() {
 			
+			cl.startChat(friendname);
 			setLayout(new FlowLayout(FlowLayout.CENTER));
 			
 			chatPanel = new JPanel();
@@ -77,7 +96,14 @@ import user.ClientSendThread;
 			
 			public void actionPerformed(ActionEvent e) {
             
-
+				if (e.getSource() == btnSendMessage) {
+	            	if(txtTextToSend.getText().length()>0){
+		            	String message = "<" + username + ">" + txtTextToSend.getText();
+		            	cl.sendText(message);
+		            	txtConversation.append(message + '\n');
+		            	txtTextToSend.setText("");
+	            	}
+	            }
 	        }
 		}
 	}
