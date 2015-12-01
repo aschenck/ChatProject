@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.xml.bind.JAXBContext;
@@ -81,8 +82,28 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	@Override
 	public boolean logoutUser(String username) throws RemoteException 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean ok = false;
+		List<User> temp = userlist.getUsers();	
+		for(User u : temp)
+		{			
+			if(u.getLogin().equals(username)) 
+			{	
+				ok = true;
+				u.setOnline(false);
+				System.out.println("User " + username + " has logged out!");
+			}
+			else
+			{
+				ok = false;
+				System.out.println("User not found!");	        	
+			}
+			if(ok)
+			{
+				userlist.setUsers(temp);;		
+				writeUsersXML();
+			}
+		}		
+		return ok;
 	}
 
 	@Override
@@ -129,7 +150,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return null;
 	}*/
 	
-/*	private boolean authorizeUser(String username, char[] password)
+	/*private boolean authorizeUser(String username, char[] password)
 	{		
 		return true;
 	}*/

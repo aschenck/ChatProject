@@ -27,7 +27,7 @@ public class Users
         return userList;
     }
  
-    public void setUsers(ArrayList<User> users) 
+    public void setUsers(List<User> users) 
     {
         userList = users;
     }
