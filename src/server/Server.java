@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -107,17 +108,51 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public boolean addFriend(String username) throws RemoteException 
+	public void addFriend(String myUsername, String friendUsername) throws RemoteException
 	{
-		// TODO Auto-generated method stub
-		return false;
+		List<User> temp = userlist.getUsers();
+		User p = new User();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(myUsername))
+	        {
+	        	p = u;
+	        	p.addFriend(friendUsername);
+	        	writeUsersXML();
+	        }
+		}
 	}
 
 	@Override
-	public boolean deleteFriend(String username) throws RemoteException 
+	public void deleteFriend(String myUsername, String friendUsername) throws RemoteException
 	{
-		// TODO Auto-generated method stub
-		return false;
+		List<User> temp = userlist.getUsers();
+		User p = new User();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(myUsername))
+	        {
+	        	p = u;
+	        	p.deleteFriend(friendUsername);
+	        	writeUsersXML();
+	        }
+		}
+	}
+	
+	
+	@Override
+	public String getIpAndPortForInvite(String friendUsername) throws RemoteException {
+		List<User> temp = userlist.getUsers();
+		User p = new User();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(friendUsername))
+	        {
+	        	p = u;
+	        	return p.getIp() + ":" + p.getInPort();
+	        }
+		}
+		return "Offline";
 	}
 
 	@Override
@@ -143,12 +178,23 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return false;
 	}
 
-	/*@Override
-	public ArrayList<Friend> getFriends(String username, String password) throws RemoteException 
+	@Override
+	public List<String> getFriends(String username) throws RemoteException
 	{
 		// TODO Auto-generated method stub
-		return null;
-	}*/
+		List<User> temp = userlist.getUsers();
+		User p = new User();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(username))
+	        {
+	        	p = u;
+	        	return p.getFriendList();
+	        }
+		}
+		
+		return Collections.<String>emptyList();
+	}
 	
 	/*private boolean authorizeUser(String username, char[] password)
 	{		
