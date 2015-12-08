@@ -532,14 +532,8 @@ import user.ClientSendThread;
 	            
 	            if (e.getSource() == btnAdd) {
 	            	String friendname;
-	            	Iterator i = cl.getFriendList().iterator();
-	            	while (i.hasNext()) {
-	            		lmFriendList.addElement(i.next());
-	            	}
-	            	lFriendList.setModel(lmFriendList);
+	            	friendname = txtAddFriend.getText();
 	            	try{
-	            		System.out.println(lFriendList.getSelectedValue().toString());
-	            		friendname = lFriendList.getSelectedValue().toString();
 	            		cl.addFriend(friendname);
 	            	} 
 	            	catch(Exception error){
