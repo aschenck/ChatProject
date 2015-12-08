@@ -7,7 +7,7 @@ import java.rmi.Naming;
 import java.util.Hashtable;
 import java.util.List;
 
-import TestUser.Client2;
+import user.Client2;
 import server.User;
 
 public class Client
