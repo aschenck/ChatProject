@@ -124,7 +124,7 @@
             <lName>renders</lName>
         </user>
         <user>
-            <ip>192.168.46.1</ip>
+            <ip>192.168.80.1</ip>
             <inPort>65251</inPort>
             <login>frederik</login>
             <online>true</online>
