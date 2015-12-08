@@ -191,8 +191,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        	p = u;
 	        	return p.getFriendList();
 	        }
-		}
-		
+		}		
 		return Collections.<String>emptyList();
 	}
 	
