@@ -1,4 +1,4 @@
-package user;
+package TestUser;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -7,6 +7,7 @@ import java.rmi.Naming;
 import java.util.Scanner;
 
 import server.User;
+import user.ClientSendThread;
 
 //import TestUser.ServerInterface;
 

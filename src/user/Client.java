@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.util.Scanner;
 
+import TestUser.Client2;
 import server.User;
 
 public class Client
