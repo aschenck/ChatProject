@@ -34,6 +34,7 @@ public class ClientListenerThread implements Runnable
 		try
 		{
 			sock = new ServerSocket(this.inPort);
+			System.out.println(this.inPort);
 			while(true)
 			{
 				Socket connectionSocket = sock.accept();
@@ -44,7 +45,7 @@ public class ClientListenerThread implements Runnable
 	            String name = message.substring(1, message.indexOf('>'));
 	            System.out.println(name);
 	            for(int i=0; i<GUI.b.chats.size();i++){
-            		if(GUI.b.chats.get(i).getUsername().equals(name)){
+            		if(GUI.b.chats.get(i).getFriendname().equals(name)){
             			GUI.b.chats.get(i).setText(getRxText() + '\n');
             		}
             	}           

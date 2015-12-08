@@ -35,6 +35,8 @@ public class User
 		this.online = true;
 		this.outPort = MakeOutPort();
 		this.inPort = MakeInPort();
+		//System.out.println("In port :" +inPort);
+		//System.out.println("Out port: "+ outPort);
 	}
 	
 	public User()
@@ -51,7 +53,7 @@ public class User
 			port -= 1;
 		else
 			port += 1;		
-		//System.out.println("In port :" +port);
+		
 		return port;
 	}
 	
@@ -60,7 +62,7 @@ public class User
 		Random rng = new Random();
 		int port;
 		port = rng.nextInt(16383) + 49152;
-		//System.out.println("Out port: "+ port);
+		
 		return port;
 	}
 	
