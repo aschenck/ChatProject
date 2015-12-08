@@ -15,6 +15,7 @@ public class ClientSendThread implements Runnable
 	{
 		this.outPort = outPort;
 		this.ip = ip;
+		this.message = "";
 	}
 	
 	public void run()
@@ -22,15 +23,29 @@ public class ClientSendThread implements Runnable
 		System.out.println("Send thread started!");
 		try
 		{			
-			String sentence = GUI.GUI.b.txtConversation.getText();;
+			//String sentence = GUI.GUI.b.txtConversation.getText();;
 			
 			Socket clientSocket = new Socket(ip, this.outPort);
-			DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-			outToServer.writeBytes(sentence + '\n');
+			if(!getMessage().equals(""))
+			{
+				DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+				outToServer.writeBytes(getMessage() + '\n');
+				setMessage("");
+			}
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public String getMessage()
+	{
+		return message;
+	}
+
+	public void setMessage(String message)
+	{
+		this.message = message;
 	}	
 }

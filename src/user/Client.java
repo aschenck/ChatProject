@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
-import java.util.Scanner;
+import java.util.Hashtable;
 
 import server.User;
 
@@ -13,42 +13,13 @@ public class Client
 	private String ip;
 	private int inPort;
 	private int outPort;
+	private Hashtable<String, ClientSendThread> threadTable;
 	
 	public Client(String ip, int inPort, int outPort)
 	{
 		this.ip = ip;
 		this.inPort = inPort;
 		this.outPort = outPort;		
-	}
-	
-	public String getIp()
-	{
-		return ip;
-	}
-
-	public void setIp(String ip)
-	{
-		this.ip = ip;
-	}
-
-	public int getInPort()
-	{
-		return inPort;
-	}
-
-	public void setInPort(int inPort)
-	{
-		this.inPort = inPort;
-	}
-
-	public int getOutPort()
-	{
-		return outPort;
-	}
-
-	public void setOutPort(int outPort)
-	{
-		this.outPort = outPort;
 	}
 	
 	public static void main(String[] args) throws IOException
@@ -72,7 +43,7 @@ public class Client
 				this.setInPort(u.getInPort());
 				this.setOutPort(u.getOutPort());
 				this.setIp(u.getIp());
-				ThreadCreater();
+				this.putSocketToTable(userName, new ClientSendThread(getOutPort(), getIp()));				
 			}	
 		} 
 		catch (Exception e) 
@@ -116,6 +87,11 @@ public class Client
 		return connected;
 	}
 	
+	public void sendMessage(String username, String message)
+	{
+		getSocketFromTable(username).setMessage(message);
+	}
+	
 	public boolean newUser(String user, String fName, String lName, char[] pass)
 	{
 		boolean connected = false;
@@ -140,5 +116,56 @@ public class Client
 			e.printStackTrace();
 		}	
 		return connected;
+	}
+	
+	//getters and setters
+	public String getIp()
+	{
+		return ip;
+	}
+
+	public void setIp(String ip)
+	{
+		this.ip = ip;
+	}
+
+	public int getInPort()
+	{
+		return inPort;
+	}
+
+	public void setInPort(int inPort)
+	{
+		this.inPort = inPort;
+	}
+
+	public int getOutPort()
+	{
+		return outPort;
+	}
+
+	public void setOutPort(int outPort)
+	{
+		this.outPort = outPort;
+	}
+
+	public Hashtable<String, ClientSendThread> getThreadTable()
+	{
+		return threadTable;
+	}
+
+	public void setThreadTable(Hashtable<String, ClientSendThread> threadTable)
+	{
+		this.threadTable = threadTable;
+	}
+	
+	public ClientSendThread getSocketFromTable(String username)
+	{		
+		return this.threadTable.get(username);		
+	}
+	
+	public void putSocketToTable(String username, ClientSendThread sendThread)
+	{
+		this.threadTable.put(username, sendThread);
 	}
 }
