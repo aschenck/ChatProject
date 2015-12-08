@@ -39,13 +39,13 @@ import user.Client;
 			this.username = username;
 		}
 
-				//CHATPANEL
-				private JTextField txtTextToSend;
-				public JTextArea txtConversation;
-				
+		//CHATPANEL
+		private JTextField txtTextToSend;
+		public JTextArea txtConversation;
+		
 
-				private JButton btnSendMessage;
-				Client cl = new Client("IP", 0, 0);
+		private JButton btnSendMessage;
+		Client cl = new Client("IP", 0, 0);
 				
 				
 		public ActionListener handler = new KnopHandler();
