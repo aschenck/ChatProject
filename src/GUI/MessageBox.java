@@ -88,7 +88,7 @@ import user.Client;
 	            	if(txtTextToSend.getText().length()>0){
 		            	String message = "<" + username + ">" + txtTextToSend.getText();
 		            	System.out.println(message);
-		            	//cl.sendText(message);
+		            	cl.sendMessage(friendname, message);
 		            	txtConversation.append(message + '\n');
 		            	txtTextToSend.setText("");
 	            	}
