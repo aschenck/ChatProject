@@ -4,22 +4,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.UnknownHostException;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 import user.Client;
-import user.ClientListenerThread;
-import user.ClientSendThread;
 
 
 	public class MessageBox extends JPanel {
@@ -29,6 +20,7 @@ import user.ClientSendThread;
 		private static final long serialVersionUID = 1L;
 		private JPanel chatPanel;
 		private String friendname;
+
 		public String getFriendname() {
 			return friendname;
 		}
@@ -52,10 +44,9 @@ import user.ClientSendThread;
 				public JTextArea txtConversation;
 				
 
-				private JButton btnSendMessage, btnLeaveConversation;
+				private JButton btnSendMessage;
 				Client cl = new Client("IP", 0, 0);
 				
-				@SuppressWarnings({ "unchecked", "rawtypes" })
 				
 		public ActionListener handler = new KnopHandler();
 		
@@ -72,20 +63,17 @@ import user.ClientSendThread;
 
 			add(chatPanel);
 			
-			chatPanel.add(btnLeaveConversation = new JButton("Leave conversation"));
 			chatPanel.add(txtConversation = new JTextArea());
 			chatPanel.add(btnSendMessage = new JButton("Send message"));
 			chatPanel.add(txtTextToSend = new JTextField());
 			
 			
-			btnLeaveConversation.setPreferredSize(new Dimension(400, 25));
 			txtConversation.setPreferredSize(new Dimension(400, 225));
 			txtConversation.setEditable(false);
 			btnSendMessage.setPreferredSize(new Dimension(400, 25));
 			txtTextToSend.setPreferredSize(new Dimension(400, 25));
 			txtTextToSend.setHorizontalAlignment(JTextField.CENTER);
 			
-			btnLeaveConversation.addActionListener(handler);
 			btnSendMessage.addActionListener(handler);
 			
 
@@ -99,7 +87,8 @@ import user.ClientSendThread;
 				if (e.getSource() == btnSendMessage) {
 	            	if(txtTextToSend.getText().length()>0){
 		            	String message = "<" + username + ">" + txtTextToSend.getText();
-		            	cl.sendText(message);
+		            	System.out.println(message);
+		            	//cl.sendText(message);
 		            	txtConversation.append(message + '\n');
 		            	txtTextToSend.setText("");
 	            	}
