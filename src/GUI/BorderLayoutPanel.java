@@ -5,9 +5,12 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.rmi.Naming;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -23,6 +26,8 @@ import javax.swing.ListSelectionModel;
 import user.Client;
 import user.ClientListenerThread;
 import user.ClientSendThread;
+
+
 
 
 	public class BorderLayoutPanel extends JPanel {
@@ -67,11 +72,17 @@ import user.ClientSendThread;
 		public ArrayList<OpenChat> chats = new ArrayList();
 		
 		//INVITES
+		
 		private List<Invite> inviteList;
 		
-
+		
 		private JButton btnSendMessage, btnLeaveConversation;
+		
+		//CLIENT CONNECTION
 		Client cl = new Client("IP", 0, 0);
+		
+		//SERVER CONNECTION
+		
 		
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public BorderLayoutPanel() {
@@ -500,11 +511,41 @@ import user.ClientSendThread;
 	            }
 	            
 	            if (e.getSource() == btnDelete) {
-	            	
+	            	String friendname;
+	            	Iterator i = cl.getFriendList().iterator();
+	            	while (i.hasNext()) {
+	            		lmFriendList.addElement(i.next());
+	            	}
+	            	lFriendList.setModel(lmFriendList);
+	            	try{
+	            		System.out.println(lFriendList.getSelectedValue().toString());
+	            		friendname = lFriendList.getSelectedValue().toString();
+	            		cl.deleteFriend(friendname);
+	            	} 
+	            	catch(Exception error){
+	            		
+	            		friendname = "";
+	            		System.out.println(error);
+	            	}
 	            }
 	            
 	            if (e.getSource() == btnAdd) {
-	            	
+	            	String friendname;
+	            	Iterator i = cl.getFriendList().iterator();
+	            	while (i.hasNext()) {
+	            		lmFriendList.addElement(i.next());
+	            	}
+	            	lFriendList.setModel(lmFriendList);
+	            	try{
+	            		System.out.println(lFriendList.getSelectedValue().toString());
+	            		friendname = lFriendList.getSelectedValue().toString();
+	            		cl.addFriend(friendname);
+	            	} 
+	            	catch(Exception error){
+	            		
+	            		friendname = "";
+	            		System.out.println(error);
+	            	}
 	            }
 	            
 	            if (e.getSource() == btnBackMenu) {
@@ -523,7 +564,11 @@ import user.ClientSendThread;
 	            
 	            if (e.getSource() == btnChat) {
 	            	String friendname;
-	            	
+	            	Iterator i = cl.getFriendList().iterator();
+	            	while (i.hasNext()) {
+	            		lmFriendList.addElement(i.next());
+	            	}
+	            	lFriendList.setModel(lmFriendList);
 	            	try{
 	            		System.out.println(lFriendList.getSelectedValue().toString());
 	            		friendname = lFriendList.getSelectedValue().toString();
@@ -532,7 +577,7 @@ import user.ClientSendThread;
 	            		
 	            		friendname = "";
 	            		System.out.println(error);
-	            		}
+	            	}
 	            	
 	            	if(friendname != ""){	
 	            		//TODO
