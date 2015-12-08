@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.crypto.ExemptionMechanismSpi;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -564,11 +565,15 @@ import user.ClientSendThread;
 	            
 	            if (e.getSource() == btnChat) {
 	            	String friendname;
+/*
 	            	Iterator i = cl.getFriendList().iterator();
 	            	while (i.hasNext()) {
 	            		lmFriendList.addElement(i.next());
 	            	}
-	            	lFriendList.setModel(lmFriendList);
+	            	if(!lmFriendList.isEmpty()) {
+	            		lFriendList.setModel(lmFriendList);
+	            	}
+	            	*/
 	            	try{
 	            		System.out.println(lFriendList.getSelectedValue().toString());
 	            		friendname = lFriendList.getSelectedValue().toString();
@@ -581,10 +586,25 @@ import user.ClientSendThread;
 	            	
 	            	if(friendname != ""){	
 	            		//TODO
+	            		boolean exsitance = false;
+	            		OpenChat chatE = null;
 	            		
-	            		OpenChat chat = new OpenChat(user,friendname);
-		        		
-		        		chats.add(chat);
+	            		for(int i1=0; i1<GUI.b.chats.size();i1++){
+	                		if(GUI.b.chats.get(i1).getFriendname() == friendname){
+	                			chatE = GUI.b.chats.get(i1);
+	                			exsitance = true;
+	                		}
+	                	}    
+	            		
+	            		if(exsitance == true){
+	            			chatE.showMBox();
+	            		}
+	            		else{
+	            			OpenChat chat = new OpenChat(user,friendname);			        		
+			        		chats.add(chat);
+	            		}
+	            		
+	            		
 	            		//GET IP WITH RMI            		
 	            /*		String ip = "localhost";
 	            		

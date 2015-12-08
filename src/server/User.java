@@ -52,7 +52,7 @@ public class User
 			port -= 1;
 		else
 			port += 1;		
-		System.out.println("In port :" +port);
+		//System.out.println("In port :" +port);
 		return port;
 	}
 	
@@ -61,7 +61,7 @@ public class User
 		Random rng = new Random();
 		int port;
 		port = rng.nextInt(16383) + 49152;
-		System.out.println("Out port: "+ port);
+		//System.out.println("Out port: "+ port);
 		return port;
 	}
 	
