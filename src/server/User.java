@@ -18,12 +18,12 @@ public class User
 	private String lName;
 	private char[] pw;
 	@XmlElement
-	private String ip;
+	private InetAddress ip;
 	private boolean online;
 	private int inPort;
 	private int outPort;
 
-	private List<String> friendList = new ArrayList<>();
+	private List<String> friendList;
 
 	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
 	{		
@@ -31,12 +31,13 @@ public class User
 		this.fName = fName;
 		this.lName = lName;
 		this.pw = pw;
-		this.ip = ip.getHostAddress();
+		this.ip = ip;
 		this.online = true;
 		this.outPort = MakeOutPort();
 		this.inPort = MakeInPort();
 		//System.out.println("In port :" +inPort);
 		//System.out.println("Out port: "+ outPort);
+		friendList = new ArrayList<>();
 	}
 	
 	public User()
@@ -125,14 +126,14 @@ public class User
 		this.pw = pw;
 	}
 	
-	public String getIp()
+	public InetAddress getIp()
 	{
 		return ip;
 	}
 
 	public void setIp(InetAddress ip)
 	{
-		this.ip = ip.getHostAddress();
+		this.ip = ip;
 	}
 
 	public boolean getOnline()
