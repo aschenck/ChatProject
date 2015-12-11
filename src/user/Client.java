@@ -17,14 +17,16 @@ public class Client
 	private int outPort;
 	private String user;
 	private List<String> friendList;
+	private InetAddress server;
 	
 	private Hashtable<String, ClientSendThread> threadTable;
 	
-	public Client(String ip, int inPort, int outPort)
+	public Client(String ip, int inPort, int outPort) throws UnknownHostException
 	{
 		this.ip = ip;
 		this.inPort = inPort;
 		this.outPort = outPort;		
+		this.server = InetAddress.getByName("192.168.1.1");
 	}
 	
 	public static void main(String[] args) throws IOException
@@ -34,7 +36,7 @@ public class Client
 	{
 		try 
 		{
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
 			ChatServer.deleteFriend(getUser(), friend);		
@@ -49,7 +51,7 @@ public class Client
 	{
 		try 
 		{
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
 			ChatServer.addFriend(getUser(), friend);		
@@ -65,7 +67,7 @@ public class Client
 		try 
 		{
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			User u = new User();
 			u = ChatServer.startChat(userName);
@@ -100,7 +102,7 @@ public class Client
 		try 
 		{
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");			
 			
 			if(ChatServer.loginUser(user, pass, addr))
@@ -131,7 +133,7 @@ public class Client
 	{
 		try 
 		{
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
 			setFriendList(ChatServer.getFriends(getUser()));
@@ -148,7 +150,7 @@ public class Client
 		boolean connected = false;
 		try 
 		{
-			InetAddress addr = InetAddress.getLocalHost();
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
 			if(ChatServer.newUser(user, fName, lName, pass, addr))
