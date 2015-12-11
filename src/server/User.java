@@ -23,7 +23,8 @@ public class User
 	private int inPort;
 	private int outPort;
 
-	private List<String> friendList = new ArrayList<>();
+	private List<String> friendList;
+	//private List<String> friendList = new ArrayList<>();
 
 	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
 	{		
@@ -35,6 +36,7 @@ public class User
 		this.online = true;
 		this.outPort = MakeOutPort();
 		this.inPort = MakeInPort();
+		this.friendList = new ArrayList<>();
 		//System.out.println("In port :" +inPort);
 		//System.out.println("Out port: "+ outPort);
 	}

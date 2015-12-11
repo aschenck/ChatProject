@@ -1,7 +1,4 @@
 /server/
-/GUI/
-<<<<<<< HEAD
-/TestUser/
-=======
->>>>>>> origin/master
 /user/
+/GUI/
+/TestUser/
