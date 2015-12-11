@@ -12,7 +12,7 @@ import server.User;
 
 public class Client
 {	
-	private String ip;
+	private InetAddress ip;
 	private int inPort;
 	private int outPort;
 	private String user;
@@ -21,9 +21,9 @@ public class Client
 	
 	private Hashtable<String, ClientSendThread> threadTable;
 	
-	public Client(String ip, int inPort, int outPort) throws UnknownHostException
+	public Client(int inPort, int outPort) throws UnknownHostException
 	{
-		this.ip = ip;
+		this.ip = InetAddress.getLocalHost();
 		this.inPort = inPort;
 		this.outPort = outPort;		
 		this.server = InetAddress.getByName("192.168.1.1");
@@ -91,9 +91,9 @@ public class Client
 	
 	public void ThreadCreater() throws IOException
 	{
-		Client2 cl = new Client2(ip, inPort, outPort);
-		new Thread(new ClientListenerThread(cl.getInPort())).start();
-		new Thread(new ClientSendThread(cl.getOutPort(), cl.getIp())).start();		
+		//Client2 cl = new Client2(ip, inPort, outPort);
+		new Thread(new ClientListenerThread(getInPort())).start();
+		new Thread(new ClientSendThread(getOutPort(), getIp())).start();		
 	}
 	
 	public boolean connectToServer(String user, char[] pass) throws UnknownHostException
@@ -172,12 +172,12 @@ public class Client
 	}
 	
 	//getters and setters
-	public String getIp()
+	public InetAddress getIp()
 	{
 		return ip;
 	}
 
-	public void setIp(String ip)
+	public void setIp(InetAddress ip)
 	{
 		this.ip = ip;
 	}
