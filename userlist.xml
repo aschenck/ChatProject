@@ -2,151 +2,40 @@
 <userlist>
     <users>
         <user>
-            <ip>143.169.201.36</ip>
-            <inPort>0</inPort>
-            <login>jef</login>
+            <inPort>55773</inPort>
+            <ip/>
+            <login>test</login>
             <online>true</online>
-            <outPort>0</outPort>
-            <fName>firstname1</fName>
-            <lName>lastname1</lName>
-        </user>
-        <user>
-            <ip>143.169.201.36</ip>
-            <inPort>0</inPort>
-            <login>login2</login>
-            <online>true</online>
-            <outPort>0</outPort>
-            <fName>firstname2</fName>
-            <lName>lastname2</lName>
-        </user>
-        <user>
-            <ip>143.169.201.36</ip>
-            <inPort>0</inPort>
-            <login>Anthony</login>
-            <online>true</online>
-            <outPort>0</outPort>
-            <fName></fName>
-            <lName></lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>61325</inPort>
-            <login>anthony</login>
-            <online>true</online>
-            <outPort>61324</outPort>
-            <fName>anthony</fName>
-            <lName>schenck</lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>57655</inPort>
-            <login>anthony</login>
-            <online>true</online>
-            <outPort>57654</outPort>
-            <fName>anthony</fName>
-            <lName>schenck</lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>64365</inPort>
-            <login>anthony</login>
-            <online>true</online>
-            <outPort>64364</outPort>
-            <fName>anthony</fName>
-            <lName>schenck</lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>56425</inPort>
-            <login>anthony</login>
-            <online>true</online>
-            <outPort>56424</outPort>
-            <fName>anthony</fName>
-            <lName>schenck</lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>59836</inPort>
-            <login>anthony</login>
-            <online>true</online>
-            <outPort>59835</outPort>
-            <fName>anthony</fName>
-            <lName>schenck</lName>
-        </user>
-        <user>
-            <ip>143.169.216.138</ip>
-            <inPort>63727</inPort>
-            <login>dattester</login>
-            <online>true</online>
-            <outPort>63726</outPort>
-            <fName>dat</fName>
-            <lName>tester</lName>
-        </user>
-        <user>
-            <ip>143.169.218.111</ip>
-            <inPort>49535</inPort>
-            <login>testuser</login>
-            <online>true</online>
-            <outPort>49534</outPort>
+            <outPort>55772</outPort>
             <pw>116</pw>
             <pw>101</pw>
             <pw>115</pw>
             <pw>116</pw>
-            <fName>a</fName>
-            <lName>b</lName>
+            <fName>te</fName>
+            <lName>st</lName>
         </user>
         <user>
-            <ip>143.169.218.111</ip>
-            <inPort>60349</inPort>
-            <login>test2</login>
+            <inPort>54820</inPort>
+            <ip/>
+            <login>Willem</login>
             <online>true</online>
-            <outPort>60348</outPort>
-            <pw>116</pw>
-            <pw>101</pw>
-            <pw>115</pw>
-            <pw>116</pw>
-            <fName>t</fName>
-            <lName>q</lName>
-        </user>
-        <user>
-            <ip>192.168.46.1</ip>
-            <inPort>52225</inPort>
-            <login>willem</login>
-            <online>true</online>
-            <outPort>52224</outPort>
-            <pw>119</pw>
+            <outPort>54819</outPort>
+            <pw>87</pw>
             <pw>105</pw>
             <pw>108</pw>
             <pw>108</pw>
             <pw>101</pw>
             <pw>109</pw>
             <fName>willem</fName>
-            <lName>renders</lName>
+            <lName>st</lName>
         </user>
         <user>
-            <ip>192.168.80.1</ip>
-            <inPort>65251</inPort>
-            <login>frederik</login>
-            <online>true</online>
-            <outPort>65250</outPort>
-            <pw>102</pw>
-            <pw>114</pw>
-            <pw>101</pw>
-            <pw>100</pw>
-            <pw>101</pw>
-            <pw>114</pw>
-            <pw>105</pw>
-            <pw>107</pw>
-            <fName>zu</fName>
-            <lName>ui</lName>
-        </user>
-        <user>
-            <ip>192.168.46.1</ip>
-            <inPort>61692</inPort>
+            <inPort>51118</inPort>
+            <ip/>
             <login>Frederik</login>
             <online>true</online>
-            <outPort>61691</outPort>
-            <pw>102</pw>
+            <outPort>51117</outPort>
+            <pw>70</pw>
             <pw>114</pw>
             <pw>101</pw>
             <pw>100</pw>
@@ -154,23 +43,8 @@
             <pw>114</pw>
             <pw>105</pw>
             <pw>107</pw>
-            <fName>Frederik</fName>
-            <lName>Smolders</lName>
-        </user>
-        <user>
-            <ip>192.168.46.1</ip>
-            <inPort>64786</inPort>
-            <login>Willem</login>
-            <online>true</online>
-            <outPort>64785</outPort>
-            <pw>119</pw>
-            <pw>105</pw>
-            <pw>108</pw>
-            <pw>108</pw>
-            <pw>101</pw>
-            <pw>109</pw>
-            <fName>Willem</fName>
-            <lName>Renders</lName>
+            <fName>fre</fName>
+            <lName>derik</lName>
         </user>
     </users>
 </userlist>

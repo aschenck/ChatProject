@@ -59,24 +59,33 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		List<User> temp = userlist.getUsers();	
 		User n = new User(login, firstname, lastname, password, ip);
 		// CHECK IF USERNAME ALLREADY EXSIST	
-		for(User u : temp)
-		{			
-	        if(n.getLogin().equals(u.getLogin()) )
-	        {	
-	        	ok = false;
-	        	System.out.println("username already exists!");
-	        }
-	        else
-	        {
-	        	ok = true;
-	        	System.out.println("User created: " + n.toString());	        	
-	        }
-	        if(ok)
-	        {
-	        	userlist.getUsers().add(n);		
-	        	writeUsersXML();
-	        }
-	    }		
+		if(!temp.isEmpty())
+		{
+			for(User u : temp)
+			{			
+		        if(n.getLogin().equals(u.getLogin()) )
+		        {	
+		        	ok = false;
+		        	System.out.println("username already exists!");
+		        }
+		        else
+		        {
+		        	ok = true;
+		        	System.out.println("User created: " + n.toString());	        	
+		        }
+		        if(ok)
+		        {
+		        	userlist.getUsers().add(n);		
+		        	writeUsersXML();
+		        }
+		    }		
+		}
+		else
+		{
+			userlist.getUsers().add(n);		
+        	writeUsersXML();
+        	ok = true;
+		}
 		return ok;
 	}
 

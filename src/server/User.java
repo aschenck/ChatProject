@@ -17,13 +17,13 @@ public class User
 	private String fName;
 	private String lName;
 	private char[] pw;
-	@XmlElement
+	//@XmlElement
 	private InetAddress ip;
 	private boolean online;
 	private int inPort;
 	private int outPort;
 
-	private List<String> friendList;
+	private ArrayList<String> friendList;
 
 	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
 	{		
@@ -37,7 +37,7 @@ public class User
 		this.inPort = MakeInPort();
 		//System.out.println("In port :" +inPort);
 		//System.out.println("Out port: "+ outPort);
-		friendList = new ArrayList<>();
+		this.friendList = new ArrayList<String>();
 	}
 	
 	public User()
