@@ -36,7 +36,7 @@ import user.ClientSendThread;
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		
+		public Client cl; 
 	
 
 		public ActionListener handler = new KnopHandler();
@@ -78,14 +78,23 @@ import user.ClientSendThread;
 		
 		
 		private JButton btnSendMessage, btnLeaveConversation;
+		{
 		
 		//CLIENT CONNECTION
-		Client cl = new Client("IP", 0, 0);
+		try
+		{
+			cl = new Client(0, 0);
+		}
+		catch(UnknownHostException e)
+		{
+		    e.printStackTrace();  				
+		}
+		}
 		
 		//SERVER CONNECTION
 		
 		
-		@SuppressWarnings({ "unchecked", "rawtypes" })
+		//@SuppressWarnings({ "unchecked", "rawtypes" })
 		public BorderLayoutPanel() {
 			setLayout(new FlowLayout(FlowLayout.CENTER));
 			
