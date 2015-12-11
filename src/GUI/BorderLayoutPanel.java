@@ -518,6 +518,9 @@ import user.ClientSendThread;
 	        		btnDeleteFriend.setVisible(false);
 	        		btnCheckInvites.setVisible(false);
 	        		btnLogout.setVisible(false);
+	        		
+	        		txtUsername.setText("");
+	        		txtPassword.setText("");
 	            }
 	            
 	            if (e.getSource() == btnDelete) {

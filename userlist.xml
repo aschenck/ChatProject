@@ -46,5 +46,17 @@
             <fName>fre</fName>
             <lName>derik</lName>
         </user>
+        <user>
+            <inPort>56638</inPort>
+            <ip/>
+            <login>fzaf</login>
+            <online>true</online>
+            <outPort>56637</outPort>
+            <pw>97</pw>
+            <pw>122</pw>
+            <pw>102</pw>
+            <fName>zafza</fName>
+            <lName>fzaf</lName>
+        </user>
     </users>
 </userlist>
