@@ -321,9 +321,9 @@ import user.ClientSendThread;
 							//RMI JUIST SOCKETS VRAGE
 							//cl.setInPort(getsetInPort(txt.userName.trim()));
 							//cl.setOutPort(getsetOutPort(txt.userName.trim()));    
-							cl.setInPort(5000);
-							cl.setOutPort(5001);
-							new Thread(new ClientListenerThread(cl.getInPort())).start();							
+							//cl.setInPort(5000);
+							//cl.setOutPort(5001);
+							//new Thread(new ClientListenerThread(cl.getInPort())).start();							
 							lblUsername.setVisible(false);
 							txtUsername.setVisible(false);
 							lblPassword.setVisible(false);
