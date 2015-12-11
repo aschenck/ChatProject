@@ -43,7 +43,6 @@ public class ClientListenerThread implements Runnable
 	            setRxText(message);	            
 	            System.out.println("Received: " + getRxText());
 	            String name = message.substring(1, message.indexOf('>'));
-	            System.out.println(name);
 	            for(int i=0; i<GUI.b.chats.size();i++){
             		if(GUI.b.chats.get(i).getFriendname().equals(name)){
             			GUI.b.chats.get(i).setText(getRxText() + '\n');
