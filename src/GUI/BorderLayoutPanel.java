@@ -421,6 +421,18 @@ import user.ClientSendThread;
 	        		lmFriendList.addElement("Willem");
 	        		lmFriendList.addElement("Frederik");
 	        		
+	        		
+	        		/*
+	        		lmFriendList.clear();
+	            	Iterator i = cl.getFriendList().iterator();
+	            	while (i.hasNext()) {
+	            		lmFriendList.addElement(i.next());
+	            	}
+	            	if(!lmFriendList.isEmpty()) {
+	            		lFriendList.setModel(lmFriendList);
+	            	}
+	            	*/
+	        		
 	        		btnChat.setVisible(true);
 	        		btnBackMenu.setVisible(true);
 	            }
@@ -571,15 +583,7 @@ import user.ClientSendThread;
 	            
 	            if (e.getSource() == btnChat) {
 	            	String friendname;
-/*
-	            	Iterator i = cl.getFriendList().iterator();
-	            	while (i.hasNext()) {
-	            		lmFriendList.addElement(i.next());
-	            	}
-	            	if(!lmFriendList.isEmpty()) {
-	            		lFriendList.setModel(lmFriendList);
-	            	}
-	            	*/
+
 	            	try{
 	            		System.out.println(lFriendList.getSelectedValue().toString());
 	            		friendname = lFriendList.getSelectedValue().toString();
