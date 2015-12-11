@@ -109,7 +109,8 @@ public class Client
 			{
 				System.out.println("User logged in!");
 				this.user = user;
-				connected = true;				
+				connected = true;	
+				new Thread(new ClientListenerThread(getInPort())).start();
 			}
 			else
 			{
@@ -136,8 +137,7 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
-			setFriendList(ChatServer.getFriends(getUser()));
-		
+			setFriendList(ChatServer.getFriends(getUser()));		
 		} 
 		catch (Exception e) 
 		{
