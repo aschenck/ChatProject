@@ -131,6 +131,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        }
 		}
 	}
+	
+	public User getUserSettings(String myUserName) throws RemoteException
+	{
+		List<User> temp = userlist.getUsers();
+		User p = new User();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(myUserName))
+	        {
+	        	p = u;	        
+	        }
+		}
+		return p;
+	}
 
 	@Override
 	public void deleteFriend(String myUsername, String friendUsername) throws RemoteException

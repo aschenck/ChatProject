@@ -19,6 +19,7 @@ public interface ServerInterface extends Remote
 	public boolean sendMessage(String username, int chat, String Message)throws RemoteException;
 	public List<String> getFriends(String username) throws RemoteException;
 	public String getIpAndPortForInvite(String friendUsername) throws RemoteException;
+	public User getUserSettings(String myUserName) throws RemoteException;
 	
 	//public List<Friend> getFriends(String username)throws RemoteException;
 
