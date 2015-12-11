@@ -31,13 +31,13 @@ import user.ClientSendThread;
 
 
 
-	public class BorderLayoutPanel extends JPanel  {
+	public class BorderLayoutPanel extends JPanel {
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 		
-		Client cl;
+	
 
 		public ActionListener handler = new KnopHandler();
 		public void setTextArea(String myString){
@@ -77,23 +77,15 @@ import user.ClientSendThread;
 		private List<Invite> inviteList;
 		
 		
-		private JButton btnSendMessage;
-		private JButton btnLeaveConversation;
-		{
+		private JButton btnSendMessage, btnLeaveConversation;
 		
 		//CLIENT CONNECTION
-		try
-		{
-			cl = new Client(0, 0);
-		}catch(UnknownHostException e){
-		    e.printStackTrace(); }               
-		}
-		
+		Client cl = new Client("IP", 0, 0);
 		
 		//SERVER CONNECTION
 		
 		
-		//@SuppressWarnings({ "unchecked", "rawtypes" })
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public BorderLayoutPanel() {
 			setLayout(new FlowLayout(FlowLayout.CENTER));
 			
@@ -257,7 +249,8 @@ import user.ClientSendThread;
 	        	
 				//Naar het login menu gaan
 	        	if (e.getSource() == btnLoginMenu)
-	            {            		
+	            {
+	            		
 	            	
 	            	lblUsername.setVisible(true);
 	        		txtUsername.setVisible(true);
@@ -268,7 +261,8 @@ import user.ClientSendThread;
 	            	btnExit.setVisible(false);
 	            	btnLogin.setVisible(true);
 	        		btnSignUp.setVisible(false);
-	        		btnBack.setVisible(true);    		
+	        		btnBack.setVisible(true);
+	        		
 	        		
 	        		
 	            }

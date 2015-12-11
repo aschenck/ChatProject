@@ -1,17 +1,15 @@
 package GUI;
 
-import java.net.UnknownHostException;
-
 import javax.swing.*;
 
-public class GUI extends JFrame  {
+public class GUI extends JFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static BorderLayoutPanel b = new BorderLayoutPanel();
 	
-	public static void main(String args[]) throws UnknownHostException {
+	public static void main(String args[]) {
 		
 		JFrame frame = new GUI();
 		frame.setSize(600, 400);

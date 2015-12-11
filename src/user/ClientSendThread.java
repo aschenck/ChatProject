@@ -4,16 +4,14 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientSendThread implements Runnable
 {
 	private int outPort;
-	private InetAddress ip;
-	private String message;
+	private String ip, message;
 	
-	public ClientSendThread(int outPort, InetAddress ip)
+	public ClientSendThread(int outPort, String ip)
 	{
 		this.outPort = outPort;
 		this.ip = ip;
