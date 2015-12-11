@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ import user.Client;
 		private static final long serialVersionUID = 1L;
 		private JPanel chatPanel;
 		private String friendname;
+		public Client cl;
 
 		public String getFriendname() {
 			return friendname;
@@ -45,7 +47,16 @@ import user.Client;
 		
 
 		private JButton btnSendMessage;
-		Client cl = new Client("IP", 0, 0);
+		{
+		try
+		{
+			cl = new Client(0, 0);
+		}
+		catch(UnknownHostException e)
+		{
+		    e.printStackTrace();  				
+		}
+		}
 				
 				
 		public ActionListener handler = new KnopHandler();
