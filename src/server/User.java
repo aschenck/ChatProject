@@ -44,6 +44,7 @@ public class User
 	{
 		this.outPort = MakeOutPort();
 		this.inPort = MakeInPort();
+		this.friendList = new ArrayList<String>();
 	}	
 	
 	public int MakeInPort()
