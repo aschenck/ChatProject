@@ -1,6 +1,7 @@
 package server;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,7 @@ public class User
 	private String lName;
 	private char[] pw;
 	//@XmlElement
-	private InetAddress ip;
+	private String ip;
 	private boolean online;
 	private int inPort;
 	private int outPort;
@@ -33,7 +34,7 @@ public class User
 		this.fName = fName;
 		this.lName = lName;
 		this.pw = pw;
-		this.ip = ip;
+		this.ip = ip.getHostAddress();
 		this.online = true;
 		//System.out.println("In port :" +inPort);
 		//System.out.println("Out port: "+ outPort);
@@ -127,12 +128,20 @@ public class User
 	
 	public InetAddress getIp()
 	{
-		return ip;
+		try
+		{
+			return InetAddress.getByName(ip);
+		} catch (UnknownHostException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void setIp(InetAddress ip)
 	{
-		this.ip = ip;
+		this.ip = ip.getHostAddress();
 	}
 
 	public boolean getOnline()

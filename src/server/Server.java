@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -70,7 +71,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		if(!found)
 			System.out.println("Ongeldige username en wachtwoord");
 		else 
+		{
 			System.out.println("Aangemeld");
+			writeUsersXML();
+		}
 		return found;
 	}
 
