@@ -70,7 +70,7 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			User u = new User();
-			u = ChatServer.startChat(userName);
+			u.setOutPort(ChatServer.startChat(userName));
 			if(u.getOutPort() == 0)
 			{
 	        	System.out.println("De gebruiker " +u.getLogin()+ " is momenteel offline of bestaat niet");
@@ -113,6 +113,8 @@ public class Client
 				User ik = new User();				
 				ik.setInPort(ChatServer.getUserInPort(user));
 				ik.setOutPort(ChatServer.getUserOutPort(user));
+				System.out.println("Inport: "+ik.getInPort());
+				System.out.println("Outport: "+ik.getOutPort());
 				this.inPort = ik.getInPort();
 				this.outPort = ik.getOutPort();
 				new Thread(new ClientListenerThread(getInPort())).start();

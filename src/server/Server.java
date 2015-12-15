@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -29,6 +31,22 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		readUsersXML();
 	}
 
+	public int SetOutPort(User u)
+	{
+		int port;
+		port = u.getInPort();		
+		return port;
+	}
+	
+	public int MakeClientListenerPort()
+	{
+		Random rng = new Random();
+		int port;
+		port = rng.nextInt(16383) + 49152;
+		
+		return port;
+	}
+	
 	@Override
 	public boolean loginUser(String username, char[] password, InetAddress ip) throws RemoteException 
 	{			
@@ -43,7 +61,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        	if( Arrays.equals(u.getPw(), password))
 	        	{	        		
 	        		found = true;
-	        		u.setIp(ip);	        		
+	        		u.setIp(ip);
+	        		u.setInPort(MakeClientListenerPort());
 	        	}	        
 	        }
 	    }	
@@ -225,19 +244,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 
 	@Override
-	public User startChat(String username) throws RemoteException 
+	public int startChat(String username) throws RemoteException 
 	{
 		List<User> temp = userlist.getUsers();			
 		User p = new User();
-		p.setOutPort(0);
 		for(User u : temp)
 		{			
 	        if(u.getLogin().equals(username) && u.getOnline())
 	        {	
 	        	p = u;
+	        	SetOutPort(p);
+	        	System.out.println("Listen poort van  -" + p.getLogin()+ "- = " + p.getOutPort()); 
 	        }
 	    }		
-		return p;
+		return p.getInPort();
 	}
 
 	@Override
