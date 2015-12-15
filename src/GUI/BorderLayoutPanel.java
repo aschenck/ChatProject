@@ -53,6 +53,23 @@ import user.ClientSendThread;
 		//OPTIONPANEL
 		private JLabel lblUsername, lblPassword, lblFirstName, lblLastName;
 		private JTextField txtUsername, txtFirstName, txtLastName;
+		private String userName, friendName;
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getFriendName() {
+			return friendName;
+		}
+
+		public void setFriendName(String friendName) {
+			this.friendName = friendName;
+		}
+
 		private JPasswordField txtPassword;
 		private JButton btnLoginMenu, btnSignUpMenu, btnExit, btnLogin, btnSignUp, btnBack;
 		private JButton btnStartChat, btnAddFriend, btnDeleteFriend, btnCheckInvites, btnLogout;
@@ -311,6 +328,7 @@ import user.ClientSendThread;
 	            if (e.getSource() == btnLogin)
 	            {
 	            	user = txtUsername.getText();
+	            	setUserName(user);
 	            	char[] pass = txtPassword.getPassword();
 	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
 	            	try
@@ -587,6 +605,7 @@ import user.ClientSendThread;
 	            	try{
 	            		System.out.println(lFriendList.getSelectedValue().toString());
 	            		friendname = lFriendList.getSelectedValue().toString();
+	            		setFriendName(friendname);
 	            	} 
 	            	catch(Exception error){
 	            		

@@ -24,6 +24,7 @@ public class Invites extends Thread {
 	public void run() {
 		while(true) {
 			Socket connectionSocket;
+			System.out.println("test");
 			try {
 				connectionSocket = listenForInvitessocket.accept();
 				BufferedReader readIncommingInvite = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
@@ -36,6 +37,9 @@ public class Invites extends Thread {
 				}
 				if (newInvite) {
 					inviteList.add(new Invite(receivedInvite[0], receivedInvite[1], receivedInvite[2], receivedInvite[3]));
+					OpenChat chat = new OpenChat(GUI.b.getUserName(),receivedInvite[0]);		 
+					GUI.b.chats.add(chat);
+					
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
