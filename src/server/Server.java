@@ -65,6 +65,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        		u.setIp(ip);
 	        		u.setInPort(MakeClientListenerPort());
 	        		u.setOnline(true);
+	        		System.out.println("Server : Geconnecteerd: "+u.toString());
 	        	}	        
 	        }
 	    }	

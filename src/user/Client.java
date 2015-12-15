@@ -121,6 +121,7 @@ public class Client
 				this.inPort = ik.getInPort();
 				this.outPort = ik.getOutPort();
 				new Thread(new ClientListenerThread(getInPort())).start();
+				System.out.println("Client : Geconnecteerd: "+ik.toString());
 			}
 			else
 			{
