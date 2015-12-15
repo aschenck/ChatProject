@@ -26,7 +26,7 @@ public class Client
 		this.ip = InetAddress.getLocalHost();
 		this.inPort = inPort;
 		this.outPort = outPort;		
-		this.server = InetAddress.getByName("localhost");
+		this.server = InetAddress.getByName("192.168.1.1");
 		this.threadTable = new Hashtable<>();
 	}
 	
@@ -82,7 +82,7 @@ public class Client
 				this.setOutPort(u.getOutPort());
 				this.setIp(u.getIp());
 				ClientSendThread t = new ClientSendThread(getOutPort(), ChatServer.getUserIP(userName));				
-				t.run();				
+				new Thread(t).start();				
 				this.putSocketToTable(userName, t);				
 			}	
 		} 
