@@ -105,7 +105,7 @@ public class Client
 		try 
 		{
 			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
-			InetAddress addr = this.ip;
+			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");			
 			
 			if(ChatServer.loginUser(user, pass, addr))
@@ -115,7 +115,7 @@ public class Client
 				connected = true;	
 				User ik = new User();
 				ik.setLogin(user);
-				ik.setIp(addr);
+				ik.setIp(this.ip);
 				ik.setInPort(ChatServer.getUserInPort(user));
 				ik.setOutPort(ChatServer.getUserOutPort(user));
 				System.out.println("Inport: "+ik.getInPort());
