@@ -619,10 +619,10 @@ import user.ClientSendThread;
 	                	}    
 	            		
 	            		if(exsitance == true){
-	            			chatE.showMBox();
+	            			chatE.showMBox(true);
 	            		}
 	            		else{
-	            			OpenChat chat = new OpenChat(user,friendname);			        		
+	            			OpenChat chat = new OpenChat(user,friendname,cl,true);			        		
 			        		chats.add(chat);
 	            		}
 	            		
