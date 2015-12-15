@@ -63,6 +63,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        		found = true;
 	        		u.setIp(ip);
 	        		u.setInPort(MakeClientListenerPort());
+	        		u.setOnline(true);
 	        	}	        
 	        }
 	    }	
