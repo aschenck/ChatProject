@@ -108,7 +108,7 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");			
 			
-			if(ChatServer.loginUser(user, pass, addr))
+			if(ChatServer.loginUser(user, pass, this.ip))
 			{
 				System.out.println("User logged in!");
 				this.user = user;

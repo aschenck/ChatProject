@@ -28,20 +28,23 @@ public class ClientSendThread implements Runnable
 			//String sentence = GUI.GUI.b.txtConversation.getText();;
 			
 			Socket clientSocket = new Socket(ip, this.outPort);
+			System.out.println("SendThread: OutPort: " +this.outPort);
 			while(true)
 			{
 				if(!getMessage().equals(""))
 				{
 					DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 					outToServer.writeBytes(getMessage() + '\n');
+					System.out.println("SendThread: MESSAGE SENT" + getMessage());
 					setMessage("");
 				}
-			}
+			}			
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+		System.out.println("SendThread: EXIT FROM LOOP");
 	}
 
 	public String getMessage()
