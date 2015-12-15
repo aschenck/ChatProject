@@ -19,7 +19,7 @@ public class sendTest
 			DataOutputStream outToServer = new DataOutputStream(sendsocket.getOutputStream());
 			
 			//Input
-			sentence = "<Frederik> Yoooo";
+			sentence = "0001:<Frederik> Yoooo";
 			outToServer.writeBytes(sentence + '\n');
 			System.out.println("Sent to server: " + sentence);
 			sendsocket.close();

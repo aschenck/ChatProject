@@ -53,8 +53,8 @@ public class ClientListenerThread implements Runnable
 	            setRxText(message);	            
 	            System.out.println("Received: " + getRxText());
 	            
-	            if (message.substring(0, 3).equals(inviteCode)) {
-	            	inviteUsername = message.substring(4);
+	            if (message.substring(0, 4).equals(inviteCode)) {
+	            	inviteUsername = message.substring(5);
 	            	newInvite = true;
 					for (int i = 0; i < inviteList.size(); i ++) {
 						if (inviteUsername.equals(inviteList.get(i))) {
@@ -66,12 +66,13 @@ public class ClientListenerThread implements Runnable
 					}
 	            	
 	            }
-	            else if (message.substring(0, 3).equals(chatCode)) {
-	            	message = message.substring(4);
+	            else if (message.substring(0, 4).equals(chatCode)) {
+	            	message = message.substring(5);
+	            	System.out.println(message);
 	            	String name = message.substring(1, message.indexOf('>'));
 		            for(int i=0; i<GUI.b.chats.size();i++){
 	            		if(GUI.b.chats.get(i).getFriendname().equals(name)){
-	            			GUI.b.chats.get(i).setText(getRxText() + '\n');
+	            			GUI.b.chats.get(i).setText(message + '\n');
 	            		}
 	            	}
 	            }        
