@@ -72,9 +72,6 @@ import user.ClientSendThread;
 
 		public ArrayList<OpenChat> chats = new ArrayList();
 		
-		//INVITES
-		
-		private List<Invite> inviteList;
 		
 		
 		private JButton btnSendMessage, btnLeaveConversation;
@@ -341,13 +338,6 @@ import user.ClientSendThread;
 							btnLogout.setVisible(true);
 							
 							
-							try {
-								Invites invites = new Invites();
-								invites.start();
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
 						}
 					} catch (UnknownHostException e1)
 					{
@@ -502,6 +492,7 @@ import user.ClientSendThread;
 	        		btnCheckInvites.setVisible(false);
 	        		btnLogout.setVisible(false);
 	        		
+	        		/*
 	        		inviteList = Invites.ShowAllInvites();
 
 	        		lFriendList.setVisible(true);
@@ -509,6 +500,8 @@ import user.ClientSendThread;
 	        		for (int i = 0; i < inviteList.size(); i++) {
 	        			lmFriendList.addElement(inviteList.get(i));
 	        		}
+	        		
+	        		*/
 	        		
 	        		btnChat.setVisible(true);
 	        		btnBackMenu.setVisible(true);
