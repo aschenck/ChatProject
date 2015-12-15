@@ -113,7 +113,9 @@ public class Client
 				System.out.println("User logged in!");
 				this.user = user;
 				connected = true;	
-				User ik = new User();				
+				User ik = new User();
+				ik.setLogin(user);
+				ik.setIp(addr);
 				ik.setInPort(ChatServer.getUserInPort(user));
 				ik.setOutPort(ChatServer.getUserOutPort(user));
 				System.out.println("Inport: "+ik.getInPort());
