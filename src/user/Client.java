@@ -80,7 +80,7 @@ public class Client
 			{
 				this.setInPort(u.getInPort());
 				this.setOutPort(u.getOutPort());
-				//this.setIp(u.getIp());
+				this.setIp(u.getIp());
 				ClientSendThread t = new ClientSendThread(getOutPort(), ChatServer.getUserIP(userName));				
 				t.run();				
 				this.putSocketToTable(userName, t);				
