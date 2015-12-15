@@ -24,7 +24,8 @@ public class Client
 		this.ip = InetAddress.getLocalHost();
 		this.inPort = inPort;
 		this.outPort = outPort;		
-		this.server = InetAddress.getByName("192.168.1.1");
+		this.server = InetAddress.getByName("localhost");
+		this.threadTable = new Hashtable<>();
 	}
 	
 	public static void main(String[] args) throws IOException

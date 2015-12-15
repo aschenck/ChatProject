@@ -91,7 +91,7 @@ import user.Client;
 				if (e.getSource() == btnSendMessage) {
 	            	if(txtTextToSend.getText().length()>0){
 		            	String message = "<" + username + ">" + txtTextToSend.getText();
-		            	System.out.println(message);          	
+		            	System.out.println("0001:" + message);          	
 		            	txtConversation.append(message + '\n');
 		            	cl.sendMessage(friendname,"0001:" + message);
 		            	txtTextToSend.setText("");
