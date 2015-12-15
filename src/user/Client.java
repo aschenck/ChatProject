@@ -26,7 +26,7 @@ public class Client
 		this.ip = InetAddress.getLocalHost();
 		this.inPort = inPort;
 		this.outPort = outPort;		
-		this.server = InetAddress.getByName("localhost");
+		this.server = InetAddress.getByName("192.168.1.1");
 	}
 	
 	public static void main(String[] args) throws IOException
@@ -110,9 +110,6 @@ public class Client
 				System.out.println("User logged in!");
 				this.user = user;
 				connected = true;	
-				User ik = ChatServer.getUserSettings(user);
-				this.inPort = ik.getInPort();
-				this.outPort = ik.getOutPort();
 				new Thread(new ClientListenerThread(getInPort())).start();
 			}
 			else
