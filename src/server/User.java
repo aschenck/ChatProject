@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlRootElement(name = "user")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class User
 {	
 	private String login;
@@ -23,6 +24,7 @@ public class User
 	private int inPort;
 	private int outPort;
 
+	@XmlElement(name = "friendList")
 	private ArrayList<String> friendList;
 
 	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
