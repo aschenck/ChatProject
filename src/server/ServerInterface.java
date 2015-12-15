@@ -20,7 +20,10 @@ public interface ServerInterface extends Remote
 	public List<String> getFriends(String username) throws RemoteException;
 	public String getIpAndPortForInvite(String friendUsername) throws RemoteException;
 	public User getUserSettings(String myUserName) throws RemoteException;
-	
+	public int getUserOutPort(String userName) throws RemoteException;
+	public int getUserInPort(String userName) throws RemoteException;
+	public InetAddress getUserIP (String userName) throws RemoteException;
+		
 	//public List<Friend> getFriends(String username)throws RemoteException;
 
 	//PROCEDURES (named to what it does)

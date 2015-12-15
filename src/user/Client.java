@@ -110,9 +110,6 @@ public class Client
 				System.out.println("User logged in!");
 				this.user = user;
 				connected = true;	
-				User ik = ChatServer.getUserSettings(user);
-				this.inPort = ik.getInPort();
-				this.outPort = ik.getOutPort();
 				new Thread(new ClientListenerThread(getInPort())).start();
 			}
 			else

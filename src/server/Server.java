@@ -3,6 +3,8 @@ package server;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
@@ -132,6 +134,50 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}
 	}
 	
+	public int getUserInPort(String userName) throws RemoteException
+	{
+		int port = 0;
+		List<User> temp = userlist.getUsers();		
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(userName))
+	        {
+	        	port = u.getInPort();
+	        }
+		}		
+		
+		return port;
+	}
+	
+	public int getUserOutPort(String userName)throws RemoteException
+	{
+		int port = 0;
+		List<User> temp = userlist.getUsers();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(userName))
+	        {
+	        	port = u.getOutPort();
+	        }
+		}		
+		
+		return port;
+	}
+	
+	public InetAddress getUserIP (String userName) throws RemoteException
+	{
+		InetAddress ip = null;
+		List<User> temp = userlist.getUsers();
+		for(User u : temp)
+		{
+	        if(u.getLogin().equals(userName))
+	        {
+	        	ip = u.getIp();
+	        }
+		}		
+		return ip;		
+	}
+	
 	public User getUserSettings(String myUserName) throws RemoteException
 	{
 		List<User> temp = userlist.getUsers();
@@ -140,7 +186,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		{
 	        if(u.getLogin().equals(myUserName))
 	        {
-	        	p = u;	        
+	        	p = u;
 	        }
 		}
 		return p;
