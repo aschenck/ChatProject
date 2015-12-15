@@ -80,8 +80,10 @@ public class Client
 			{
 				this.setInPort(u.getInPort());
 				this.setOutPort(u.getOutPort());
-				this.setIp(u.getIp());
-				this.putSocketToTable(userName, new ClientSendThread(getOutPort(), getIp()));				
+				//this.setIp(u.getIp());
+				ClientSendThread t = new ClientSendThread(getOutPort(), ChatServer.getUserIP(userName));				
+				t.run();				
+				this.putSocketToTable(userName, t);				
 			}	
 		} 
 		catch (Exception e) 
@@ -225,9 +227,9 @@ public class Client
 		return this.threadTable.get(username);		
 	}
 	
-	public void putSocketToTable(String username, ClientSendThread sendThread)
+	public void putSocketToTable(String username, ClientSendThread t)
 	{
-		this.threadTable.put(username, sendThread);
+		this.threadTable.put(username, t);
 	}
 
 	public String getUser()
