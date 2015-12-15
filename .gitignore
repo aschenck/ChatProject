@@ -45,3 +45,4 @@ Temporary Items
 *.xml
 bin/user/Client.class
 *.class
+*.xml

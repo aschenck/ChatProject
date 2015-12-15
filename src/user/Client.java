@@ -6,6 +6,8 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.util.Hashtable;
 import java.util.List;
+
+
 import server.User;
 
 public class Client
