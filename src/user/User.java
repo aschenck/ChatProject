@@ -35,21 +35,15 @@ public class User
 		this.pw = pw;
 		this.ip = ip;
 		this.online = true;
-		this.outPort = MakeOutPort();
-		this.inPort = MakeInPort();
-		//System.out.println("In port :" +inPort);
-		//System.out.println("Out port: "+ outPort);
 		this.friendList = new ArrayList<String>();
 	}
 	
 	public User()
 	{
-		this.outPort = MakeOutPort();
-		this.inPort = MakeInPort();
 		this.friendList = new ArrayList<String>();
 	}	
 	
-	public int MakeInPort()
+/*	public int MakeInPort()
 	{
 		int port;
 		port = getOutPort();
@@ -68,7 +62,7 @@ public class User
 		port = rng.nextInt(16383) + 49152;
 		
 		return port;
-	}
+	}*/
 	
 	public int getInPort()
 	{
