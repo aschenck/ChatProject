@@ -1,13 +1,13 @@
 package user;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.util.Hashtable;
 import java.util.List;
+
+import user.Client2;
 import server.User;
 
 public class Client
@@ -110,6 +110,7 @@ public class Client
 				System.out.println("User logged in!");
 				this.user = user;
 				connected = true;	
+<<<<<<< HEAD
 				User ik = new User();				
 				ik.setInPort(ChatServer.getUserInPort(user));
 				ik.setOutPort(ChatServer.getUserOutPort(user));
@@ -117,6 +118,8 @@ public class Client
 				System.out.println("Outport: "+ik.getOutPort());
 				this.inPort = ik.getInPort();
 				this.outPort = ik.getOutPort();
+=======
+>>>>>>> origin/master
 				new Thread(new ClientListenerThread(getInPort())).start();
 			}
 			else

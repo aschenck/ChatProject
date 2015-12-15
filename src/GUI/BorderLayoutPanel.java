@@ -53,6 +53,23 @@ import user.ClientSendThread;
 		//OPTIONPANEL
 		private JLabel lblUsername, lblPassword, lblFirstName, lblLastName;
 		private JTextField txtUsername, txtFirstName, txtLastName;
+		private String userName, friendName;
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getFriendName() {
+			return friendName;
+		}
+
+		public void setFriendName(String friendName) {
+			this.friendName = friendName;
+		}
+
 		private JPasswordField txtPassword;
 		private JButton btnLoginMenu, btnSignUpMenu, btnExit, btnLogin, btnSignUp, btnBack;
 		private JButton btnStartChat, btnAddFriend, btnDeleteFriend, btnCheckInvites, btnLogout;
@@ -72,9 +89,6 @@ import user.ClientSendThread;
 
 		public ArrayList<OpenChat> chats = new ArrayList();
 		
-		//INVITES
-		
-		private List<Invite> inviteList;
 		
 		
 		private JButton btnSendMessage, btnLeaveConversation;
@@ -311,6 +325,7 @@ import user.ClientSendThread;
 	            if (e.getSource() == btnLogin)
 	            {
 	            	user = txtUsername.getText();
+	            	setUserName(user);
 	            	char[] pass = txtPassword.getPassword();
 	            	// if(loginRMI(txt.userName.trim(), txt.Paswword.trim())
 	            	try
@@ -341,13 +356,6 @@ import user.ClientSendThread;
 							btnLogout.setVisible(true);
 							
 							
-							try {
-								Invites invites = new Invites();
-								invites.start();
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
 						}
 					} catch (UnknownHostException e1)
 					{
@@ -502,6 +510,7 @@ import user.ClientSendThread;
 	        		btnCheckInvites.setVisible(false);
 	        		btnLogout.setVisible(false);
 	        		
+	        		/*
 	        		inviteList = Invites.ShowAllInvites();
 
 	        		lFriendList.setVisible(true);
@@ -509,6 +518,8 @@ import user.ClientSendThread;
 	        		for (int i = 0; i < inviteList.size(); i++) {
 	        			lmFriendList.addElement(inviteList.get(i));
 	        		}
+	        		
+	        		*/
 	        		
 	        		btnChat.setVisible(true);
 	        		btnBackMenu.setVisible(true);
@@ -587,6 +598,7 @@ import user.ClientSendThread;
 	            	try{
 	            		System.out.println(lFriendList.getSelectedValue().toString());
 	            		friendname = lFriendList.getSelectedValue().toString();
+	            		setFriendName(friendname);
 	            	} 
 	            	catch(Exception error){
 	            		

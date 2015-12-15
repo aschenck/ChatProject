@@ -100,7 +100,7 @@ import user.Client;
 		            	String message = "<" + username + ">" + txtTextToSend.getText();
 		            	System.out.println(message);          	
 		            	txtConversation.append(message + '\n');
-		            	cl.sendMessage(friendname, message);
+		            	cl.sendMessage(friendname,"0001:" + message);
 		            	txtTextToSend.setText("");
 	            	}
 	            }
