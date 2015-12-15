@@ -26,23 +26,20 @@ public class OpenChat extends JFrame {
 	
 	
 	
-	public OpenChat(String UserName, String friendName)
+	public OpenChat(String UserName, String friendName, Client client, boolean a)
 	{
 		friendname = friendName;
 		username = UserName;
-	
 		
 		
-		m = new MessageBox();
-		m.setUsername(username);
-		m.setFriendname(friendname);		
+		m = new MessageBox(username,friendname,client);	
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setDefaultCloseOperation(frame.HIDE_ON_CLOSE);
 		frame.setTitle("Chat with " + friendname);	
 		frame.setContentPane(m);
-		frame.setVisible(true);
+		frame.setVisible(a);
 		
 		
 	}
@@ -65,8 +62,8 @@ public class OpenChat extends JFrame {
 		this.m = m;
 	}
 	
-	public void showMBox(){
-		frame.setVisible(true);
+	public void showMBox(boolean a){
+		frame.setVisible(a);
 	}
 	
 	

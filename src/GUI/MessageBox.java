@@ -21,7 +21,6 @@ import user.Client;
 		private static final long serialVersionUID = 1L;
 		private JPanel chatPanel;
 		private String friendname;
-		public Client cl;
 
 		public String getFriendname() {
 			return friendname;
@@ -47,22 +46,16 @@ import user.Client;
 		
 
 		private JButton btnSendMessage;
-		{
-		try
-		{
-			cl = new Client(0, 0);
-		}
-		catch(UnknownHostException e)
-		{
-		    e.printStackTrace();  				
-		}
-		}
+		private Client cl;
 				
 				
 		public ActionListener handler = new KnopHandler();
 		
-		public MessageBox() {
+		public MessageBox(String un ,String fn, Client client) {
 			
+			username = un;
+			friendname = fn;
+			cl = client;
 			cl.startChat(friendname);
 			setLayout(new FlowLayout(FlowLayout.CENTER));
 			

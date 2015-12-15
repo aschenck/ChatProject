@@ -119,7 +119,7 @@ public class Client
 			}
 			else
 			{
-				System.out.println("User not logged in");
+				System.out.println("User not logged in");//
 				connected = false;
 			}	
 		} 
