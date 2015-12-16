@@ -526,6 +526,7 @@ import user.Client;
             	friendname = txtAddFriend.getText();
             	try{
             		cl.addFriend(friendname);
+            		txtAddFriend.setText("");
             	} 
             	catch(Exception error){
             		

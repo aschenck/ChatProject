@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import GUI.GUI;
@@ -61,18 +62,21 @@ public class ClientListenerThread implements Runnable
 							newInvite = false;
 						}
 					}
+					
 					if (newInvite) {
 						inviteList.add(inviteUsername);
 					}
 	            	
 	            }
 	            else if (message.substring(0, 4).equals(chatCode)) {
+	            	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            		String current = "["+sdf.format(System.currentTimeMillis())+"]";
 	            	message = message.substring(5);
 	            	System.out.println(message);
 	            	String name = message.substring(1, message.indexOf('>'));
 		            for(int i=0; i<GUI.b.chats.size();i++){
 	            		if(GUI.b.chats.get(i).getFriendname().equals(name)){
-	            			GUI.b.chats.get(i).setText(message + '\n');
+	            			GUI.b.chats.get(i).setText(current+message + '\n');
 	            		}
 	            	}
 	            }        

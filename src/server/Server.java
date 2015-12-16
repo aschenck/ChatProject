@@ -40,8 +40,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	{
 		Random rng = new Random();
 		int port;
-		port = rng.nextInt(16383) + 49152;
-		
+		port = rng.nextInt(16383) + 49152;		
 		return port;
 	}
 	
@@ -95,20 +94,23 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		        else
 		        {
 		        	ok = true;
-		        	System.out.println("User created: " + n.toString());	        	
+		        		        	
 		        }
-		        if(ok)
-		        {
-		        	userlist.getUsers().add(n);		
-		        	writeUsersXML();
-		        }
-		    }		
+		    }	
+	        if(ok)
+	        {
+	        	userlist.getUsers().add(n);
+	        	System.out.println("User created: " + n.toString());
+	        	writeUsersXML();
+	        }
 		}
 		else
-		{
+		{	
+			System.out.println("Geen users in lijst, eerste aanmaken..");
 			userlist.getUsers().add(n);		
         	writeUsersXML();
         	ok = true;
+        	System.out.println("Eerste user created: " + n.toString());
 		}
 		return ok;
 	}

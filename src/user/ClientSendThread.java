@@ -1,9 +1,7 @@
 package user;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -12,6 +10,7 @@ public class ClientSendThread implements Runnable
 	private int outPort;
 	private InetAddress ip;
 	private String message;
+	public Socket clientSocket;
 	
 	public ClientSendThread(int outPort, InetAddress inetAddress)
 	{
@@ -27,7 +26,7 @@ public class ClientSendThread implements Runnable
 		{			
 			//String sentence = GUI.GUI.b.txtConversation.getText();;
 			
-			Socket clientSocket = new Socket(ip, this.outPort);
+			clientSocket = new Socket(ip, this.outPort);
 			System.out.println("SendThread: OutPort: " +this.outPort);
 			while(true)
 			{
@@ -46,7 +45,18 @@ public class ClientSendThread implements Runnable
 		}
 		System.out.println("SendThread: EXIT FROM LOOP");
 	}
-
+	
+	public void CloseSocket()
+	{
+		try
+		{
+			clientSocket.close();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public String getMessage()
 	{
 		return message;

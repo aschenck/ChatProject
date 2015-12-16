@@ -6,9 +6,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 public class GUI extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static BorderLayoutPanel b = new BorderLayoutPanel();
 	
