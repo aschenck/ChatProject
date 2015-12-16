@@ -21,4 +21,5 @@ public interface ServerInterface extends Remote
 	public int getUserOutPort(String userName) throws RemoteException;
 	public int getUserInPort(String userName) throws RemoteException;
 	public InetAddress getUserIP (String userName) throws RemoteException;	
+	public boolean CheckOnline(String userName)throws RemoteException;	
 }

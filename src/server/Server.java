@@ -114,6 +114,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}
 		return ok;
 	}
+	
+	public boolean CheckOnline(String userName)throws RemoteException
+	{
+		boolean online = false;
+		List<User> temp = userlist.getUsers();
+		for(User u : temp)
+		{			
+			if(u.getLogin().equals(userName) && u.getOnline()) 
+			{	
+				online = true;
+				
+			}		
+		}		
+		return online;
+	}
 
 	@Override
 	public boolean logoutUser(String username) throws RemoteException 

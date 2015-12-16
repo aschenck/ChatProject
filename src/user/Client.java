@@ -92,6 +92,27 @@ public class Client
 		}
 	}
 	
+	public boolean checkOnline(String user)
+	{
+		boolean online = false;		
+		try 
+		{
+			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
+			InetAddress addr = server;
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			
+			if(ChatServer.CheckOnline(user))
+			{
+				online = true;
+			}	
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return online;		
+	}
+	
 	public void ThreadCreater() throws IOException
 	{
 		//Client2 cl = new Client2(ip, inPort, outPort);

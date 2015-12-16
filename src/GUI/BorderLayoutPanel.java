@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,8 +19,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
+import javax.swing.JTextField;import javax.swing.ListSelectionModel;
+
+
 import user.Client;
 
 	public class BorderLayoutPanel extends JPanel {
@@ -108,7 +113,7 @@ import user.Client;
 		add(optionPanel);
 		add(chatPanel);
 
-		chatPanel.setVisible(false);			
+		chatPanel.setVisible(false);				
 
 		//OPTIONPANEL
 		optionPanel.add(lblUsername = new JLabel("Username"));
@@ -389,13 +394,36 @@ import user.Client;
         		
         		while(i.hasNext())
         		{
-        			lmFriendList.addElement(i.next());
+        			String temp = i.next();
+        			lmFriendList.addElement(temp);
         		}
         		
         		if(!lmFriendList.isEmpty()) 
         		{
             		lFriendList.setModel(lmFriendList);
-            	}	        
+            	}	
+        		lFriendList.setCellRenderer(new DefaultListCellRenderer()
+        		{
+        			@Override
+        			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+        			{
+        				Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+        				if (value instanceof String) {
+                            String nextFriend = (String) value;                           
+                            if (!cl.checkOnline(nextFriend)) {
+                                 setBackground(Color.RED);                                 
+                            } 
+                            else 
+                            {
+                                 setBackground(Color.GREEN);
+                            }
+                            if (isSelected) {
+                                setBackground(getBackground().darker());
+                           }
+                       } 
+        				return c;
+        			}
+        		});
         		
         		btnChat.setVisible(true);
         		btnBackMenu.setVisible(true);
@@ -500,6 +528,7 @@ import user.Client;
         		
         		txtUsername.setText("");
         		txtPassword.setText("");
+        		cl.logOut();
             }
             
             if (e.getSource() == btnDelete) {
