@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Client
 	private String user;
 	private List<String> friendList;
 	private InetAddress server;
+	private ClientListenerThread clLT;
 	
 	private Hashtable<String, ClientSendThread> threadTable;
 	
@@ -46,6 +48,13 @@ public class Client
 		{
 			e.printStackTrace();
 		}			
+	}
+	
+	public List<String> CheckInvites()
+	{
+		List<String> invites = new ArrayList<String>();
+		invites = clLT.getInviteList();
+		return invites;
 	}
 	
 	public void addFriend(String friend)
@@ -143,7 +152,9 @@ public class Client
 				System.out.println("Outport: "+ik.getOutPort());
 				this.inPort = ik.getInPort();
 				this.outPort = ik.getOutPort();
-				new Thread(new ClientListenerThread(getInPort())).start();
+				clLT = new ClientListenerThread(getInPort());
+				new Thread(clLT).start();
+				//new Thread(new ClientListenerThread(getInPort())).start();
 				System.out.println("Client : Geconnecteerd: "+ik.toString());
 			}
 			else
@@ -188,8 +199,7 @@ public class Client
 			
 			if(ChatServer.logoutUser(this.user))
 			{
-				System.out.println("User"+this.user +" has logged out!");
-				
+				System.out.println("User "+this.user +" has logged out!");				
 			}
 		}
 		catch (Exception e) 

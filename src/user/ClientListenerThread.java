@@ -22,6 +22,16 @@ public class ClientListenerThread implements Runnable
 	private String inviteCode = "0011";
 	private String chatCode = "0001";
 	
+	public ArrayList<String> getInviteList()
+	{
+		return inviteList;
+	}
+
+	public void setInviteList(ArrayList<String> inviteList)
+	{
+		this.inviteList = inviteList;
+	}
+
 	public String getRxText()
 	{
 		return rxText;

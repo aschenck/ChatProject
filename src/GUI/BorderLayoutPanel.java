@@ -493,7 +493,9 @@ import user.Client;
         		btnDeleteFriend.setVisible(false);
         		btnCheckInvites.setVisible(false);
         		btnLogout.setVisible(false);
-        		
+        		List<String> inv = new ArrayList<String>();
+        		inv = cl.CheckInvites();
+        		System.out.println(inv.toString());
         		/*
         		inviteList = Invites.ShowAllInvites();
 
@@ -583,7 +585,7 @@ import user.Client;
 
             	try{
             		System.out.println(lFriendList.getSelectedValue().toString());
-            		friendname = lFriendList.getSelectedValue().toString();
+            		friendname = lFriendList.getSelectedValue().toString();            		
             		setFriendName(friendname);
             	} 
             	catch(Exception error){

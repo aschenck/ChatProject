@@ -44,6 +44,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return port;
 	}
 	
+	public void WriteOfflineMessages(String username, String message)throws RemoteException
+	{
+		
+	}
+	
+	public String ReadOfflineMessages(String username)throws RemoteException
+	{
+		String message ="";
+		
+		return message;
+	}
+	
 	@Override
 	public boolean loginUser(String username, char[] password, InetAddress ip) throws RemoteException 
 	{			
