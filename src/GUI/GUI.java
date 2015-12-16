@@ -1,5 +1,8 @@
 package GUI;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
 
 public class GUI extends JFrame {
@@ -18,5 +21,15 @@ public class GUI extends JFrame {
 		frame.setTitle("Chat application");	
 		frame.setContentPane(b);
 		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                System.out.println("Closed");
+                b.Close();
+                e.getWindow().dispose();
+            }
+        });
 	}
 }

@@ -47,6 +47,11 @@ import user.ClientSendThread;
 		public String readTextArea(){	 	
 		 	return txtTextToSend.getText();
 		}
+
+		public void Close()
+		{
+			cl.logOut();
+		}
 		
 		private JPanel optionPanel, chatPanel;
 		

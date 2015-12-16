@@ -158,6 +158,25 @@ public class Client
 		}			
 	}
 	
+	public void logOut()
+	{
+		try 
+		{
+			InetAddress addr = server;
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			
+			if(ChatServer.logoutUser(this.user))
+			{
+				System.out.println("User"+this.user +" has logged out!");
+				
+			}
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}	
+	}
+	
 	public boolean newUser(String user, String fName, String lName, char[] pass)
 	{
 		boolean connected = false;
