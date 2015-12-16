@@ -262,6 +262,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        	SetOutPort(p);
 	        	System.out.println("Listen poort van  -" + p.getLogin()+ "- = " + p.getOutPort()); 
 	        }
+	        else
+	        {
+	        	p.setOutPort(0);	        	
+	        }
 	    }		
 		return p.getInPort();
 	}
@@ -275,16 +279,15 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 
 	@Override
 	public List<String> getFriends(String username) throws RemoteException
-	{
-		// TODO Auto-generated method stub
+	{	
 		List<User> temp = userlist.getUsers();
-		User p = new User();
+		//User p = new User();
 		for(User u : temp)
 		{
 	        if(u.getLogin().equals(username))
 	        {
-	        	p = u;
-	        	return p.getFriendList();
+	        	//p = u;
+	        	return u.getFriendList();
 	        }
 		}		
 		return Collections.<String>emptyList();

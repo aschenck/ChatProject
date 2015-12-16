@@ -44,10 +44,11 @@ public class ClientListenerThread implements Runnable
 		try
 		{
 			sock = new ServerSocket(this.inPort);
+			Socket connectionSocket = sock.accept();
 			System.out.println(this.inPort);
 			while(true)
 			{
-				Socket connectionSocket = sock.accept();
+				//Socket connectionSocket = sock.accept();
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); 
 	            String message = inFromClient.readLine();
 	            setRxText(message);	            

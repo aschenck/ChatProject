@@ -46,27 +46,6 @@ public class User
 		this.friendList = new ArrayList<String>();
 	}	
 	
-/*	public int MakeInPort()
-	{
-		int port;
-		port = getOutPort();
-		if(port == 65535 )
-			port -= 1;
-		else
-			port += 1;		
-		
-		return port;
-	}
-	
-	public int MakeOutPort()
-	{
-		Random rng = new Random();
-		int port;
-		port = rng.nextInt(16383) + 49152;
-		
-		return port;
-	}*/
-	
 	public int getInPort()
 	{
 		return inPort;

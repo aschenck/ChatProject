@@ -426,8 +426,20 @@ import user.ClientSendThread;
 	        		
 	        		lFriendList.setVisible(true);
 	        		lmFriendList.clear();
-	        		lmFriendList.addElement("Willem");
-	        		lmFriendList.addElement("Frederik");
+	        		cl.getFriends();
+	        		List<String> friends = new ArrayList<String>();
+	        		friends = cl.getFriendList();
+	        		Iterator<String> i = friends.iterator();
+	        		while(i.hasNext())
+	        		{
+	        			lmFriendList.addElement(i.next());
+	        		}
+	        		if(!lmFriendList.isEmpty()) 
+	        		{
+	            		lFriendList.setModel(lmFriendList);
+	            	}
+	        		//lmFriendList.addElement("Willem");
+	        		//lmFriendList.addElement("Frederik");
 	        		
 	        		
 	        		/*
