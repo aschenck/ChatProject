@@ -3,14 +3,10 @@ package server;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +19,7 @@ import javax.xml.bind.Unmarshaller;
 
 public class Server extends UnicastRemoteObject implements ServerInterface 
 {
+	private static final long serialVersionUID = -5165887663036488313L;
 	//Initialize the users list
 	private Users userlist = new Users();
 
@@ -129,17 +126,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 				u.setOnline(false);
 				System.out.println("User " + username + " has logged out!");
 			}
-			else
+		/*	else
 			{
 				ok = false;
 				System.out.println("User not found!");	        	
-			}
-			if(ok)
-			{
-				userlist.setUsers(temp);;		
-				writeUsersXML();
-			}
+			}*/	
+		
 		}		
+		if(ok)
+		{
+			userlist.setUsers(temp);;		
+			writeUsersXML();
+		}
 		return ok;
 	}
 

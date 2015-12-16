@@ -1,16 +1,12 @@
 package GUI;
 
-import java.awt.Frame;
 
 import javax.swing.*;
-
 import user.Client;
 
 public class OpenChat extends JFrame {
-	/**
-	 * 
-	 */
-	//private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String friendname;
 	public String getFriendname() {
@@ -36,12 +32,10 @@ public class OpenChat extends JFrame {
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setDefaultCloseOperation(frame.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		frame.setTitle("Chat with " + friendname);	
 		frame.setContentPane(m);
-		frame.setVisible(a);
-		
-		
+		frame.setVisible(a);	
 	}
 	
 	public void setText(String text){
@@ -64,10 +58,5 @@ public class OpenChat extends JFrame {
 	
 	public void showMBox(boolean a){
 		frame.setVisible(a);
-	}
-	
-	
+	}	
 }
-
-
-

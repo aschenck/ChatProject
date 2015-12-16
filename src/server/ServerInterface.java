@@ -3,9 +3,7 @@ package server;
 import java.net.InetAddress;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-
 
 public interface ServerInterface extends Remote
 {
@@ -22,10 +20,5 @@ public interface ServerInterface extends Remote
 	public User getUserSettings(String myUserName) throws RemoteException;
 	public int getUserOutPort(String userName) throws RemoteException;
 	public int getUserInPort(String userName) throws RemoteException;
-	public InetAddress getUserIP (String userName) throws RemoteException;
-		
-	//public List<Friend> getFriends(String username)throws RemoteException;
-
-	//PROCEDURES (named to what it does)
-	
+	public InetAddress getUserIP (String userName) throws RemoteException;	
 }

@@ -187,12 +187,12 @@ public class Client
 			
 			if(ChatServer.newUser(user, fName, lName, pass, addr))
 			{
-				System.out.println("User logged in!");
+				System.out.println("User registered!");
 				connected = true;
 			}
 			else
 			{
-				System.out.println("User not logged in");
+				System.out.println("User not registered");
 				connected = false;
 			}	
 		} 
