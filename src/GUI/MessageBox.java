@@ -16,7 +16,8 @@ public class MessageBox extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanel chatPanel;
 	private String friendname;
-
+	private boolean online;
+	
 	public String getFriendname() {
 		return friendname;
 	}
@@ -44,13 +45,14 @@ public class MessageBox extends JPanel {
 			
 	public ActionListener handler = new KnopHandler();
 	
-	public MessageBox(String un ,String fn, Client client) {
+	public MessageBox(String un ,String fn, Client client, boolean online) {
 		
 		username = un;
 		friendname = fn;
 		cl = client;
 		cl.startChat(friendname);
 		setLayout(new FlowLayout(FlowLayout.CENTER));
+		this.online = online;
 		
 		chatPanel = new JPanel();
 		
@@ -72,19 +74,43 @@ public class MessageBox extends JPanel {
 		
 		btnSendMessage.addActionListener(handler);		}
 	
+	public boolean isOnline()
+	{
+		return online;
+	}
+
+	public void setOnline(boolean online)
+	{
+		this.online = online;
+	}
+
 	class KnopHandler implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
         
 			if (e.getSource() == btnSendMessage) {
-            	if(txtTextToSend.getText().length()>0){
-	            	String message = "<" + username + ">" + txtTextToSend.getText();
-	            	System.out.println("0001:" + message);    
-            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            		String current = sdf.format(System.currentTimeMillis());
-	            	txtConversation.append("["+current+"]"+message + '\n');
-	            	cl.sendMessage(friendname,"0001:" + message);
-	            	txtTextToSend.setText("");
+            	if(txtTextToSend.getText().length()>0)
+            	{
+            		if(online)
+            		{
+		            	String message = "<" + username + ">" + txtTextToSend.getText();
+		            	System.out.println("0001:" + message);    
+	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	            		String current = sdf.format(System.currentTimeMillis());
+		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	cl.sendMessage(friendname,"0001:" + message);
+		            	txtTextToSend.setText("");
+            		}
+            		else
+            		{
+		            	String message = "<" + username + ">" + txtTextToSend.getText();
+		            	System.out.println("0001:" + message);    
+	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	            		String current = sdf.format(System.currentTimeMillis());
+		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	cl.sendOfflineMessage(friendname, message);
+		            	txtTextToSend.setText("");
+            		}
             	}
             }
         }
