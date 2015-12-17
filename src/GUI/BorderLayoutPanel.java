@@ -73,7 +73,7 @@ import user.Client;
 	private JList lFriendList = new JList();
 	@SuppressWarnings("rawtypes")
 	private DefaultListModel lmFriendList = new DefaultListModel();	
-	private JButton btnDelete, btnChat, btnAdd, btnBackMenu;	
+	private JButton btnDelete, btnChat, btnChatWithInv, btnAdd, btnBackMenu;	
 	private JTextField txtAddFriend;
 	private String user;
 	//CHATPANEL
@@ -140,6 +140,7 @@ import user.Client;
 		optionPanel.add(lFriendList = new JList<String>(lmFriendList));
 		optionPanel.add(btnDelete = new JButton("Delete"));
 		optionPanel.add(btnChat = new JButton("Chat"));
+		optionPanel.add(btnChatWithInv = new JButton("Open chat"));
 		optionPanel.add(txtAddFriend = new JTextField());
 		optionPanel.add(btnAdd = new JButton("Add"));
 		optionPanel.add(btnBackMenu = new JButton("Back"));
@@ -182,6 +183,7 @@ import user.Client;
 		lFriendList.setPreferredSize(new Dimension(300, 80));
 		btnDelete.setPreferredSize(new Dimension(300, 40));
 		btnChat.setPreferredSize(new Dimension(300, 40));
+		btnChatWithInv.setPreferredSize(new Dimension(300, 40));
 		txtAddFriend.setPreferredSize(new Dimension(300, 25));
 		txtAddFriend.setHorizontalAlignment(JTextField.CENTER);
 		btnAdd.setPreferredSize(new Dimension(300, 40));
@@ -208,6 +210,7 @@ import user.Client;
 		lFriendList.setVisible(false);
 		btnDelete.setVisible(false);
 		btnChat.setVisible(false);
+		btnChatWithInv.setVisible(false);
 		txtAddFriend.setVisible(false);
 		btnAdd.setVisible(false);
 		btnBackMenu.setVisible(false);
@@ -227,6 +230,7 @@ import user.Client;
 		
 		btnDelete.addActionListener(handler);
 		btnChat.addActionListener(handler);
+		btnChatWithInv.addActionListener(handler);
 		btnAdd.addActionListener(handler);
 		btnBackMenu.addActionListener(handler);
 		
@@ -493,22 +497,30 @@ import user.Client;
         		btnDeleteFriend.setVisible(false);
         		btnCheckInvites.setVisible(false);
         		btnLogout.setVisible(false);
+        		
+        		lFriendList.setVisible(true);
+        		btnChatWithInv.setVisible(true);
+        		btnBackMenu.setVisible(true);
+        		
         		List<String> inv = new ArrayList<String>();
         		inv = cl.CheckInvites();
+        		Iterator<String> i = inv.iterator();
         		System.out.println(inv.toString());
-        		/*
-        		inviteList = Invites.ShowAllInvites();
 
-        		lFriendList.setVisible(true);
+        		
         		lmFriendList.clear();
-        		for (int i = 0; i < inviteList.size(); i++) {
-        			lmFriendList.addElement(inviteList.get(i));
+        		while(i.hasNext())
+        		{
+        			String temp = i.next();
+        			lmFriendList.addElement(temp);
         		}
         		
-        		*/
+        		if(!lmFriendList.isEmpty()) 
+        		{
+            		lFriendList.setModel(lmFriendList);
+            	}
         		
-        		btnChat.setVisible(true);
-        		btnBackMenu.setVisible(true);
+        		
             }
             if (e.getSource() == btnLogout)
             {
@@ -574,6 +586,7 @@ import user.Client;
             	btnLogout.setVisible(true);
             	lFriendList.setVisible(false);
             	btnChat.setVisible(false);
+            	btnChatWithInv.setVisible(false);
             	btnDelete.setVisible(false);
             	txtAddFriend.setVisible(false);
             	btnAdd.setVisible(false);
@@ -581,6 +594,54 @@ import user.Client;
             }
             
             if (e.getSource() == btnChat) {
+            	String friendname;
+
+            	try{
+            		System.out.println(lFriendList.getSelectedValue().toString());
+            		friendname = lFriendList.getSelectedValue().toString();            		
+            		setFriendName(friendname);
+            	} 
+            	catch(Exception error){
+            		
+            		friendname = "";
+            		System.out.println(error);
+            	}
+            	
+            	if(friendname != ""){	
+            		//TODO
+            		boolean exsitance = false;
+            		OpenChat chatE = null;
+            		
+            		for(int i1=0; i1<GUI.b.chats.size();i1++){
+                		if(GUI.b.chats.get(i1).getFriendname() == friendname){
+                			chatE = GUI.b.chats.get(i1);
+                			exsitance = true;
+                		}
+                	}    
+            		
+            		if(exsitance == true){
+            			chatE.showMBox(true);
+            		}
+            		else{
+            			OpenChat chat = new OpenChat(user,friendname,cl,true);			        		
+		        		chats.add(chat);
+            		}
+            		
+            		
+            		//GET IP WITH RMI            		
+            /*		String ip = "localhost";
+            		
+            		cl.setIp(ip);
+            		optionPanel.setVisible(false);
+            		chatPanel.setVisible(true);
+            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
+            		txtConversation.append("Wachten op antwoord...." + '\n');*/
+            	}
+            	
+            	
+            }
+            
+            if (e.getSource() == btnChatWithInv) {
             	String friendname;
 
             	try{
