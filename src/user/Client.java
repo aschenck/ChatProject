@@ -42,13 +42,13 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			
-			if(ChatServer.WriteOfflineMessages(friendname, message))
+			if(ChatServer.WriteOfflineMessages(message, friendname))
 			{
-				System.out.println("Bericht is verstuurd naar de server");
+				
 			}
 			else
 			{
-				System.out.println("Bericht kon niet worden verstuurd naar de server");
+				
 			}
 		} 
 		catch (Exception e) 
