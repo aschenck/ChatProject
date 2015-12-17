@@ -16,13 +16,9 @@ public class MessageBox extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanel chatPanel;
 	private String friendname;
-<<<<<<< HEAD
 	private boolean online;
 	private boolean openFromInvite;
 	
-=======
-
->>>>>>> origin/master
 	public String getFriendname() {
 		return friendname;
 	}
@@ -50,22 +46,16 @@ public class MessageBox extends JPanel {
 			
 	public ActionListener handler = new KnopHandler();
 	
-<<<<<<< HEAD
-	public MessageBox(String un ,String fn, Client client, boolean online, boolean invite) {
-=======
-	public MessageBox(String un ,String fn, Client client) {
->>>>>>> origin/master
-		
+
+	public MessageBox(String un ,String fn, Client client, boolean online, boolean invite) 
+	{
 		username = un;
 		friendname = fn;
 		cl = client;
 		cl.startChat(friendname);
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-<<<<<<< HEAD
-		this.online = online;
-		this.openFromInvite = invite;
-=======
->>>>>>> origin/master
+		this.setOnline(online);
+		this.setOpenFromInvite(invite);
 		
 		chatPanel = new JPanel();
 		
@@ -87,6 +77,26 @@ public class MessageBox extends JPanel {
 		
 		btnSendMessage.addActionListener(handler);		}
 	
+	public boolean isOpenFromInvite()
+	{
+		return openFromInvite;
+	}
+
+	public void setOpenFromInvite(boolean openFromInvite)
+	{
+		this.openFromInvite = openFromInvite;
+	}
+
+	public boolean isOnline()
+	{
+		return online;
+	}
+
+	public void setOnline(boolean online)
+	{
+		this.online = online;
+	}
+
 	class KnopHandler implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
