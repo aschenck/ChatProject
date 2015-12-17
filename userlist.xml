@@ -10,8 +10,8 @@
             <pw>115</pw>
             <pw>116</pw>
             <ip>143.169.196.169</ip>
-            <online>true</online>
-            <inPort>56197</inPort>
+            <online>false</online>
+            <inPort>56148</inPort>
             <outPort>0</outPort>
             <friendList>Willem</friendList>
             <friendList>Frederik</friendList>
