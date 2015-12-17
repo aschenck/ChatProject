@@ -17,6 +17,7 @@ public class MessageBox extends JPanel {
 	private JPanel chatPanel;
 	private String friendname;
 	private boolean online;
+	private boolean openFromInvite;
 	
 	public String getFriendname() {
 		return friendname;
@@ -45,7 +46,7 @@ public class MessageBox extends JPanel {
 			
 	public ActionListener handler = new KnopHandler();
 	
-	public MessageBox(String un ,String fn, Client client, boolean online) {
+	public MessageBox(String un ,String fn, Client client, boolean online, boolean invite) {
 		
 		username = un;
 		friendname = fn;
@@ -53,6 +54,7 @@ public class MessageBox extends JPanel {
 		cl.startChat(friendname);
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.online = online;
+		this.openFromInvite = invite;
 		
 		chatPanel = new JPanel();
 		

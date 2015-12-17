@@ -51,9 +51,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	{
 		boolean written = false;
 		File f = new File(username+".txt");
-		FileWriter fw = new FileWriter(f, true);
+	
 		if(f.exists())
 		{			
+			FileWriter fw = new FileWriter(f, true);
 			fw.write(message);
 			fw.flush();
 			fw.close();
@@ -61,7 +62,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}
 		else
 		{
-			f.createNewFile();			
+			f.createNewFile();		
+			FileWriter fw = new FileWriter(f, true);
 			fw.write(message);
 			fw.flush();
 			fw.close();
