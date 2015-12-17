@@ -57,6 +57,21 @@ public class Client
 		}	
 	}
 	
+	public void readOfflineMessage()
+	{
+		try 
+		{
+			InetAddress addr = server;
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			String message = ChatServer.ReadOfflineMessages(getUser());
+			System.out.println(message);	
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}	
+	}
+	
 	public void deleteFriend(String friend)
 	{
 		try 
@@ -178,6 +193,7 @@ public class Client
 				new Thread(clLT).start();
 				//new Thread(new ClientListenerThread(getInPort())).start();
 				System.out.println("Client : Geconnecteerd: "+ik.toString());
+				readOfflineMessage();
 			}
 			else
 			{

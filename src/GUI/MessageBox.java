@@ -56,6 +56,7 @@ public class MessageBox extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.setOnline(online);
 		this.setOpenFromInvite(invite);
+		this.online = online;
 		
 		chatPanel = new JPanel();
 		
@@ -64,6 +65,7 @@ public class MessageBox extends JPanel {
 		chatPanel.setPreferredSize(new Dimension(600, 400));
 
 		add(chatPanel);
+		
 		
 		chatPanel.add(txtConversation = new JTextArea());
 		chatPanel.add(btnSendMessage = new JButton("Send message"));

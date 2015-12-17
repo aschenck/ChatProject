@@ -78,16 +78,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		String message ="";
 		
 		File f = new File(username+".txt");
-		char[] buffer = new char[(int) f.length()];
-		FileReader fr = new FileReader(f);
+		char[] buffer = new char[(int) f.length()];		
 		if(f.exists())
 		{			
+			FileReader fr = new FileReader(f);
 			fr.read(buffer);			
 			fr.close();		
-			message = buffer.toString();
+			for(char c : buffer)
+			{
+				message+= c;
+			}			
 			f.delete();
-		}
-		
+		}		
 		return message;
 	}
 	

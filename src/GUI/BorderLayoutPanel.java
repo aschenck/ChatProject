@@ -649,7 +649,7 @@ import user.Client;
 	            			chatE.showMBox(true);
 	            		}
 	            		else{
-	            			OpenChat chat = new OpenChat(user,friendname,cl,true, online, false);			        		
+	            			OpenChat chat = new OpenChat(user,friendname,cl,true, online, true);			        		
 			        		chats.add(chat);
 	            		}
 	            	}
