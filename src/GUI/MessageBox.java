@@ -81,7 +81,7 @@ public class MessageBox extends JPanel {
 		
 		if(!openFromInvite)
 		{
-			cl.sendMessage(friendname, "0011" + cl.getUser());
+			cl.sendMessage(friendname, "0011:" + cl.getUser());
 		}
 	}
 	
