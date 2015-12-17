@@ -65,7 +65,7 @@ public class ClientListenerThread implements Runnable
 	            System.out.println("Received: " + getRxText());
 	            
 	            if (message.substring(0, 4).equals(inviteCode)) {
-	            	inviteUsername = message.substring(5);
+	            	inviteUsername = message.substring(4);
 	            	newInvite = true;
 					for (int i = 0; i < inviteList.size(); i ++) {
 						if (inviteUsername.equals(inviteList.get(i))) {

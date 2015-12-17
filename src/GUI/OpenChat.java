@@ -9,7 +9,6 @@ public class OpenChat extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String friendname;
-	
 	public String getFriendname() {
 		return friendname;
 	}
@@ -23,13 +22,13 @@ public class OpenChat extends JFrame {
 	
 	
 	
-	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online)
+	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online, boolean openedFromInvite)
 	{
 		friendname = friendName;
 		username = UserName;
 		
 		
-		m = new MessageBox(username,friendname,client, online);	
+		m = new MessageBox(username,friendname,client, openedFromInvite);	
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -59,5 +58,5 @@ public class OpenChat extends JFrame {
 	
 	public void showMBox(boolean a){
 		frame.setVisible(a);
-	}
+	}	
 }
