@@ -606,39 +606,55 @@ import user.Client;
             		friendname = "";
             		System.out.println(error);
             	}
-            	
-            	if(friendname != ""){	
-            		//TODO
-            		boolean exsitance = false;
-            		OpenChat chatE = null;
-            		
-            		for(int i1=0; i1<GUI.b.chats.size();i1++){
-                		if(GUI.b.chats.get(i1).getFriendname() == friendname){
-                			chatE = GUI.b.chats.get(i1);
-                			exsitance = true;
-                		}
-                	}    
-            		
-            		if(exsitance == true){
-            			chatE.showMBox(true);
-            		}
-            		else{
-            			OpenChat chat = new OpenChat(user,friendname,cl,true);			        		
-		        		chats.add(chat);
-            		}
-            		
-            		
-            		//GET IP WITH RMI            		
-            /*		String ip = "localhost";
-            		
-            		cl.setIp(ip);
-            		optionPanel.setVisible(false);
-            		chatPanel.setVisible(true);
-            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
-            		txtConversation.append("Wachten op antwoord...." + '\n');*/
+             	if(cl.checkOnline(friendname))
+            	{
+             		boolean online = true;
+	            	if(friendname != ""){	
+	            		//TODO
+	            		boolean exsitance = false;
+	            		OpenChat chatE = null;
+	            		
+	            		for(int i1=0; i1<GUI.b.chats.size();i1++){
+	                		if(GUI.b.chats.get(i1).getFriendname() == friendname){
+	                			chatE = GUI.b.chats.get(i1);
+	                			exsitance = true;
+	                		}
+	                	}    
+	            		
+	            		if(exsitance == true){
+	            			chatE.showMBox(true);
+	            		}
+	            		else{
+	            			OpenChat chat = new OpenChat(user,friendname,cl,true, online);			        		
+			        		chats.add(chat);
+	            		}
+	            	}
             	}
-            	
-            	
+             	else
+             	{
+             		boolean online = false;
+             		if(friendname != ""){	
+	            		//TODO
+	            		boolean exsitance = false;
+	            		OpenChat chatE = null;
+	            		
+	            		for(int i1=0; i1<GUI.b.chats.size();i1++){
+	                		if(GUI.b.chats.get(i1).getFriendname() == friendname){
+	                			chatE = GUI.b.chats.get(i1);
+	                			exsitance = true;
+	                		}
+	                	}    
+	            		
+	            		if(exsitance == true){
+	            			chatE.showMBox(true);
+	            		}
+	            		else{
+	            			OpenChat chat = new OpenChat(user,friendname,cl,true, online);			        		
+			        		chats.add(chat);
+	            		}
+	            	}
+             		
+             	}
             }
             
             if (e.getSource() == btnChatWithInv) {
@@ -671,7 +687,7 @@ import user.Client;
             			chatE.showMBox(true);
             		}
             		else{
-            			OpenChat chat = new OpenChat(user,friendname,cl,true);			        		
+            			OpenChat chat = new OpenChat(user,friendname,cl,true, true);			        		
 		        		chats.add(chat);
             		}
             		

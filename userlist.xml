@@ -2,39 +2,42 @@
 <userlist>
     <users>
         <user>
-            <inPort>55773</inPort>
-            <ip/>
             <login>test</login>
-            <online>true</online>
-            <outPort>55772</outPort>
+            <fName>te</fName>
+            <lName>st</lName>
             <pw>116</pw>
             <pw>101</pw>
             <pw>115</pw>
             <pw>116</pw>
-            <fName>te</fName>
-            <lName>st</lName>
+            <ip>143.169.196.169</ip>
+            <online>false</online>
+            <inPort>65145</inPort>
+            <outPort>0</outPort>
+            <friendList>Willem</friendList>
+            <friendList>Frederik</friendList>
+            <friendList>test4</friendList>
+            <friendList>test2</friendList>
         </user>
         <user>
-            <inPort>54820</inPort>
-            <ip/>
             <login>Willem</login>
-            <online>true</online>
-            <outPort>54819</outPort>
+            <fName>willem</fName>
+            <lName>st</lName>
             <pw>87</pw>
             <pw>105</pw>
             <pw>108</pw>
             <pw>108</pw>
             <pw>101</pw>
             <pw>109</pw>
-            <fName>willem</fName>
-            <lName>st</lName>
+            <ip>143.169.196.169</ip>
+            <online>false</online>
+            <inPort>62983</inPort>
+            <outPort>0</outPort>
+            <friendList>test</friendList>
         </user>
         <user>
-            <inPort>51118</inPort>
-            <ip/>
             <login>Frederik</login>
-            <online>true</online>
-            <outPort>51117</outPort>
+            <fName>fre</fName>
+            <lName>derik</lName>
             <pw>70</pw>
             <pw>114</pw>
             <pw>101</pw>
@@ -43,20 +46,71 @@
             <pw>114</pw>
             <pw>105</pw>
             <pw>107</pw>
-            <fName>fre</fName>
-            <lName>derik</lName>
+            <ip>192.168.0.177</ip>
+            <online>false</online>
+            <inPort>56869</inPort>
+            <outPort>51117</outPort>
+            <friendList>test</friendList>
+            <friendList>Willem</friendList>
         </user>
         <user>
-            <inPort>56638</inPort>
-            <ip/>
             <login>fzaf</login>
-            <online>true</online>
-            <outPort>56637</outPort>
+            <fName>zafza</fName>
+            <lName>fzaf</lName>
             <pw>97</pw>
             <pw>122</pw>
             <pw>102</pw>
-            <fName>zafza</fName>
-            <lName>fzaf</lName>
+            <ip></ip>
+            <online>true</online>
+            <inPort>56638</inPort>
+            <outPort>56637</outPort>
+        </user>
+        <user>
+            <login>Anthony</login>
+            <fName>Anthony</fName>
+            <lName>Schenck</lName>
+            <pw>65</pw>
+            <pw>110</pw>
+            <pw>116</pw>
+            <pw>104</pw>
+            <pw>111</pw>
+            <pw>110</pw>
+            <pw>121</pw>
+            <ip>192.168.0.177</ip>
+            <online>true</online>
+            <inPort>54247</inPort>
+            <outPort>0</outPort>
+            <friendList>test</friendList>
+        </user>
+        <user>
+            <login>test2</login>
+            <fName>re</fName>
+            <lName>2</lName>
+            <pw>116</pw>
+            <pw>101</pw>
+            <pw>115</pw>
+            <pw>116</pw>
+            <pw>50</pw>
+            <ip>192.168.0.177</ip>
+            <online>false</online>
+            <inPort>61249</inPort>
+            <outPort>0</outPort>
+            <friendList>test</friendList>
+        </user>
+        <user>
+            <login>test4</login>
+            <fName>o</fName>
+            <lName>k</lName>
+            <pw>116</pw>
+            <pw>101</pw>
+            <pw>115</pw>
+            <pw>116</pw>
+            <pw>52</pw>
+            <ip>192.168.0.177</ip>
+            <online>false</online>
+            <inPort>51058</inPort>
+            <outPort>0</outPort>
+            <friendList>test</friendList>
         </user>
     </users>
 </userlist>

@@ -22,7 +22,7 @@ public class OpenChat extends JFrame {
 	
 	
 	
-	public OpenChat(String UserName, String friendName, Client client, boolean a)
+	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online)
 	{
 		friendname = friendName;
 		username = UserName;

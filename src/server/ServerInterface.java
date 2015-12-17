@@ -1,5 +1,7 @@
 package server;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -22,4 +24,6 @@ public interface ServerInterface extends Remote
 	public int getUserInPort(String userName) throws RemoteException;
 	public InetAddress getUserIP (String userName) throws RemoteException;	
 	public boolean CheckOnline(String userName)throws RemoteException;	
+	public String ReadOfflineMessages(String username)throws RemoteException, FileNotFoundException, IOException;
+	public boolean WriteOfflineMessages(String username, String message)throws IOException;
 }

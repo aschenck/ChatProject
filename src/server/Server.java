@@ -3,6 +3,9 @@ package server;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.rmi.RemoteException;
@@ -44,14 +47,44 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return port;
 	}
 	
-	public void WriteOfflineMessages(String username, String message)throws RemoteException
+	public boolean WriteOfflineMessages(String username, String message)throws IOException
 	{
+		boolean written = false;
+		File f = new File(username+".txt");
+		FileWriter fw = new FileWriter(f, true);
+		if(f.exists())
+		{			
+			fw.write(message);
+			fw.flush();
+			fw.close();
+			written = true;
+		}
+		else
+		{
+			f.createNewFile();			
+			fw.write(message);
+			fw.flush();
+			fw.close();
+			written = true;
+		}
 		
+		return written;
 	}
 	
-	public String ReadOfflineMessages(String username)throws RemoteException
+	public String ReadOfflineMessages(String username)throws IOException
 	{
 		String message ="";
+		
+		File f = new File(username+".txt");
+		char[] buffer = new char[(int) f.length()];
+		FileReader fr = new FileReader(f);
+		if(f.exists())
+		{			
+			fr.read(buffer);			
+			fr.close();		
+			message = buffer.toString();
+			f.delete();
+		}
 		
 		return message;
 	}

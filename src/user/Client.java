@@ -35,6 +35,28 @@ public class Client
 	public static void main(String[] args) throws IOException
 	{}		
 	
+	public void sendOfflineMessage(String friendname, String message)
+	{
+		try 
+		{
+			InetAddress addr = server;
+			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
+			
+			if(ChatServer.WriteOfflineMessages(message, friendname))
+			{
+				
+			}
+			else
+			{
+				
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}	
+	}
+	
 	public void deleteFriend(String friend)
 	{
 		try 
