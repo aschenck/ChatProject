@@ -75,7 +75,13 @@ public class MessageBox extends JPanel {
 		txtTextToSend.setPreferredSize(new Dimension(400, 25));
 		txtTextToSend.setHorizontalAlignment(JTextField.CENTER);
 		
-		btnSendMessage.addActionListener(handler);		}
+		btnSendMessage.addActionListener(handler);		
+		
+		if(!openFromInvite)
+		{
+			cl.sendMessage(friendname, "0011" + cl.getUser());
+		}
+	}
 	
 	public boolean isOpenFromInvite()
 	{
@@ -102,14 +108,29 @@ public class MessageBox extends JPanel {
 		public void actionPerformed(ActionEvent e) {
         
 			if (e.getSource() == btnSendMessage) {
-            	if(txtTextToSend.getText().length()>0){
-	            	String message = "<" + username + ">" + txtTextToSend.getText();
-	            	System.out.println("0001:" + message);    
-            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            		String current = sdf.format(System.currentTimeMillis());
-	            	txtConversation.append("["+current+"]"+message + '\n');
-	            	cl.sendMessage(friendname,"0001:" + message);
-	            	txtTextToSend.setText("");
+            	if(txtTextToSend.getText().length()>0)
+            	{
+            		if(online)
+            		{
+		            	String message = "<" + username + ">" + txtTextToSend.getText();
+		            	System.out.println("0001:" + message);    
+	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	            		String current = sdf.format(System.currentTimeMillis());
+		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	cl.sendMessage(friendname,"0001:" + message);
+		            	txtTextToSend.setText("");
+            		}
+            		else
+            		{
+		            	String message = "<" + username + ">" + txtTextToSend.getText();
+		            	System.out.println("0001:" + message);    
+	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+	            		String current = sdf.format(System.currentTimeMillis());
+		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	cl.sendOfflineMessage(friendname, message+ '\n');
+		            	txtTextToSend.setText("");
+            			
+            		}
             	}
             }
         }
