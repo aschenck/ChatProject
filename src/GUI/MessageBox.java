@@ -7,8 +7,12 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
 import user.Client;
 
 public class MessageBox extends JPanel {
@@ -66,12 +70,14 @@ public class MessageBox extends JPanel {
 
 		add(chatPanel);
 		
-		
-		chatPanel.add(txtConversation = new JTextArea());
+		txtConversation = new JTextArea(15,35);
+		JScrollPane scroll = new JScrollPane (txtConversation);
+		scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		chatPanel.add(scroll);
 		chatPanel.add(btnSendMessage = new JButton("Send message"));
 		chatPanel.add(txtTextToSend = new JTextField());
 		
-		txtConversation.setPreferredSize(new Dimension(400, 225));
+		//txtConversation.setPreferredSize(new Dimension(400, 225));
 		txtConversation.setEditable(false);
 		btnSendMessage.setPreferredSize(new Dimension(400, 25));
 		txtTextToSend.setPreferredSize(new Dimension(400, 25));
@@ -104,6 +110,11 @@ public class MessageBox extends JPanel {
 	{
 		this.online = online;
 	}
+	
+	public void dropDown()
+	{
+		txtConversation.setCaretPosition(txtConversation.getDocument().getLength());
+	}
 
 	class KnopHandler implements ActionListener {
 		
@@ -115,10 +126,11 @@ public class MessageBox extends JPanel {
             		if(online)
             		{
 		            	String message = "<" + username + ">" + txtTextToSend.getText();
-		            	System.out.println("0001:" + message);    
+		            	System.out.println("0001:online" + message);    
 	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 	            		String current = sdf.format(System.currentTimeMillis());
 		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	dropDown();
 		            	cl.sendMessage(friendname,"0001:" + message);
 		            	txtTextToSend.setText("");
             		}
@@ -129,6 +141,7 @@ public class MessageBox extends JPanel {
 	            		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 	            		String current = sdf.format(System.currentTimeMillis());
 		            	txtConversation.append("["+current+"]"+message + '\n');
+		            	dropDown();
 		            	cl.sendOfflineMessage(friendname, message+ '\n');
 		            	txtTextToSend.setText("");
             			

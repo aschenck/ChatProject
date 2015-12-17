@@ -28,11 +28,12 @@
             <pw>108</pw>
             <pw>101</pw>
             <pw>109</pw>
-            <ip>143.169.196.169</ip>
-            <online>false</online>
-            <inPort>59450</inPort>
+            <ip>192.168.1.20</ip>
+            <online>true</online>
+            <inPort>58697</inPort>
             <outPort>0</outPort>
             <friendList>test</friendList>
+            <friendList>Frederik</friendList>
         </user>
         <user>
             <login>Frederik</login>
@@ -46,10 +47,10 @@
             <pw>114</pw>
             <pw>105</pw>
             <pw>107</pw>
-            <ip>192.168.0.177</ip>
+            <ip>192.168.1.20</ip>
             <online>false</online>
-            <inPort>56869</inPort>
-            <outPort>51117</outPort>
+            <inPort>54733</inPort>
+            <outPort>0</outPort>
             <friendList>test</friendList>
             <friendList>Willem</friendList>
         </user>

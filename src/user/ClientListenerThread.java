@@ -54,17 +54,18 @@ public class ClientListenerThread implements Runnable
 		ServerSocket sock;
 		try
 		{
+			System.out.println("test1");
 			sock = new ServerSocket(this.inPort);
 			Socket connectionSocket = sock.accept();
-			System.out.println(this.inPort);
 			while(true)
 			{
 				//Socket connectionSocket = sock.accept();
+				System.out.println(GUI.b.getUserName() +  ": Received something");
 	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); 
 	            String message = inFromClient.readLine();
 	            setRxText(message);	            
 	            System.out.println("Received: " + getRxText());
-	            
+	            if(message != null && !message.isEmpty()){
 	            if (message.substring(0, 4).equals(inviteCode)) {
 	            	inviteUsername = message.substring(5);
 	            	newInvite = true;
@@ -88,10 +89,12 @@ public class ClientListenerThread implements Runnable
 		            for(int i=0; i<GUI.b.chats.size();i++){
 	            		if(GUI.b.chats.get(i).getFriendname().equals(name)){
 	            			GUI.b.chats.get(i).setText(current+message + '\n');
+	            			GUI.b.chats.get(i).dropDown();
 	            		}
 	            	}
 	            }        
   			}
+			}
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block

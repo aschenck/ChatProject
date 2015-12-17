@@ -57,5 +57,8 @@ public class OpenChat extends JFrame {
 	
 	public void showMBox(boolean a){
 		frame.setVisible(a);
+	}
+	public void dropDown(){
+		m.dropDown();
 	}	
 }

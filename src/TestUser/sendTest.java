@@ -14,7 +14,7 @@ public class sendTest
 	{
 		try {
 			String sentence;
-			Socket sendsocket = new Socket("localhost", 49651);
+			Socket sendsocket = new Socket("localhost", 58697);
 			//outToServer leest uitgaande data op clientSocket
 			DataOutputStream outToServer = new DataOutputStream(sendsocket.getOutputStream());
 			
