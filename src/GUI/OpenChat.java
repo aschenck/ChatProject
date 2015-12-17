@@ -22,13 +22,13 @@ public class OpenChat extends JFrame {
 	
 	
 	
-	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online)
+	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online, boolean openedFromInvite)
 	{
 		friendname = friendName;
 		username = UserName;
 		
 		
-		m = new MessageBox(username,friendname,client);	
+		m = new MessageBox(username,friendname,client, openedFromInvite);	
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
