@@ -18,9 +18,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;import javax.swing.ListSelectionModel;
-
+import javax.swing.ScrollPaneConstants;
 
 import user.Client;
 
@@ -71,6 +72,7 @@ import user.Client;
 	private JButton btnStartChat, btnAddFriend, btnDeleteFriend, btnCheckInvites, btnLogout;
 	@SuppressWarnings("rawtypes")
 	private JList lFriendList = new JList();
+	private JScrollPane listScrollPane;
 	@SuppressWarnings("rawtypes")
 	private DefaultListModel lmFriendList = new DefaultListModel();	
 	private JButton btnDelete, btnChat, btnChatWithInv, btnAdd, btnBackMenu;	
@@ -115,6 +117,15 @@ import user.Client;
 
 		chatPanel.setVisible(false);				
 
+		
+		lFriendList = new JList<String>(lmFriendList);
+		lFriendList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	
+		lFriendList.setLayoutOrientation(JList.VERTICAL);
+		listScrollPane = new JScrollPane(lFriendList);
+		listScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		listScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
 		//OPTIONPANEL
 		optionPanel.add(lblUsername = new JLabel("Username"));
 		optionPanel.add(txtUsername = new JTextField());
@@ -137,7 +148,7 @@ import user.Client;
 		optionPanel.add(btnCheckInvites = new JButton("Check invites"));
 		optionPanel.add(btnLogout = new JButton("Logout"));
 		
-		optionPanel.add(lFriendList = new JList<String>(lmFriendList));
+		optionPanel.add(listScrollPane);
 		optionPanel.add(btnDelete = new JButton("Delete"));
 		optionPanel.add(btnChat = new JButton("Chat"));
 		optionPanel.add(btnChatWithInv = new JButton("Open chat"));
@@ -178,12 +189,11 @@ import user.Client;
 		btnCheckInvites.setPreferredSize(new Dimension(300, 40));
 		btnLogout.setPreferredSize(new Dimension(300, 40));
 		
-		lFriendList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		lFriendList.setLayoutOrientation(JList.VERTICAL);
+		
 		lFriendList.setPreferredSize(new Dimension(300, 80));
 		btnDelete.setPreferredSize(new Dimension(300, 40));
 		btnChat.setPreferredSize(new Dimension(300, 40));
-		btnChatWithInv.setPreferredSize(new Dimension(300, 40));
+		btnChatWithInv.setPreferredSize(new Dimension(330, 35));
 		txtAddFriend.setPreferredSize(new Dimension(300, 25));
 		txtAddFriend.setHorizontalAlignment(JTextField.CENTER);
 		btnAdd.setPreferredSize(new Dimension(300, 40));
@@ -207,7 +217,7 @@ import user.Client;
 		btnCheckInvites.setVisible(false);
 		btnLogout.setVisible(false);
 		
-		lFriendList.setVisible(false);
+		listScrollPane.setVisible(false);
 		btnDelete.setVisible(false);
 		btnChat.setVisible(false);
 		btnChatWithInv.setVisible(false);
@@ -389,7 +399,7 @@ import user.Client;
         		btnCheckInvites.setVisible(false);
         		btnLogout.setVisible(false);	        		
         		
-        		lFriendList.setVisible(true);
+        		listScrollPane.setVisible(true);
         		lmFriendList.clear();
         		cl.getFriends();
         		List<String> friends = new ArrayList<String>();
@@ -472,7 +482,7 @@ import user.Client;
         		btnCheckInvites.setVisible(false);
         		btnLogout.setVisible(false);
         		
-        		lFriendList.setVisible(true);
+        		listScrollPane.setVisible(true);
         		lmFriendList.clear();
         		lmFriendList.addElement("teste");
         		lmFriendList.addElement("teste2");
@@ -498,7 +508,7 @@ import user.Client;
         		btnCheckInvites.setVisible(false);
         		btnLogout.setVisible(false);
         		
-        		lFriendList.setVisible(true);
+        		listScrollPane.setVisible(true);
         		btnChatWithInv.setVisible(true);
         		btnBackMenu.setVisible(true);
         		
@@ -584,7 +594,7 @@ import user.Client;
             	btnDeleteFriend.setVisible(true);
             	btnCheckInvites.setVisible(true);
             	btnLogout.setVisible(true);
-            	lFriendList.setVisible(false);
+            	listScrollPane.setVisible(false);
             	btnChat.setVisible(false);
             	btnChatWithInv.setVisible(false);
             	btnDelete.setVisible(false);

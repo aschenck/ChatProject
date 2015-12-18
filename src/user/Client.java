@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-
+import GUI.GUI;
+import GUI.OpenOffChat;
 import server.User;
 
 public class Client
@@ -64,7 +65,9 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			String message = ChatServer.ReadOfflineMessages(getUser());
-			System.out.println(message);	
+			
+			OpenOffChat offChat = new OpenOffChat(message, true);
+			//System.out.println(message);	
 		} 
 		catch (Exception e) 
 		{
