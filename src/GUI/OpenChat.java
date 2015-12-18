@@ -24,7 +24,7 @@ public class OpenChat extends JFrame {
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setTitle("Chat with " + friendname);	
 		frame.setContentPane(m);
 		frame.setVisible(a);	

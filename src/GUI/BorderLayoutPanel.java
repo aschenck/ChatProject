@@ -74,6 +74,26 @@ import user.Client;
 	@SuppressWarnings("rawtypes")
 	private DefaultListModel lmFriendList = new DefaultListModel();	
 	private JButton btnDelete, btnChat, btnChatWithInv, btnAdd, btnBackMenu;	
+	public DefaultListModel getLmFriendList()
+	{
+		return lmFriendList;
+	}
+
+	public void setLmFriendList(DefaultListModel lmFriendList)
+	{
+		this.lmFriendList = lmFriendList;
+	}
+
+	public JButton getBtnChatWithInv()
+	{
+		return btnChatWithInv;
+	}
+
+	public void setBtnChatWithInv(JButton btnChatWithInv)
+	{
+		this.btnChatWithInv = btnChatWithInv;
+	}
+
 	private JTextField txtAddFriend;
 	private String user;
 	//CHATPANEL

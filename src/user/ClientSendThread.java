@@ -11,12 +11,14 @@ public class ClientSendThread implements Runnable
 	private InetAddress ip;
 	private String message;
 	public Socket clientSocket;
+	private boolean connected;
 	
 	public ClientSendThread(int outPort, InetAddress inetAddress)
 	{
 		this.outPort = outPort;
 		this.ip = inetAddress;
 		this.message = "";
+		connected = true;
 	}
 	
 	public void run()
@@ -28,15 +30,23 @@ public class ClientSendThread implements Runnable
 			
 			clientSocket = new Socket(ip, this.outPort);
 			System.out.println("SendThread: OutPort: " +this.outPort);
-			while(true)
+			while(connected)
 			{
 				if(!getMessage().equals(""))
 				{
-					DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-					outToServer.writeBytes(getMessage() + '\n');
-					System.out.println("SendThread: MESSAGE SENT" + getMessage());
-					setMessage("");
+					if(!getMessage().substring(0, 4).equals("1111"))
+					{
+						DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+						outToServer.writeBytes(getMessage() + '\n');
+						System.out.println("SendThread: MESSAGE SENT" + getMessage());
+						setMessage("");
+					}
+					else
+					{
+						CloseSocket();
+					}
 				}
+
 			}			
 		}
 		catch (IOException e)
@@ -50,6 +60,7 @@ public class ClientSendThread implements Runnable
 	{
 		try
 		{
+			connected = false;
 			clientSocket.close();
 		} catch (IOException e)
 		{
