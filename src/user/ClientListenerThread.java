@@ -14,34 +14,13 @@ public class ClientListenerThread implements Runnable
 {	
 	private int inPort;
 	private String rxText;
-	
+	private ArrayList<ClientListenerEchoThread> socketsList;
 	private ArrayList<String> inviteList;
 	private String inviteUsername;
-	private boolean newInvite;
-	
+	private boolean newInvite;	
 	private String inviteCode = "0011";
 	private String chatCode = "0001";
-	private String closeCode = "1111";
-	
-	public ArrayList<String> getInviteList()
-	{
-		return inviteList;
-	}
-
-	public void setInviteList(ArrayList<String> inviteList)
-	{
-		this.inviteList = inviteList;
-	}
-
-	public String getRxText()
-	{
-		return rxText;
-	}
-
-	public void setRxText(String rxText)
-	{
-		this.rxText = rxText;
-	}
+	private String closeCode = "1111";	
 
 	public ClientListenerThread(int inPort)
 	{
@@ -49,7 +28,7 @@ public class ClientListenerThread implements Runnable
 		inviteList = new ArrayList<>();
 	}
 	
-	public void run()
+	/*public void run()
 	{
 		System.out.println("Listen thread started!");
 		ServerSocket sock;
@@ -59,7 +38,7 @@ public class ClientListenerThread implements Runnable
 			sock = new ServerSocket(this.inPort);
 			Socket connectionSocket = sock.accept();
 			
-			while(!connectionSocket.isClosed())
+			while(true)
 			{
 				//Socket connectionSocket = sock.accept();
 				System.out.println(GUI.b.getUserName() +  ": Received something");
@@ -107,5 +86,63 @@ public class ClientListenerThread implements Runnable
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	}*/
+	
+	public void run()
+	{
+		ServerSocket serverSocket = null;
+        Socket socket = null;
+        try 
+        {
+            serverSocket = new ServerSocket(inPort);
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        while (true)
+        {
+            try 
+            {
+                socket = serverSocket.accept();
+            } 
+            catch (IOException e) 
+            {
+                System.out.println("I/O error: " + e);
+            }
+            // new threa for a client
+            new ClientListenerEchoThread(socket, this).start();
+        }
+	}
+	
+
+	public ArrayList<String> getInviteList()
+	{
+		return inviteList;
+	}
+
+	public void setInviteList(ArrayList<String> inviteList)
+	{
+		this.inviteList = inviteList;
+	}
+
+	public String getRxText()
+	{
+		return rxText;
+	}
+
+	public void setRxText(String rxText)
+	{
+		this.rxText = rxText;
+	}
+
+	public ArrayList<ClientListenerEchoThread> getSocketsList()
+	{
+		return socketsList;
+	}
+
+	public void setSocketsList(ArrayList<ClientListenerEchoThread> socketsList)
+	{
+		this.socketsList = socketsList;
 	}
 }

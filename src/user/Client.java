@@ -100,6 +100,7 @@ public class Client
 	public void closeChatConnection(String username)
 	{
 		getSocketFromTable(username).CloseSocket();
+		removeSocketFromTable(username);		
 	}
 	
 	public void addFriend(String friend)
@@ -331,6 +332,10 @@ public class Client
 		this.threadTable.put(username, t);
 	}
 
+	public void removeSocketFromTable(String username)
+	{
+		this.threadTable.remove(username);
+	}
 	public String getUser()
 	{
 		return user;
