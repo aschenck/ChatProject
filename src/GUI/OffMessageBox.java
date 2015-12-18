@@ -35,7 +35,7 @@ public class OffMessageBox extends JPanel {
 		
 		chatPanel.setPreferredSize(new Dimension(600, 400));
 
-		add(chatPanel);
+		add(chatPanel);//
 		
 		txtConversation = new JTextArea(15,35);
 		JScrollPane scroll = new JScrollPane (txtConversation);

@@ -18,7 +18,7 @@ public class OpenOffChat extends JFrame {
 	
 	public OpenOffChat(String mess,boolean a)
 	{
-		message = mess;
+		message = mess;//
 		
 		m = new OffMessageBox(message);	
 		
