@@ -9,13 +9,14 @@
             <pw>101</pw>
             <pw>115</pw>
             <pw>116</pw>
-            <ip>143.169.196.169</ip>
-            <online>false</online>
-            <inPort>57060</inPort>
+            <ip>192.168.0.177</ip>
+            <online>true</online>
+            <inPort>64734</inPort>
             <outPort>0</outPort>
             <friendList>Willem</friendList>
             <friendList>Frederik</friendList>
             <friendList>test4</friendList>
+            <friendList>test2</friendList>
             <friendList>test2</friendList>
         </user>
         <user>
@@ -28,9 +29,9 @@
             <pw>108</pw>
             <pw>101</pw>
             <pw>109</pw>
-            <ip>192.168.1.20</ip>
-            <online>true</online>
-            <inPort>58697</inPort>
+            <ip>192.168.0.177</ip>
+            <online>false</online>
+            <inPort>49938</inPort>
             <outPort>0</outPort>
             <friendList>test</friendList>
             <friendList>Frederik</friendList>
@@ -93,9 +94,10 @@
             <pw>116</pw>
             <pw>50</pw>
             <ip>192.168.0.177</ip>
-            <online>false</online>
-            <inPort>61249</inPort>
+            <online>true</online>
+            <inPort>61413</inPort>
             <outPort>0</outPort>
+            <friendList>test</friendList>
             <friendList>test</friendList>
         </user>
         <user>

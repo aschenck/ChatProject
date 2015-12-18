@@ -94,6 +94,11 @@ public class Client
 		return invites;
 	}
 	
+	public void closeChatConnection(String username)
+	{
+		getSocketFromTable(username).CloseSocket();
+	}
+	
 	public void addFriend(String friend)
 	{
 		try 

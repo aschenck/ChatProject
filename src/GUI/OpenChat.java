@@ -1,6 +1,9 @@
 package GUI;
 
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
 import user.Client;
 
@@ -9,18 +12,8 @@ public class OpenChat extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String friendname;
-	public String getFriendname() {
-		return friendname;
-	}
-
-	public void setFriendname(String friendname) {
-		this.friendname = friendname;
-	}
-
 	private MessageBox m;
 	private JFrame frame = new GUI();
-	
-	
 	
 	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online, boolean openedFromInvite)
 	{
@@ -31,10 +24,21 @@ public class OpenChat extends JFrame {
 		
 		frame.setSize(600, 400);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("Chat with " + friendname);	
 		frame.setContentPane(m);
 		frame.setVisible(a);	
+		frame.addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                System.out.println("Closed");
+                m.sendCloseMessage();
+                client.closeChatConnection(friendName);
+                e.getWindow().dispose();
+            }
+        });
 	}
 	
 	public void setText(String text){
@@ -61,4 +65,11 @@ public class OpenChat extends JFrame {
 	public void dropDown(){
 		m.dropDown();
 	}	
+	public String getFriendname() {
+		return friendname;
+	}
+
+	public void setFriendname(String friendname) {
+		this.friendname = friendname;
+	}
 }

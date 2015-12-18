@@ -21,6 +21,7 @@ public class ClientListenerThread implements Runnable
 	
 	private String inviteCode = "0011";
 	private String chatCode = "0001";
+	private String closeCode = "1111";
 	
 	public ArrayList<String> getInviteList()
 	{
@@ -57,7 +58,8 @@ public class ClientListenerThread implements Runnable
 			System.out.println("test1");
 			sock = new ServerSocket(this.inPort);
 			Socket connectionSocket = sock.accept();
-			while(true)
+			
+			while(!connectionSocket.isClosed())
 			{
 				//Socket connectionSocket = sock.accept();
 				System.out.println(GUI.b.getUserName() +  ": Received something");
@@ -92,7 +94,12 @@ public class ClientListenerThread implements Runnable
 	            			GUI.b.chats.get(i).dropDown();
 	            		}
 	            	}
-	            }        
+	            }  
+	            else if(message.substring(0, 4).equals(closeCode))
+	            {
+	            	connectionSocket.close();
+	            	this.run();
+	            }
   			}
 			}
 		} catch (IOException e)
