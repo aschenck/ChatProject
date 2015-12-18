@@ -484,6 +484,23 @@ import user.Client;
             	btnAdd.setVisible(true);
             	btnBackMenu.setVisible(true);
             }
+            if (e.getSource() == btnDelete) {
+            	String friendname;
+
+            	try
+            	{
+            		System.out.println(lFriendList.getSelectedValue().toString());
+            		friendname = lFriendList.getSelectedValue().toString();
+            		lmFriendList.remove(lFriendList.getSelectedIndex());
+            		cl.deleteFriend(friendname);
+            		lFriendList.setModel(lmFriendList);
+            	} 
+            	catch(Exception error){
+            		
+            		friendname = "";
+            		System.out.println(error);
+            	}
+            }
             if (e.getSource() == btnDeleteFriend)
             {
             	lblUsername.setVisible(false);
@@ -504,8 +521,12 @@ import user.Client;
         		
         		listScrollPane.setVisible(true);
         		lmFriendList.clear();
-        		lmFriendList.addElement("teste");
-        		lmFriendList.addElement("teste2");
+        		cl.getFriends();
+            	Iterator<String> i = cl.getFriendList().iterator();
+            	while (i.hasNext()) {
+            		lmFriendList.addElement(i.next());
+            	}
+            	lFriendList.setModel(lmFriendList);
         		
         		btnDelete.setVisible(true);
         		btnBackMenu.setVisible(true);
@@ -575,29 +596,13 @@ import user.Client;
         		cl.logOut();
             }
             
-            if (e.getSource() == btnDelete) {
-            	String friendname;
-            	Iterator<String> i = cl.getFriendList().iterator();
-            	while (i.hasNext()) {
-            		lmFriendList.addElement(i.next());
-            	}
-            	lFriendList.setModel(lmFriendList);
-            	try{
-            		System.out.println(lFriendList.getSelectedValue().toString());
-            		friendname = lFriendList.getSelectedValue().toString();
-            		cl.deleteFriend(friendname);
-            	} 
-            	catch(Exception error){
-            		
-            		friendname = "";
-            		System.out.println(error);
-            	}
-            }
+           
             
             if (e.getSource() == btnAdd) {
             	String friendname;
             	friendname = txtAddFriend.getText();
-            	try{
+            	try
+            	{
             		cl.addFriend(friendname);
             		txtAddFriend.setText("");
             	} 

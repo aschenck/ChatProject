@@ -210,16 +210,29 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	@Override
 	public void addFriend(String myUsername, String friendUsername) throws RemoteException
 	{
-		List<User> temp = userlist.getUsers();
-		User p = new User();
-		for(User u : temp)
+		boolean exists = false;
+		List<String> friends = getFriends(myUsername);
+		for(String f: friends)
 		{
-	        if(u.getLogin().equals(myUsername))
-	        {
-	        	p = u;
-	        	p.addFriend(friendUsername);
-	        	writeUsersXML();
-	        }
+			if(f.equals(friendUsername))
+			{
+				System.out.println("Deze vriend bestaat al");
+				exists = true;				
+			}
+		}	
+		if(!exists)
+		{
+			List<User> temp = userlist.getUsers();
+			User p = new User();
+			for(User u : temp)
+			{
+		        if(u.getLogin().equals(myUsername))
+		        {
+		        	p = u;
+		        	p.addFriend(friendUsername);
+		        	writeUsersXML();
+		        }
+			}	
 		}
 	}
 	
@@ -345,7 +358,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	public List<String> getFriends(String username) throws RemoteException
 	{	
 		List<User> temp = userlist.getUsers();
-		//User p = new User();
 		for(User u : temp)
 		{
 	        if(u.getLogin().equals(username))
@@ -357,11 +369,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return Collections.<String>emptyList();
 	}
 	
-	/*private boolean authorizeUser(String username, char[] password)
-	{		
-		return true;
-	}*/
-	
 	private void readUsersXML()
 	{
 		try 
@@ -370,9 +377,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		
 			JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
 	    	Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-	     
-	    	//We had written this file in marshalling example
-	    
+		    
 			userlist = (Users) jaxbUnmarshaller.unmarshal( new File("userlist.xml") );
 			System.out.println("reading from xml success!");
 		} 
@@ -394,12 +399,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		 
 		    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		     
-		    //DEBUG
-		    //Marshal the employees list in console
-		    //jaxbMarshaller.marshal(userlist, System.out);
-		    
-		    //Marshal to file
+
 		    OutputStream os = new FileOutputStream("userlist.xml");
 		    jaxbMarshaller.marshal(userlist, os);
 		    System.out.println("write to xml success!");

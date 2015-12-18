@@ -24,7 +24,7 @@ public class OpenOffChat extends JFrame {
 		
 		frame.setSize(450, 300);
 		//frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setTitle("Offline Chat");	
 		frame.setContentPane(m);
 		frame.setVisible(a);

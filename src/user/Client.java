@@ -65,8 +65,9 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			String message = ChatServer.ReadOfflineMessages(getUser());
-			
-			OpenOffChat offChat = new OpenOffChat(message, true);
+			OpenOffChat offChat = null;
+			if(!message.isEmpty())
+				offChat = new OpenOffChat(message, true);
 			//System.out.println(message);	
 		} 
 		catch (Exception e) 
@@ -99,8 +100,12 @@ public class Client
 	
 	public void closeChatConnection(String username)
 	{
-		getSocketFromTable(username).CloseSocket();
-		removeSocketFromTable(username);		
+		ClientSendThread cls = getSocketFromTable(username);
+		if(cls != null)
+		{
+			cls.CloseSocket();
+			removeSocketFromTable(username);	
+		}
 	}
 	
 	public void addFriend(String friend)
@@ -219,7 +224,9 @@ public class Client
 	
 	public void sendMessage(String username, String message)
 	{
-		getSocketFromTable(username).setMessage(message);
+		ClientSendThread cls = getSocketFromTable(username);
+		if(cls!=null)
+			cls.setMessage(message);
 	}
 	
 	public void getFriends()
@@ -324,7 +331,10 @@ public class Client
 	
 	public ClientSendThread getSocketFromTable(String username)
 	{		
-		return this.threadTable.get(username);		
+		if(this.threadTable.contains(username))
+			return this.threadTable.get(username);	
+		else
+			return null;
 	}
 	
 	public void putSocketToTable(String username, ClientSendThread t)
