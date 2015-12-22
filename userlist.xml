@@ -11,7 +11,7 @@
             <pw>116</pw>
             <ip>192.168.0.177</ip>
             <online>false</online>
-            <inPort>52795</inPort>
+            <inPort>49476</inPort>
             <outPort>0</outPort>
             <friendList>Willem</friendList>
             <friendList>test2</friendList>
@@ -92,7 +92,7 @@
             <pw>50</pw>
             <ip>192.168.0.177</ip>
             <online>false</online>
-            <inPort>51273</inPort>
+            <inPort>50038</inPort>
             <outPort>0</outPort>
             <friendList>test</friendList>
         </user>

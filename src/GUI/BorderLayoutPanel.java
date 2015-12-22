@@ -136,7 +136,6 @@ import user.Client;
 		add(chatPanel);
 
 		chatPanel.setVisible(false);				
-
 		
 		lFriendList = new JList<String>(lmFriendList);
 		lFriendList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	
@@ -144,7 +143,6 @@ import user.Client;
 		listScrollPane = new JScrollPane(lFriendList);
 		listScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		listScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
 		
 		//OPTIONPANEL
 		optionPanel.add(lblUsername = new JLabel("Username"));
@@ -209,7 +207,6 @@ import user.Client;
 		btnCheckInvites.setPreferredSize(new Dimension(300, 40));
 		btnLogout.setPreferredSize(new Dimension(300, 40));
 		
-		
 		lFriendList.setPreferredSize(new Dimension(300, 80));
 		btnDelete.setPreferredSize(new Dimension(300, 40));
 		btnChat.setPreferredSize(new Dimension(300, 40));
@@ -264,13 +261,11 @@ import user.Client;
 		btnAdd.addActionListener(handler);
 		btnBackMenu.addActionListener(handler);
 		
-		
 		//CHATPANEL
 		chatPanel.add(btnLeaveConversation = new JButton("Leave conversation"));
 		chatPanel.add(txtConversation = new JTextArea());
 		chatPanel.add(btnSendMessage = new JButton("Send message"));
 		chatPanel.add(txtTextToSend = new JTextField());
-		
 		
 		btnLeaveConversation.setPreferredSize(new Dimension(400, 25));
 		txtConversation.setPreferredSize(new Dimension(400, 225));
@@ -281,9 +276,6 @@ import user.Client;
 		
 		btnLeaveConversation.addActionListener(handler);
 		btnSendMessage.addActionListener(handler);
-		
-
-		
 	}
 	
 	class KnopHandler implements ActionListener {
@@ -557,7 +549,6 @@ import user.Client;
         		inv = cl.CheckInvites();
         		Iterator<String> i = inv.iterator();
         		System.out.println(inv.toString());
-
         		
         		lmFriendList.clear();
         		while(i.hasNext())
@@ -570,8 +561,6 @@ import user.Client;
         		{
             		lFriendList.setModel(lmFriendList);
             	}
-        		
-        		
             }
             if (e.getSource() == btnLogout)
             {
@@ -595,8 +584,6 @@ import user.Client;
         		txtPassword.setText("");
         		cl.logOut();
             }
-            
-           
             
             if (e.getSource() == btnAdd) {
             	String friendname;
@@ -645,7 +632,6 @@ import user.Client;
             	{
              		boolean online = true;
 	            	if(friendname != ""){	
-	            		//TODO
 	            		boolean exsitance = false;
 	            		OpenChat chatE = null;
 	            		
@@ -687,8 +673,7 @@ import user.Client;
 	            			OpenChat chat = new OpenChat(user,friendname,cl,true, online, true);			        		
 			        		chats.add(chat);
 	            		}
-	            	}
-             		
+	            	}             		
              	}
             }
             
@@ -716,8 +701,7 @@ import user.Client;
                 			chatE = GUI.b.chats.get(i1);
                 			exsitance = true;
                 		}
-                	}    
-            		
+                	}                		
             		if(exsitance == true){
             			chatE.showMBox(true);
             		}
@@ -725,19 +709,7 @@ import user.Client;
             			OpenChat chat = new OpenChat(user,friendname,cl,true, true, true);			        		
 		        		chats.add(chat);
             		}
-            		
-            		
-            		//GET IP WITH RMI            		
-            /*		String ip = "localhost";
-            		
-            		cl.setIp(ip);
-            		optionPanel.setVisible(false);
-            		chatPanel.setVisible(true);
-            		txtConversation.append("Connectie aanvraag gestuurd naar " + friendname + '\n');
-            		txtConversation.append("Wachten op antwoord...." + '\n');*/
             	}
-            	
-            	
             }
             
             if (e.getSource() == btnLeaveConversation) {

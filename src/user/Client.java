@@ -127,7 +127,6 @@ public class Client
 	{
 		try 
 		{
-			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			User u = new User();
@@ -141,7 +140,8 @@ public class Client
 				this.setInPort(u.getInPort());
 				this.setOutPort(u.getOutPort());
 				this.setIp(u.getIp());
-				ClientSendThread t = new ClientSendThread(getOutPort(), ChatServer.getUserIP(userName));				
+				InetAddress friendaddress = ChatServer.getUserIP(userName);
+				ClientSendThread t = new ClientSendThread(getOutPort(), friendaddress);				
 				new Thread(t).start();				
 				this.putSocketToTable(userName, t);				
 			}	
@@ -331,7 +331,7 @@ public class Client
 	
 	public ClientSendThread getSocketFromTable(String username)
 	{		
-		if(this.threadTable.contains(username))
+		if(this.threadTable.containsKey(username))
 			return this.threadTable.get(username);	
 		else
 			return null;

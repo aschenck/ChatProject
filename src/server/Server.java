@@ -39,7 +39,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return port;
 	}
 	
-	public int MakeClientListenerPort()
+	public int MakeClientListenerPort() throws RemoteException 
 	{
 		Random rng = new Random();
 		int port;
@@ -192,12 +192,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 				u.setOnline(false);
 				System.out.println("User " + username + " has logged out!");
 			}
-		/*	else
-			{
-				ok = false;
-				System.out.println("User not found!");	        	
-			}*/	
-		
 		}		
 		if(ok)
 		{

@@ -26,4 +26,5 @@ public interface ServerInterface extends Remote
 	public boolean CheckOnline(String userName)throws RemoteException;	
 	public String ReadOfflineMessages(String username)throws RemoteException, FileNotFoundException, IOException;
 	public boolean WriteOfflineMessages(String username, String message)throws IOException;
+	public int MakeClientListenerPort() throws RemoteException;
 }
