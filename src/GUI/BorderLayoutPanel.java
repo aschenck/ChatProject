@@ -689,7 +689,7 @@ import user.Client;
             		
             		friendname = "";
             		System.out.println(error);
-            	}
+            	}//
             	
             	if(friendname != ""){	
             		//TODO

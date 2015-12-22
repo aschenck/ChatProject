@@ -9,7 +9,7 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public static BorderLayoutPanel b = new BorderLayoutPanel();
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) {//
 		
 		JFrame frame = new GUI();
 		frame.setSize(600, 400);

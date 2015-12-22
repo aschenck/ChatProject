@@ -270,7 +270,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        {
 	        	ip = u.getIp();
 	        }
-		}		
+		}		//
 		return ip;		
 	}
 	

@@ -335,7 +335,7 @@ public class Client
 			return this.threadTable.get(username);	
 		else
 			return null;
-	}
+	}//
 	
 	public void putSocketToTable(String username, ClientSendThread t)
 	{

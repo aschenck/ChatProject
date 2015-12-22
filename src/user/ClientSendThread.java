@@ -26,7 +26,7 @@ public class ClientSendThread implements Runnable
 		System.out.println("Send thread started!");
 		try
 		{			
-			//String sentence = GUI.GUI.b.txtConversation.getText();;
+			//String sentence = GUI.GUI.b.txtConversation.getText();
 			
 			clientSocket = new Socket(ip, this.outPort);
 			System.out.println("SendThread: OutPort: " +this.outPort);

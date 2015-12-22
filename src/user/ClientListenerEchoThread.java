@@ -50,7 +50,7 @@ public class ClientListenerEchoThread extends Thread
 				 if(message != null && !message.isEmpty())
 				 {
 					 if (message.substring(0, 4).equals(inviteCode)) 
-					 {
+					 {//
 						 inviteUsername = message.substring(5);
 						 newInvite = true;
 						for (int i = 0; i < inviteList.size(); i ++) 
