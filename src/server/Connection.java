@@ -3,7 +3,15 @@ package server;
 import java.net.InetAddress;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-
+/**
+ * This class launches the server application and creates the interface for it on port 1099
+ * 
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ * 
+ *
+ */
 public class Connection 
 {
 	public static void main(String[] args)

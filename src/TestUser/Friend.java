@@ -1,4 +1,4 @@
-package user;
+package TestUser;
 
 import java.net.InetAddress;
 

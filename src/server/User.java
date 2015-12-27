@@ -9,6 +9,23 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessType;
 
+/**
+ * Class that stores users information
+ * 
+ * @param login the login of the user
+ * @param fName the first name of the user
+ * @param lName the last name of the user
+ * @param pw the password of the user
+ * @param ip the ip of the user
+ * @param online online status of the user
+ * @param inPort the listenport of the user
+ * @param outPort the sendport of the user
+ * @param friendlist a list of all the friends the user currently has added
+ *
+ * 
+ * @author Anthony, Willem, Frederik
+ *
+ */
 @XmlRootElement(name = "user")
 @XmlAccessorType (XmlAccessType.FIELD)
 public class User
@@ -26,6 +43,14 @@ public class User
 	@XmlElement(name = "friendList")
 	private ArrayList<String> friendList;
 
+	/**
+	 * Constructor of the user class
+	 * @param login
+	 * @param fName
+	 * @param lName
+	 * @param pw
+	 * @param ip
+	 */
 	public User(String login, String fName, String lName, char[] pw,  InetAddress ip)
 	{		
 		this.login = login;
@@ -34,16 +59,21 @@ public class User
 		this.pw = pw;
 		this.ip = ip.getHostAddress();
 		this.online = true;
-		//System.out.println("In port :" +inPort);
-		//System.out.println("Out port: "+ outPort);
 		this.friendList = new ArrayList<String>();
 	}
 	
+	/**
+	 * default constructor of the class
+	 */
 	public User()
 	{	
 		this.friendList = new ArrayList<String>();
 	}	
 	
+	/**
+	 * Getters and setters of the class
+	 * 
+	 */
 	public int getInPort()
 	{
 		return inPort;
@@ -109,8 +139,7 @@ public class User
 		{
 			return InetAddress.getByName(ip);
 		} catch (UnknownHostException e)
-		{
-			// TODO Auto-generated catch block
+		{			
 			e.printStackTrace();
 			return null;
 		}
@@ -136,11 +165,20 @@ public class User
 		return friendList;
 	}
 	
+	/**
+	 * Add a friend to the friendlist
+	 * @param friendUserName the name of the friend to add
+	 */
 	public void addFriend(String friendUserName)
 	{
 		friendList.add(friendUserName);
 	}
 	
+	/**
+	 * Delete a friend from the friendlist
+	 * 
+	 * @param friendUserName the friend to delete
+	 */
 	public void deleteFriend(String friendUserName)
 	{
 		for (int i = 0; i < friendList.size(); i++)
@@ -152,6 +190,9 @@ public class User
 		}		
 	}
 	
+	/**
+	 * converts a user object details to a string
+	 */
 	@Override
 	public String toString() 
 	{ 

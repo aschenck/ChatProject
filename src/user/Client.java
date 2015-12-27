@@ -1,29 +1,48 @@
 package user;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
-import GUI.GUI;
 import GUI.OpenOffChat;
-import server.User;
 
+/**
+ * Class that implements all functionality of the client side application, 
+ * called from the client GUI
+ * 
+ * @author Anthony, Willem, Frederik
+ *
+ */
 public class Client
 {	
+	//the clients ip address
 	private InetAddress ip;
+	//the clients listenport
 	private int inPort;
+	//the clients sendport
 	private int outPort;
+	//the clients login name
 	private String user;
+	//the clients friendlist
 	private List<String> friendList;
+	//the ip address of the chat server
 	private InetAddress server;
-	private ClientListenerThread clLT;
-	
+	//the clients listener thread
+	private ClientListenerThread clLT;	
+	//hashtable of all open sendthreads, for handling multiple chat sessions with different users
 	private Hashtable<String, ClientSendThread> threadTable;
 	
+	/**
+	 *  Constructor of the client class
+	 *  Sets the minimum required data for the application to fucntion
+	 *  
+	 * @param inPort this clients listenport
+	 * @param outPort this clients sendport
+	 * 
+	 * @throws UnknownHostException exception thrown if the server ip is not found
+	 */
 	public Client(int inPort, int outPort) throws UnknownHostException
 	{
 		this.ip = InetAddress.getLocalHost();
@@ -33,9 +52,14 @@ public class Client
 		this.threadTable = new Hashtable<>();
 	}
 	
-	public static void main(String[] args) throws IOException
-	{}		
-	
+/*	public static void main(String[] args) throws IOException
+	{}		*/
+	/**
+	 * Sends a message to an offline user
+	 * 
+	 * @param friendname the user to receive the message
+	 * @param message the message to be sent
+	 */
 	public void sendOfflineMessage(String friendname, String message)
 	{
 		try 
@@ -57,7 +81,9 @@ public class Client
 			e.printStackTrace();
 		}	
 	}
-	
+	/**
+	 * Retrieves the stored offline messages from the server and displays them in the GUI (if available)
+	 */
 	public void readOfflineMessage()
 	{
 		try 
@@ -65,6 +91,7 @@ public class Client
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");
 			String message = ChatServer.ReadOfflineMessages(getUser());
+			@SuppressWarnings("unused")
 			OpenOffChat offChat = null;
 			if(!message.isEmpty())
 				offChat = new OpenOffChat(message, true);
@@ -75,7 +102,10 @@ public class Client
 			e.printStackTrace();
 		}	
 	}
-	
+	/**
+	 * Delete a friend from the clients friendlist
+	 * @param friend the friend to be deleted
+	 */
 	public void deleteFriend(String friend)
 	{
 		try 
@@ -90,14 +120,23 @@ public class Client
 			e.printStackTrace();
 		}			
 	}
-	
+	/**
+	 * Retrieves a list of invites for chatting from the listenerthread
+	 * 
+	 * @return returns a list of pending chat invites
+	 */
 	public List<String> CheckInvites()
 	{
 		List<String> invites = new ArrayList<String>();
 		invites = clLT.getInviteList();
 		return invites;
 	}
-	
+	/**
+	 * Closes an open chat connection when the chat window is closed.
+	 * Retrieves the socket that is being used for the chat and closes it.
+	 * 
+	 * @param username the user with whom you were chatting
+	 */
 	public void closeChatConnection(String username)
 	{
 		ClientSendThread cls = getSocketFromTable(username);
@@ -108,6 +147,11 @@ public class Client
 		}
 	}
 	
+	/**
+	 * Add a user to your friendlist
+	 * 
+	 * @param friend the friend you want to add
+	 */
 	public void addFriend(String friend)
 	{
 		try 
@@ -123,6 +167,14 @@ public class Client
 		}			
 	}
 	
+	/**
+	 * Start a chat session with the specified user.
+	 * Sets the port numbers to open up a socket.
+	 * Creates a new sendthread for the chat session.
+	 * Stores the sendthread in a hashtable
+	 * 
+	 * @param userName the user you want to chat with.
+	 */
 	public void startChat(String userName)
 	{
 		try 
@@ -152,6 +204,11 @@ public class Client
 		}
 	}
 	
+	/**
+	 * Checks if the selected user is currently online(logged in on the server)
+	 * @param user the user to be checked
+	 * @return true or false depending on the login status of the specified user
+	 */
 	public boolean checkOnline(String user)
 	{
 		boolean online = false;		
@@ -173,19 +230,21 @@ public class Client
 		return online;		
 	}
 	
-	public void ThreadCreater() throws IOException
-	{
-		//Client2 cl = new Client2(ip, inPort, outPort);
-		new Thread(new ClientListenerThread(getInPort())).start();
-		new Thread(new ClientSendThread(getOutPort(), getIp())).start();		
-	}
-	
+	/**
+	 * Method called when logging in to the server.
+	 * Sets the user object parameters like the ones stored on the server
+	 * Starts a new listenthread in order to be able to receive chat invites
+	 * 
+	 * @param user the user who is logging in
+	 * @param pass password linked to the specified username
+	 * @return true or false depending on succesfull login
+	 * @throws UnknownHostException
+	 */
 	public boolean connectToServer(String user, char[] pass) throws UnknownHostException
 	{		
 		boolean connected = false;
 		try 
 		{
-			//Obtain a reference to the object from the registry and typecast it into the appropriate type…
 			InetAddress addr = server;
 			server.ServerInterface ChatServer = (server.ServerInterface)Naming.lookup("rmi://" + addr.getHostAddress() + "/ChatServer");			
 			
@@ -222,6 +281,13 @@ public class Client
 		return connected;
 	}
 	
+	/**
+	 * Sends a message to the specified user.
+	 * The sendthread corresponding to the specified user is retrieved and called
+	 * 
+	 * @param username the user you are chatting with
+	 * @param message the message to be sent to the user
+	 */
 	public void sendMessage(String username, String message)
 	{
 		ClientSendThread cls = getSocketFromTable(username);
@@ -229,6 +295,9 @@ public class Client
 			cls.setMessage(message);
 	}
 	
+	/**
+	 * Retrieves the current users friendlist from the server
+	 */
 	public void getFriends()
 	{
 		try 
@@ -243,7 +312,9 @@ public class Client
 			e.printStackTrace();
 		}			
 	}
-	
+	/**
+	 * logs the user out on the server
+	 */
 	public void logOut()
 	{
 		try 
@@ -261,7 +332,15 @@ public class Client
 			e.printStackTrace();
 		}	
 	}
-	
+	/**
+	 * Create a new user account on the server
+	 * 
+	 * @param user the login the user wants to user
+	 * @param fName the users firstname
+	 * @param lName the users lastname
+	 * @param pass the users password
+	 * @return true or false if succesfull or not
+	 */
 	public boolean newUser(String user, String fName, String lName, char[] pass)
 	{
 		boolean connected = false;
@@ -288,7 +367,42 @@ public class Client
 		return connected;
 	}
 	
-	//getters and setters
+	/**
+	 * Retrieves an existing sendthread from a hashtable specified by the username
+	 * @param username the key in the hashtable, corresponds with a sendthread
+	 * @return the retrieved sendthread
+	 */
+	public ClientSendThread getSocketFromTable(String username)
+	{		
+		if(this.threadTable.containsKey(username))
+			return this.threadTable.get(username);	
+		else
+			return null;
+	}
+	/**
+	 * Adds a sendthread to the hashtable
+	 * 
+	 * @param username the user you are chatting with (key)
+	 * @param t the thread used for the chat session (value)
+	 */
+	public void putSocketToTable(String username, ClientSendThread t)
+	{
+		this.threadTable.put(username, t);
+	}
+	/**
+	 * removes a thread when a chat session is closed
+	 * @param username the key used to retrieve the corresponding thread
+	 */
+	public void removeSocketFromTable(String username)
+	{
+		this.threadTable.remove(username);
+	}
+	
+	/**
+	 * getters and setters of the client class
+	 * 
+	 * 
+	 */
 	public InetAddress getIp()
 	{
 		return ip;
@@ -329,23 +443,7 @@ public class Client
 		this.threadTable = threadTable;
 	}
 	
-	public ClientSendThread getSocketFromTable(String username)
-	{		
-		if(this.threadTable.containsKey(username))
-			return this.threadTable.get(username);	
-		else
-			return null;
-	}//
-	
-	public void putSocketToTable(String username, ClientSendThread t)
-	{
-		this.threadTable.put(username, t);
-	}
 
-	public void removeSocketFromTable(String username)
-	{
-		this.threadTable.remove(username);
-	}
 	public String getUser()
 	{
 		return user;

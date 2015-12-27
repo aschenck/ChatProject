@@ -19,6 +19,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+/**
+ * This is the server class, implementing all methods from the interface and additional features.
+ * 
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ *
+ */
 
 public class Server extends UnicastRemoteObject implements ServerInterface 
 {
@@ -26,12 +34,22 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	//Initialize the users list
 	private Users userlist = new Users();
 
+	/**
+	 * Constructor of the server class
+	 * Calls readUsersXML() method to so all registered users can be accessed
+	 * @throws RemoteException
+	 */
 	protected Server() throws RemoteException 
 	{
 		//Read user from xml to list
 		readUsersXML();
 	}
-
+	/**
+	 * Sets the users outport = the chat partners inport
+	 * 
+	 * @param u the user you want to chat with
+	 * @return returns the current listenport of the user you want to chat with and sets it as your outport
+	 */
 	public int SetOutPort(User u)
 	{
 		int port;
@@ -39,13 +57,33 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return port;
 	}
 	
-	public int MakeClientListenerPort() throws RemoteException 
+	/**
+	 * This method generates a port number in the 'free' range of port numbers on a random basis.
+	 * The method is called whenever a user logs in to the client, in order for the client to be
+	 * ready to accept incoming chat requests.
+	 * 
+	 * @return returns the inport(or listenport) for the client in the range between 49152 - 65535
+	 *
+	 */
+	public int MakeClientListenerPort() 
 	{
 		Random rng = new Random();
 		int port;
 		port = rng.nextInt(16383) + 49152;		
 		return port;
 	}
+	
+	/**
+	 * Method to send an offline message to a user.
+	 * The messages are stored in a text file, named after the user you are sending the messages to.
+	 * 
+	 * If the file already exists, additional messages are appended to the file.
+	 * If the file doesn't exist, it is created.
+	 * 
+	 * @param username the name of the user you are sending messages to.
+	 * @param message the message you are sending the user
+	 * @return returns true or false depending on the succes of the sending of the message
+	 */
 	
 	public boolean WriteOfflineMessages(String username, String message)throws IOException
 	{
@@ -68,11 +106,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			fw.flush();
 			fw.close();
 			written = true;
-		}
-		
+		}		
 		return written;
 	}
-	
+	/**
+	 * Method that returns the stored offline messages for a certain user
+	 * The method is called everytime a user logs in.
+	 * 
+	 * If there are no messages, nothing is returned ( an empty string).
+	 * Otherwise the file is read and the contents are passed to the client.
+	 * After a file has been read, the file is deleted in order to avoid sending the same message twice.
+	 * 
+	 * @param username the user for which there are messages stored
+	 * @return returns a string containing the offline message (if available)
+	 */
 	public String ReadOfflineMessages(String username)throws IOException
 	{
 		String message ="";
@@ -93,6 +140,17 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return message;
 	}
 	
+	/**
+	 * Method to login a user.
+	 * The server checks if the user exists, and verifies if the entered password corresponds with the one stored on the server.
+	 * The ip address of the user is added aswell, so other users can connect to the user.
+	 * @param username the name of the user logging in.
+	 * @param password the password of the user logging in.
+	 * @param ip the ip address of the user logging in.
+	 * 
+	 * @return returns true or false dependant on whether the user provided correct login information.
+	 * 
+	 */
 	@Override
 	public boolean loginUser(String username, char[] password, InetAddress ip) throws RemoteException 
 	{			
@@ -123,7 +181,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}
 		return found;
 	}
-
+	
+	/**
+	 * Method to create a new user account.
+	 * If no users currently exists, it also creates a new userlist object.
+	 * After adding a user, the userlist object is marshalled to an xml file for storage.
+	 * 
+	 * @param login the login the new user wants to use
+	 * @param firstname the firstname of the user
+	 * @param latname the lastname of the user
+	 * @param password the password the user wants to use
+	 * @param ip the current ip address of the user
+	 * 
+	 * @return returns true or false depending whether the account could be created or not (the selected username already exists)
+	 * 
+	 */
 	@Override
 	public boolean newUser(String login, String firstname, String lastname, char[] password, InetAddress ip )throws RemoteException
 	{
@@ -164,6 +236,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return ok;
 	}
 	
+	/**
+	 * Method to check if a user is online (logged in) or not
+	 * 
+	 * @param userName the user you want to check
+	 * @return returns true or false depending on whether the user is online or not
+	 */
+	
 	public boolean CheckOnline(String userName)throws RemoteException
 	{
 		boolean online = false;
@@ -179,6 +258,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return online;
 	}
 
+	/**
+	 * Method to log out a user.
+	 * The new status is written to the xml file.
+	 * 
+	 * @param username the user to be logged out
+	 * @return true if logout was succesful, false if unsuccessful
+	 */
 	@Override
 	public boolean logoutUser(String username) throws RemoteException 
 	{
@@ -200,7 +286,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}
 		return ok;
 	}
-
+	
+	/**
+	 * Method to add a user to your friendlist.
+	 * Checks to see if the user is already on your friendlist before adding to prevent duplicates.
+	 * When succesfully added, the friendlist is updated and written to xml.
+	 * 
+	 * @param myUsername the user who is adding a friend
+	 * @param friendUsername the user you want to add to your friendlist
+	 * 
+	 */
 	@Override
 	public void addFriend(String myUsername, String friendUsername) throws RemoteException
 	{
@@ -229,6 +324,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 			}	
 		}
 	}
+	/**
+	 * Method to retrieve the current users listenport
+	 * 
+	 * @param userName the name of the user
+	 * @return returns the listenport number of the user
+	 */
 	
 	public int getUserInPort(String userName) throws RemoteException
 	{
@@ -245,7 +346,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return port;
 	}
 	
-	public int getUserOutPort(String userName)throws RemoteException
+	/**
+	 * Method to retrieve the current users sendport
+	 * 
+	 * @param userName the name of the user
+	 * @return returns the sendport number of the user
+	 */
+	public int getUserOutPort(String userName)
 	{
 		int port = 0;
 		List<User> temp = userlist.getUsers();
@@ -259,6 +366,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		
 		return port;
 	}
+	
+	/**
+	 * Method to retrieve the ip address of the user you are trying to chat with.
+	 * 
+	 * @param userName the user you want to chat with
+	 * @return returns the ip address of the user you want to chat with
+	 */
 	
 	public InetAddress getUserIP (String userName) throws RemoteException
 	{
@@ -274,7 +388,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return ip;		
 	}
 	
-	public User getUserSettings(String myUserName) throws RemoteException
+	/*public User getUserSettings(String myUserName) throws RemoteException
 	{
 		List<User> temp = userlist.getUsers();
 		User p = new User();
@@ -286,8 +400,15 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        }
 		}
 		return p;
-	}
+	}*/
 
+	/**
+	 * Method to remove a user from your friendlist.
+	 * Updates the xml after removal
+	 * 
+	 * @param myUsername the name of the user who wants to delete a friend
+	 * @param friendUsername the name of the user you want to delete
+	 */
 	@Override
 	public void deleteFriend(String myUsername, String friendUsername) throws RemoteException
 	{
@@ -305,7 +426,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	}
 	
 	
-	@Override
+/*	@Override
 	public String getIpAndPortForInvite(String friendUsername) throws RemoteException {
 		List<User> temp = userlist.getUsers();
 		User p = new User();
@@ -318,8 +439,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	        }
 		}
 		return "Offline";
-	}
+	}*/
 
+	/**
+	 * Method to initialize a chat session.
+	 * Checks if the user you want to chat with is currently online, otherwise an offline message will be sent.
+	 * 
+	 * @param username the user you want to chat with.
+	 * @return the listenport of the user you want to chat with
+	 *
+	 */
 	@Override
 	public int startChat(String username) throws RemoteException 
 	{
@@ -340,14 +469,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 	    }		
 		return p.getInPort();
 	}
-
-	@Override
-	public boolean sendMessage(String username, int chat, String Message) throws RemoteException 
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	/**
+	 * Method to retrieve a list of your current friends
+	 * 
+	 * @param username the user who wants to retrieve his friendlist
+	 * @return returns a list of the users who have been added as friends.
+	 * if no friends exist, an empty list is returned
+	 */
 	@Override
 	public List<String> getFriends(String username) throws RemoteException
 	{	
@@ -363,6 +491,9 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		return Collections.<String>emptyList();
 	}
 	
+	/**
+	 * Method to unmarshal all the registered users and be stored in an object for retrieval/modification purposes
+	 */
 	private void readUsersXML()
 	{
 		try 
@@ -383,6 +514,9 @@ public class Server extends UnicastRemoteObject implements ServerInterface
 		}		
 	}
 	
+	/**
+	 * Method to marshal the users to xml in order to maintain an up-to-date copy on disk
+	 */
 	private void writeUsersXML()
 	{
 		System.out.println("write to xml started");

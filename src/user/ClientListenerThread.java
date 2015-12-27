@@ -1,93 +1,47 @@
 package user;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import GUI.GUI;
+/**
+ * Class that creates the listenerthreads
+ * 
+ * @author Anthony
+ *
+ */
 
 public class ClientListenerThread implements Runnable
 {	
+	//the listenport for the client
 	private int inPort;
+	//the message received 
 	private String rxText;
+	//list of all active listen threads
 	private ArrayList<ClientListenerEchoThread> socketsList;
+	//list of all invites
 	private ArrayList<String> inviteList;
-	private String inviteUsername;
-	private boolean newInvite;	
-	private String inviteCode = "0011";
-	private String chatCode = "0001";
-	private String closeCode = "1111";	
 
+	/**
+	 * the constructor for this class
+	 * 
+	 * @param inPort the port number on which this threads socket will operate
+	 */
 	public ClientListenerThread(int inPort)
 	{
 		this.inPort = inPort;
 		inviteList = new ArrayList<>();
 	}
-	
-	/*public void run()
-	{
-		System.out.println("Listen thread started!");
-		ServerSocket sock;
-		try
-		{
-			System.out.println("test1");
-			sock = new ServerSocket(this.inPort);
-			Socket connectionSocket = sock.accept();
-			
-			while(true)
-			{
-				//Socket connectionSocket = sock.accept();
-				System.out.println(GUI.b.getUserName() +  ": Received something");
-	            BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); 
-	            String message = inFromClient.readLine();
-	            setRxText(message);	            
-	            System.out.println("Received: " + getRxText());
-	            if(message != null && !message.isEmpty()){
-	            if (message.substring(0, 4).equals(inviteCode)) {
-	            	inviteUsername = message.substring(5);
-	            	newInvite = true;
-					for (int i = 0; i < inviteList.size(); i ++) {
-						if (inviteUsername.equals(inviteList.get(i))) {
-							newInvite = false;
-						}
-					}
-					
-					if (newInvite) {
-						inviteList.add(inviteUsername);
-					}
-	            	
-	            }
-	            else if (message.substring(0, 4).equals(chatCode)) {
-	            	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-            		String current = "["+sdf.format(System.currentTimeMillis())+"]";
-	            	message = message.substring(5);
-	            	System.out.println(message);
-	            	String name = message.substring(1, message.indexOf('>'));
-		            for(int i=0; i<GUI.b.chats.size();i++){
-	            		if(GUI.b.chats.get(i).getFriendname().equals(name)){
-	            			GUI.b.chats.get(i).setText(current+message + '\n');
-	            			GUI.b.chats.get(i).dropDown();
-	            		}
-	            	}
-	            }  
-	            else if(message.substring(0, 4).equals(closeCode))
-	            {
-	            	connectionSocket.close();
-	            	this.run();
-	            }
-  			}
-			}
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}*/
-	
+
+	/**
+	 * Code that is executed when this thread is started.
+	 * 
+	 * A serversocket is created and whenever a new connection is received, it dispatches this connection to a new ClientListenerEchoThread
+	 * in order to be able to manage multiple chat sessions.
+	 * 
+	 */
+	@SuppressWarnings("resource")
 	public void run()
 	{
 		ServerSocket serverSocket = null;
@@ -110,11 +64,15 @@ public class ClientListenerThread implements Runnable
             {
                 System.out.println("I/O error: " + e);
             }
-            // new threa for a client
+            // new thread for a client
             new ClientListenerEchoThread(socket, this).start();
         }
 	}
 	
+	/**
+	 * getters and setters for this class
+	 * 
+	 */
 
 	public ArrayList<String> getInviteList()
 	{
