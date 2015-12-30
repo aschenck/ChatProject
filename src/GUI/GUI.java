@@ -2,8 +2,14 @@ package GUI;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.*;
+/**
+ * This is the GUI class from which the client interface will be opened
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ *
+ */
 
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;

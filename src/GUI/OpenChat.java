@@ -6,6 +6,12 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 import user.Client;
+/**
+ * This class opens a new interface for each individual chat session
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ */
 
 public class OpenChat extends JFrame {
 	
@@ -15,6 +21,16 @@ public class OpenChat extends JFrame {
 	private MessageBox m;
 	private JFrame frame = new GUI();
 	
+	/**
+	 * Constructor of the class
+	 * 
+	 * @param UserName
+	 * @param friendName
+	 * @param client
+	 * @param a
+	 * @param online
+	 * @param openedFromInvite
+	 */
 	public OpenChat(String UserName, String friendName, Client client, boolean a, boolean online, boolean openedFromInvite)
 	{
 		friendname = friendName;
@@ -41,6 +57,9 @@ public class OpenChat extends JFrame {
         });
 	}
 	
+	/**
+	 * Getters and setters of the class
+	 */
 	public void setText(String text){
 		m.txtConversation.append(text);
 	}

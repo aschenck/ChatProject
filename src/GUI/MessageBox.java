@@ -14,15 +14,26 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import user.Client;
+/**
+ * This class opens a panel on each new chat window
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ */
 
 public class MessageBox extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel chatPanel;
-	private String friendname;
 	private boolean online;
 	private boolean openFromInvite;
 	
+	private String friendname;
+	private String username;
+	
+	/**
+	 * Some getters and setters
+	 */
 	public String getFriendname() {
 		return friendname;
 	}
@@ -31,7 +42,6 @@ public class MessageBox extends JPanel {
 		this.friendname = friendname;
 	}
 
-	private String username;
 	
 	public String getUsername() {
 		return username;
@@ -50,7 +60,15 @@ public class MessageBox extends JPanel {
 			
 	public ActionListener handler = new KnopHandler();
 	
-
+	/**
+	 * the constructor of the class
+	 * 
+	 * @param un your user name
+	 * @param fn the friends name you are chatting with
+	 * @param client
+	 * @param online
+	 * @param invite
+	 */
 	public MessageBox(String un ,String fn, Client client, boolean online, boolean invite) 
 	{
 		username = un;
@@ -90,6 +108,10 @@ public class MessageBox extends JPanel {
 			cl.sendMessage(friendname, "0011:" + cl.getUser());
 		}
 	}
+	
+	/**
+	 * Some getters and setters of the class
+	 */
 	public void sendCloseMessage()
 	{
 		cl.sendMessage(friendname, "1111:");
@@ -105,6 +127,7 @@ public class MessageBox extends JPanel {
 		this.openFromInvite = openFromInvite;
 	}
 
+	
 	public boolean isOnline()
 	{
 		return online;
@@ -115,15 +138,26 @@ public class MessageBox extends JPanel {
 		this.online = online;
 	}
 	
+	/**
+	 * Method that makes sure that the bottom of the conversation is always shown
+	 */
 	public void dropDown()
 	{
 		txtConversation.setCaretPosition(txtConversation.getDocument().getLength());
 	}
 
+	/**
+	 * 
+	 * This ActionListener checks which button is pressed and then calls some functions if needed
+	 *
+	 */
 	class KnopHandler implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
         
+			/**
+			 * When clicked on this button, the message that is filled into text field to send, will be send
+			 */
 			if (e.getSource() == btnSendMessage) {
             	if(txtTextToSend.getText().length()>0)
             	{

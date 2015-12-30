@@ -24,45 +24,79 @@ import javax.swing.JTextField;import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 
 import user.Client;
+/**
+ * This class defines most of the GUI. There will be a connection made with the server so that the user can log in and can modify his friends, start a chat etc.
+ * 
+ * 
+ * @author Anthony, Willem, Frederik
+ * @version 1.0
+ *
+ */
+public class BorderLayoutPanel extends JPanel {
 
-	public class BorderLayoutPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	public Client cl; 
+
+	public ActionListener handler = new KnopHandler();
+	public void setTextArea(String myString){
+	 	txtConversation.append(myString);
+	}
 	
-		private static final long serialVersionUID = 1L;
-		public Client cl; 
-	
+	/**
+	 * Gets the text from the text area
+	 * @return returns the text filled in in the text area
+	 */
+	public String readTextArea(){	 	
+	 	return txtTextToSend.getText();
+	}
 
-		public ActionListener handler = new KnopHandler();
-		public void setTextArea(String myString){
-			 	txtConversation.append(myString);
-			}
-		
-		public String readTextArea(){	 	
-		 	return txtTextToSend.getText();
-		}
+	/**
+	 * Makes sure that the user is logged out when he closes the window.
+	 */
+	public void Close()
+	{
+		cl.logOut();
+	}
 
-		public void Close()
-		{
-			cl.logOut();
-		}
-		
-		private JPanel optionPanel, chatPanel;
-		
-		//OPTIONPANEL
+	private JPanel optionPanel, chatPanel;
+
+	//OPTIONPANEL
 	private JLabel lblUsername, lblPassword, lblFirstName, lblLastName;
 	private JTextField txtUsername, txtFirstName, txtLastName;
 	private String userName, friendName;
+	
+	/**
+	 * Getter for the clients user name
+	 * 
+	 * @return returns the clients user name
+	 */
 	public String getUserName() {
 		return userName;
 	}
-
+	
+	/**
+	 * Setter for the clients user name
+	 * 
+	 * @param userName your own user name
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+	/**
+	 * Getter for a friend name
+	 * 
+	 * @return returns the friend name of the chat
+	 */
 	public String getFriendName() {
 		return friendName;
 	}
 
+	/**
+	 * Setter for a friend name
+	 * 
+	 * @param friendName the name of the friend where you want to chat with
+	 */
 	public void setFriendName(String friendName) {
 		this.friendName = friendName;
 	}
@@ -75,7 +109,8 @@ import user.Client;
 	private JScrollPane listScrollPane;
 	@SuppressWarnings("rawtypes")
 	private DefaultListModel lmFriendList = new DefaultListModel();	
-	private JButton btnDelete, btnChat, btnChatWithInv, btnAdd, btnBackMenu;	
+	private JButton btnDelete, btnChat, btnChatWithInv, btnAdd, btnBackMenu;
+	
 	public DefaultListModel getLmFriendList()
 	{
 		return lmFriendList;
@@ -117,6 +152,10 @@ import user.Client;
 		}
 	}
 	
+	/**
+	 * Constructor of the BorderLayoutPanel class
+	 * Defines how the panel should look like. Defines how every button, text field etc should look like.
+	 */
 	//SERVER CONNECTION	
 	//@SuppressWarnings({ "unchecked", "rawtypes" })
 	@SuppressWarnings("unchecked")
@@ -278,11 +317,18 @@ import user.Client;
 		btnSendMessage.addActionListener(handler);
 	}
 	
+	/**
+	 * 
+	 * This ActionListener checks which button is pressed and then calls some functions if needed
+	 *
+	 */
 	class KnopHandler implements ActionListener {
 		
 		@SuppressWarnings("unchecked")
-		public void actionPerformed(ActionEvent e) {     	        	
-			//Naar het login menu gaan
+		public void actionPerformed(ActionEvent e) {    
+			/**
+			 * Go to the login menu
+			 */
         	if (e.getSource() == btnLoginMenu)
             {	            	
             	lblUsername.setVisible(true);
@@ -297,7 +343,9 @@ import user.Client;
         		btnBack.setVisible(true);   	
             }
         	
-        	//Naar het sign in menu gaan
+        	/**
+        	 * Go to the sign up menu
+        	 */
             if (e.getSource() == btnSignUpMenu)
             {
             	lblUsername.setVisible(true);
@@ -316,12 +364,17 @@ import user.Client;
         		btnBack.setVisible(true);
             }
             
-            //Programma sluiten
+            /**
+             * Exit the program
+             */
             if (e.getSource() == btnExit)
             {
             	System.exit(0);
             }
 
+            /**
+             * Tries to log in with the given username and password
+             */
             if (e.getSource() == btnLogin)
             {
             	user = txtUsername.getText();
@@ -352,6 +405,9 @@ import user.Client;
 				}       	
             }
             
+            /**
+             * Makes a new user with the given credentials
+             */
             if (e.getSource() == btnSignUp)
             {
             	String user = txtUsername.getText();
@@ -376,6 +432,10 @@ import user.Client;
             		btnBack.setVisible(true);
             	}
             }
+            
+            /**
+             * Goes back to the initial menu
+             */
             if (e.getSource() == btnBack)
             {
             	lblUsername.setVisible(false);
@@ -393,6 +453,10 @@ import user.Client;
         		btnSignUp.setVisible(false);
         		btnBack.setVisible(false);
             }
+            
+            /**
+             * Gets your friend list from the server and shows it. Now you can pick a friend to chat with
+             */
             if (e.getSource() == btnStartChat)
             {
             	lblUsername.setVisible(false);
@@ -454,6 +518,10 @@ import user.Client;
         		btnChat.setVisible(true);
         		btnBackMenu.setVisible(true);
             }
+            
+            /**
+             * Opens a form to add friends to you friend list
+             */
             if (e.getSource() == btnAddFriend)
             {
             	lblUsername.setVisible(false);
@@ -476,23 +544,10 @@ import user.Client;
             	btnAdd.setVisible(true);
             	btnBackMenu.setVisible(true);
             }
-            if (e.getSource() == btnDelete) {
-            	String friendname;
-
-            	try
-            	{
-            		System.out.println(lFriendList.getSelectedValue().toString());
-            		friendname = lFriendList.getSelectedValue().toString();
-            		lmFriendList.remove(lFriendList.getSelectedIndex());
-            		cl.deleteFriend(friendname);
-            		lFriendList.setModel(lmFriendList);
-            	} 
-            	catch(Exception error){
-            		
-            		friendname = "";
-            		System.out.println(error);
-            	}
-            }
+            
+            /**
+             * Opens a form which loads all your friends from the server. Now you can delete a friend
+             */
             if (e.getSource() == btnDeleteFriend)
             {
             	lblUsername.setVisible(false);
@@ -523,6 +578,31 @@ import user.Client;
         		btnDelete.setVisible(true);
         		btnBackMenu.setVisible(true);
             }
+            
+            /**
+             * Deletes the selected friend from your friend list
+             */
+            if (e.getSource() == btnDelete) {
+            	String friendname;
+
+            	try
+            	{
+            		System.out.println(lFriendList.getSelectedValue().toString());
+            		friendname = lFriendList.getSelectedValue().toString();
+            		lmFriendList.remove(lFriendList.getSelectedIndex());
+            		cl.deleteFriend(friendname);
+            		lFriendList.setModel(lmFriendList);
+            	} 
+            	catch(Exception error){
+            		
+            		friendname = "";
+            		System.out.println(error);
+            	}
+            }
+            
+            /**
+             * Checks all the invites that were sended to you. Now you can open an invite and chat with the selected person
+             */
             if (e.getSource() == btnCheckInvites)
             {
             	lblUsername.setVisible(false);
@@ -562,6 +642,10 @@ import user.Client;
             		lFriendList.setModel(lmFriendList);
             	}
             }
+            
+            /**
+             * You will be logged out and redirected to the initial menu
+             */
             if (e.getSource() == btnLogout)
             {
             	lblUsername.setVisible(false);
@@ -585,6 +669,9 @@ import user.Client;
         		cl.logOut();
             }
             
+            /**
+             * Adds the given user to your friend list
+             */
             if (e.getSource() == btnAdd) {
             	String friendname;
             	friendname = txtAddFriend.getText();
@@ -600,6 +687,9 @@ import user.Client;
             	}
             }
             
+            /**
+             * Goes back to the menu wich you will see after you were logged in
+             */
             if (e.getSource() == btnBackMenu) {
             	btnAddFriend.setVisible(true);
             	btnStartChat.setVisible(true);
@@ -615,6 +705,9 @@ import user.Client;
             	btnBackMenu.setVisible(false);
             }
             
+            /**
+             * Opens a new window with the person you selected to chat with
+             */
             if (e.getSource() == btnChat) {
             	String friendname;
 
@@ -677,6 +770,9 @@ import user.Client;
              	}
             }
             
+            /**
+             * Starts a chat with a selected person that sended you an invite
+             */
             if (e.getSource() == btnChatWithInv) {
             	String friendname;
 
@@ -689,7 +785,7 @@ import user.Client;
             		
             		friendname = "";
             		System.out.println(error);
-            	}//
+            	}
             	
             	if(friendname != ""){	
             		//TODO
@@ -712,10 +808,17 @@ import user.Client;
             	}
             }
             
+            /**
+             * Hides the current conversation
+             */
             if (e.getSource() == btnLeaveConversation) {
             	optionPanel.setVisible(true);
             	chatPanel.setVisible(false);
             }
+            
+            /**
+             * Sends the message to the connected person
+             */
             if (e.getSource() == btnSendMessage) {
             	if(txtTextToSend.getText().length()>0){
 	            	String message = "<" + txtUsername.getText() + ">" + txtTextToSend.getText();
